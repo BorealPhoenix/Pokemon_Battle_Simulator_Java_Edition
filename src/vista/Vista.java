@@ -33,6 +33,19 @@ public class Vista {
     private JTextField textFieldHabilidad;
     private JButton buttonOcultarInfo;
     private JLabel InfoLabel;
+    private JLabel SeleccionPokemonLabel;
+    private JLabel lucarioIntro;
+    private JButton buttonSelectLucario;
+    private JButton buttonInfoLucario;
+    private JButton buttonSelectZeraora;
+    private JButton buttonInfoZeraora;
+    private JButton buttonSelectZoroark;
+    private JButton buttonInfoZoroark;
+    private JLabel zeraoraIntro;
+    private JLabel zoroarkIntro;
+    private JLabel zoroarkImage;
+    private JLabel zeraoraImage;
+    private JLabel lucarioImage;
 
     //Getters de Botones, TextField y panel Añadir
 
@@ -116,6 +129,34 @@ public class Vista {
         return buttonOcultarInfo;
     }
 
+    public JPanel getMainPanel() {
+        return mainPanel;
+    }
+
+    public JButton getButtonSelectLucario() {
+        return buttonSelectLucario;
+    }
+
+    public JButton getButtonInfoLucario() {
+        return buttonInfoLucario;
+    }
+
+    public JButton getButtonSelectZeraora() {
+        return buttonSelectZeraora;
+    }
+
+    public JButton getButtonInfoZeraora() {
+        return buttonInfoZeraora;
+    }
+
+    public JButton getButtonSelectZoroark() {
+        return buttonSelectZoroark;
+    }
+
+    public JButton getButtonInfoZoroark() {
+        return buttonInfoZoroark;
+    }
+
     //Arranque de la ventana principal
     public Vista (){
         JFrame frame = new JFrame();
@@ -126,6 +167,13 @@ public class Vista {
         frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
+    }
+
+    private void createUIComponents() {
+        // TODO: place custom component creation code here
+        zoroarkImage = new JLabel(new ImageIcon("img/zoroarkIntro.png"));
+        zeraoraImage = new JLabel(new ImageIcon("img/zeraoraIntro.png"));
+        lucarioImage= new JLabel(new ImageIcon("img/lucarioIntro.png"));
     }
 }
 
