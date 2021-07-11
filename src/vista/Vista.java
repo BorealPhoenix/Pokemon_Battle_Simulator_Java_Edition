@@ -43,9 +43,7 @@ public class Vista {
     private JButton buttonInfoZoroark;
     private JLabel zeraoraIntro;
     private JLabel zoroarkIntro;
-    private JLabel zoroarkImage;
-    private JLabel zeraoraImage;
-    private JLabel lucarioImage;
+
 
     //Getters de Botones, TextField y panel Añadir
 
@@ -163,17 +161,10 @@ public class Vista {
         frame.setTitle("Pokemon Battle Simulator Java Edition");
         frame.setContentPane(mainPanel);
         Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
-        frame.setSize(dimension.width / 2, dimension.height /2);
+        frame.setSize(dimension.width, dimension.height);
         frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
-    }
-
-    private void createUIComponents() {
-        // TODO: place custom component creation code here
-        zoroarkImage = new JLabel(new ImageIcon("img/zoroarkIntro.png"));
-        zeraoraImage = new JLabel(new ImageIcon("img/zeraoraIntro.png"));
-        lucarioImage= new JLabel(new ImageIcon("img/lucarioIntro.png"));
     }
 }
 

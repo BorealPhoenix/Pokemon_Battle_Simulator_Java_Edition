@@ -2,7 +2,7 @@
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="vista.Vista">
   <grid id="27dc6" binding="mainPanel" layout-manager="BorderLayout" hgap="0" vgap="0">
     <constraints>
-      <xy x="20" y="20" width="699" height="400"/>
+      <xy x="20" y="20" width="1880" height="708"/>
     </constraints>
     <properties/>
     <border type="none"/>
@@ -224,28 +224,31 @@
               <text value="Seleccione que Pokemon sacar:"/>
             </properties>
           </component>
-          <component id="60d36" class="javax.swing.JLabel" binding="lucarioIntro" custom-create="true">
+          <component id="60d36" class="javax.swing.JLabel" binding="lucarioIntro">
             <constraints>
               <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <text value="Label"/>
+              <icon value="img/lucarioIntro.png"/>
+              <text value=""/>
             </properties>
           </component>
-          <component id="bbc69" class="javax.swing.JLabel" binding="zeraoraIntro" custom-create="true">
+          <component id="bbc69" class="javax.swing.JLabel" binding="zeraoraIntro">
             <constraints>
               <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <text value="Label"/>
+              <icon value="img/zeraoraIntro.png"/>
+              <text value=""/>
             </properties>
           </component>
-          <component id="d0091" class="javax.swing.JLabel" binding="zoroarkIntro" custom-create="true">
+          <component id="d0091" class="javax.swing.JLabel" binding="zoroarkIntro">
             <constraints>
               <grid row="1" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <text value="Label"/>
+              <icon value="img/zoroarkIntro.png"/>
+              <text value=""/>
             </properties>
           </component>
           <component id="4a5a4" class="javax.swing.JButton" binding="buttonSelectLucario">
