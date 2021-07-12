@@ -6,8 +6,7 @@ public class Pokemon {
     private nombrePokemon nombre;
     private tipoPokemon tipo;
     private int vida;
-    private int pokedexNacional;
-    private int habilidad;
+
     private int mov1;
     private int mov2;
     private int mov3;
@@ -18,12 +17,10 @@ public class Pokemon {
     private String nombreMov4;
 
     //Constructor
-    public Pokemon(nombrePokemon nombre, tipoPokemon tipo, int vida, int pokedexNacional, int habilidad, int mov1, int mov2, int mov3, int mov4, String nombreMov1, String nombreMov2, String nombreMov3, String nombreMov4) {
+    public Pokemon(nombrePokemon nombre, tipoPokemon tipo, int vida, int mov1, int mov2, int mov3, int mov4, String nombreMov1, String nombreMov2, String nombreMov3, String nombreMov4) {
         this.nombre = nombre;
         this.tipo = tipo;
         this.vida = vida;
-        this.pokedexNacional = pokedexNacional;
-        this.habilidad = habilidad;
         this.mov1 = mov1;
         this.mov2 = mov2;
         this.mov3 = mov3;

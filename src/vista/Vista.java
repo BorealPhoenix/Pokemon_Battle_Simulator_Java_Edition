@@ -162,7 +162,17 @@ public class Vista {
         return buttonInfoZoroark;
     }
 
+    public JLabel getLucarioIntro() {
+        return lucarioIntro;
+    }
 
+    public JLabel getZeraoraIntro() {
+        return zeraoraIntro;
+    }
+
+    public JLabel getZoroarkIntro() {
+        return zoroarkIntro;
+    }
 
     //Arranque de la ventana principal
     public Vista (){

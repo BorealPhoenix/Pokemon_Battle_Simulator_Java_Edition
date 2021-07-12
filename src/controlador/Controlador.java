@@ -5,9 +5,6 @@ import modelo.DTO.nombrePokemon;
 import modelo.DTO.tipoPokemon;
 import vista.Vista;
 
-import javax.swing.*;
-import java.awt.*;
-
 public class Controlador {
     //Atributos
     private Vista vista;
@@ -16,14 +13,13 @@ public class Controlador {
     
     
     //Constructor
-
     public Controlador(Vista vista) {
         this.vista = vista;
-        controladorPaneles();
+        controladorPanelesIniciales();
         registrarEventos();
     }
 
-    private void controladorPaneles() {
+    private void controladorPanelesIniciales() {
         vista.getTopPanel().setVisible(false);
         vista.getBottomPanel().setVisible(false);
         vista.getInfoPanel().setVisible(false);
@@ -47,6 +43,55 @@ public class Controlador {
             vista.getInfoPanel().setVisible(true);
             mostrarInfoZoroark();
         });
+        
+        //Evento Escoger Lucario
+        vista.getButtonSelectLucario().addActionListener(e->{
+            vista.getBottomPanel().setVisible(true);
+            vista.getTopPanel().setVisible(true);
+            vista.getCentralPanel().setEnabled(false);
+            vista.getCentralPanel().setVisible(false);
+            
+            
+            pokemon= new Pokemon(nombrePokemon.Lucario, tipoPokemon.Lucha_Acero, 200, 80, 120,
+                    25, 120, "Esfera Aural", "A Bocajarro", "Ataque Óseo", "Onda Certera");
+        });
+        
+        
+        vista.getButtonAtaque1().setText("Esfera Aural");
+        vista.getButtonAtaque2().setText("A Bocajarro");
+        vista.getButtonAtaque3().setText("Ataque Óseo");
+        vista.getButtonAtaque4().setText("Onda Certera");
+        
+        combateLucario(escogerPokemonRival(), pokemon);
+    }
+
+    private void combateLucario(Pokemon escogerPokemonRival, Pokemon pokemon) {
+    }
+
+
+    private Pokemon escogerPokemonRival() {
+        //Se elegirá con un Math random cualquiera
+        int random = (int) (Math.random()*10-1);
+        
+        //Si <3=Lycanroc, >3 <6= Scyther, >6 <=9 = Raikou
+        if (random<=3){
+            pokemon = new Pokemon(nombrePokemon.Lycanroc, tipoPokemon.Roca, 200,40, 80
+            , 75, 60, "Roca Veloz", "Triturar", "Avalancha", "Mordisco");
+            System.out.println("Lycanroc");
+        }
+        if (random >3 && random<=6){
+            pokemon = new Pokemon(nombrePokemon.Scyther, tipoPokemon.Bicho_Volador, 200, 60, 80, 75, 40
+                    , "Ataque Ala", "Tijera X", "Tajo Aéreo", "Corte Furia");
+            System.out.println("Scyther");
+        }
+        if (random>6 && random<=9){
+            pokemon = new Pokemon(nombrePokemon.Raikou, tipoPokemon.Electrico, 200, 80, 40, 110, 80
+            , "Paranormal", "Golpe Roca", "Trueno", "Chispazo");
+            System.out.println("Raikou");
+        }
+        System.out.println(random);
+
+        return pokemon;
     }
 
     private void mostrarInfoZoroark() {
