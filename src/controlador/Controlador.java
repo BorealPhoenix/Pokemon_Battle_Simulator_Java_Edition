@@ -5,6 +5,9 @@ import modelo.DTO.nombrePokemon;
 import modelo.DTO.tipoPokemon;
 import vista.Vista;
 
+import javax.swing.*;
+import java.awt.*;
+
 public class Controlador {
     //Atributos
     private Vista vista;
@@ -52,8 +55,8 @@ public class Controlador {
             vista.getTextFieldInfoPokemon().setText("");
             vista.getTextFieldTipoPokemon().setText("");
             vista.getTextFieldPokedex().setText("");
-            vista.getTextFieldHabilidad().setText("");
-            vista.getTextFieldInfoPokemon().setText("");
+            vista.getTextAreaInfoHabilidad().setText("");
+            vista.getTextFieldInfoGeneracion().setText("");
             vista.getInfoPanel().setVisible(false);
         });
 
@@ -62,8 +65,18 @@ public class Controlador {
         vista.getTextFieldTipoPokemon().setText("Siniestro");
         vista.getTextFieldInfoVida().setText("200");
         vista.getTextFieldPokedex().setText("570");
-        vista.getTextFieldHabilidad().setText("Cuida de sus semejantes. " +
+        vista.getTextAreaInfoHabilidad().setText("Cuida de sus semejantes. " +
                 "Provoca ilusiones terroríficas para proteger tanto su guarida como a su manada de sus adversarios.");
+        vista.getTextAreaInfoHabilidad().setLineWrap(true);
+        vista.getTextFieldInfoGeneracion().setText("5");
+
+        //Evitamos que sea editable
+        vista.getTextFieldInfoPokemon().setEditable(false);
+        vista.getTextFieldTipoPokemon().setEditable(false);
+        vista.getTextFieldInfoVida().setEditable(false);
+        vista.getTextFieldPokedex().setEditable(false);
+        vista.getTextAreaInfoHabilidad().setEditable(false);
+        vista.getTextFieldInfoGeneracion().setEditable(false);
     }
 
     private void mostrarInfoZeraora() {
@@ -72,8 +85,8 @@ public class Controlador {
             vista.getTextFieldInfoPokemon().setText("");
             vista.getTextFieldTipoPokemon().setText("");
             vista.getTextFieldPokedex().setText("");
-            vista.getTextFieldHabilidad().setText("");
-            vista.getTextFieldInfoPokemon().setText("");
+            vista.getTextAreaInfoHabilidad().setText("");
+            vista.getTextFieldInfoGeneracion().setText("");
             vista.getInfoPanel().setVisible(false);
         });
 
@@ -82,8 +95,18 @@ public class Controlador {
         vista.getTextFieldTipoPokemon().setText("Electrico");
         vista.getTextFieldInfoVida().setText("200");
         vista.getTextFieldPokedex().setText("807");
-        vista.getTextFieldHabilidad().setText("Hace jirones al oponente con sus garras electrificadas. " +
+        vista.getTextAreaInfoHabilidad().setText("Hace jirones al oponente con sus garras electrificadas. " +
                 "Aunque este esquive los golpes, acaba electrocutado por las descargas");
+        vista.getTextAreaInfoHabilidad().setLineWrap(true);
+        vista.getTextFieldInfoGeneracion().setText("8");
+
+        //Evitamos que sea editable
+        vista.getTextFieldInfoPokemon().setEditable(false);
+        vista.getTextFieldTipoPokemon().setEditable(false);
+        vista.getTextFieldInfoVida().setEditable(false);
+        vista.getTextFieldPokedex().setEditable(false);
+        vista.getTextAreaInfoHabilidad().setEditable(false);
+        vista.getTextFieldInfoGeneracion().setEditable(false);
     }
 
     private void mostrarInfoLucario() {
@@ -92,8 +115,8 @@ public class Controlador {
             vista.getTextFieldInfoPokemon().setText("");
             vista.getTextFieldTipoPokemon().setText("");
             vista.getTextFieldPokedex().setText("");
-            vista.getTextFieldHabilidad().setText("");
-            vista.getTextFieldInfoPokemon().setText("");
+            vista.getTextAreaInfoHabilidad().setText("");
+            vista.getTextFieldInfoGeneracion().setText("");
             vista.getInfoPanel().setVisible(false);
         });
 
@@ -102,8 +125,18 @@ public class Controlador {
         vista.getTextFieldTipoPokemon().setText("Lucha/Acero");
         vista.getTextFieldInfoVida().setText("200");
         vista.getTextFieldPokedex().setText("448");
-        vista.getTextFieldHabilidad().setText("Caza a sus presas manipulando una energía, denominada aura," +
-                        " cuya potencia es capaz incluso de hacer añicos rocas enormes.");
+        vista.getTextAreaInfoHabilidad().setText("Caza a sus presas manipulando una energía, " +
+                "denominada  a cuya potencia es capaz incluso de hacer añicos rocas enormes.");
+        vista.getTextAreaInfoHabilidad().setLineWrap(true);
+        vista.getTextFieldInfoGeneracion().setText("4");
+
+        //Evitamos que sea editable
+        vista.getTextFieldInfoPokemon().setEditable(false);
+        vista.getTextFieldTipoPokemon().setEditable(false);
+        vista.getTextFieldInfoVida().setEditable(false);
+        vista.getTextFieldPokedex().setEditable(false);
+        vista.getTextAreaInfoHabilidad().setEditable(false);
+        vista.getTextFieldInfoGeneracion().setEditable(false);
 
     }
 }

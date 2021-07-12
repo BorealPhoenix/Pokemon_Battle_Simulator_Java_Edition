@@ -30,7 +30,6 @@ public class Vista {
     private JLabel PokedexLabel;
     private JTextField textFieldPokedex;
     private JLabel HabilidadLabel;
-    private JTextField textFieldHabilidad;
     private JButton buttonOcultarInfo;
     private JLabel InfoLabel;
     private JLabel SeleccionPokemonLabel;
@@ -43,6 +42,9 @@ public class Vista {
     private JButton buttonInfoZoroark;
     private JLabel zeraoraIntro;
     private JLabel zoroarkIntro;
+    private JLabel InfoGeneracionLabel;
+    private JTextField textFieldInfoGeneracion;
+    private JTextArea textAreaInfoHabilidad;
 
 
     //Getters de Botones, TextField y panel Añadir
@@ -119,8 +121,13 @@ public class Vista {
         return textFieldPokedex;
     }
 
-    public JTextField getTextFieldHabilidad() {
-        return textFieldHabilidad;
+
+    public JTextField getTextFieldInfoGeneracion() {
+        return textFieldInfoGeneracion;
+    }
+
+    public JTextArea getTextAreaInfoHabilidad() {
+        return textAreaInfoHabilidad;
     }
 
     public JButton getButtonOcultarInfo() {
@@ -155,6 +162,8 @@ public class Vista {
         return buttonInfoZoroark;
     }
 
+
+
     //Arranque de la ventana principal
     public Vista (){
         JFrame frame = new JFrame();
@@ -166,6 +175,8 @@ public class Vista {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
     }
+
+
 }
 
 
