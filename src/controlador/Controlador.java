@@ -6,6 +6,9 @@ import modelo.DTO.tipoPokemon;
 import modelo.DTO.tiposMovimiento;
 import vista.Vista;
 
+import javax.swing.*;
+import java.awt.*;
+
 public class Controlador {
     //Atributos
     private Vista vista;
@@ -62,8 +65,21 @@ public class Controlador {
             vista.getButtonAtaque4().setText("Onda Certera");
 
             Pokemon pokemonRival =escogerPokemonRival();
-            // TODO: 13/07/2021 Verificar donde poner el combate para que no de problemas con la interfaz 
+            //   vista.getCentralPanel().removeAll();
+
+            if (pokemonRival.getNombre().toString().equalsIgnoreCase("Scyther")){
+                //creamos panel con lucarioVSscyther.jpg
+            }
+            if (pokemonRival.getNombre().toString().equalsIgnoreCase("Lycanroc")){
+                //creamos panel con lucarioVSlycanroc.jpg
+            }
+            if (pokemonRival.getNombre().toString().equalsIgnoreCase("Raikou")){
+                //creamos panel con lucarioVSraikou.jpg
+            }
+
          //   combateLucario(pokemonRival, pokemon);
+
+
         });
         
         
