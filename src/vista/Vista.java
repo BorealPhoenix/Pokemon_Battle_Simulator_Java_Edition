@@ -13,10 +13,6 @@ public class Vista {
     private JTextField textFieldVidaPokemon;
     private JLabel vidaRivalLabel;
     private JTextField textFieldVidaPokemonRival;
-    private JTextField textFieldAtaque1;
-    private JTextField textFieldAtaque2;
-    private JTextField textFieldAtaque3;
-    private JTextField textFieldAtaque4;
     private JButton buttonAtaque1;
     private JButton buttonAtaque2;
     private JButton buttonAtaque3;
@@ -47,7 +43,7 @@ public class Vista {
     private JTextArea textAreaInfoHabilidad;
 
 
-    //Getters de Botones, TextField y panel Añadir
+    //Getters de Botones, TextField y paneles
 
     public JPanel getBottomPanel() {
         return bottomPanel;
@@ -71,22 +67,6 @@ public class Vista {
 
     public JTextField getTextFieldVidaPokemonRival() {
         return textFieldVidaPokemonRival;
-    }
-
-    public JTextField getTextFieldAtaque1() {
-        return textFieldAtaque1;
-    }
-
-    public JTextField getTextFieldAtaque2() {
-        return textFieldAtaque2;
-    }
-
-    public JTextField getTextFieldAtaque3() {
-        return textFieldAtaque3;
-    }
-
-    public JTextField getTextFieldAtaque4() {
-        return textFieldAtaque4;
     }
 
     public JButton getButtonAtaque1() {
