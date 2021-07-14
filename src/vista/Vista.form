@@ -228,8 +228,7 @@
           </component>
         </children>
       </grid>
-      <grid id="1351e" binding="centralPanel" layout-manager="GridLayoutManager" row-count="4" column-count="4" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
-        <margin top="0" left="0" bottom="0" right="0"/>
+      <grid id="1351e" binding="centralPanel" layout-manager="GridBagLayout">
         <constraints border-constraint="Center"/>
         <properties>
           <enabled value="true"/>
@@ -239,6 +238,7 @@
           <component id="94cae" class="javax.swing.JLabel" binding="SeleccionPokemonLabel">
             <constraints>
               <grid row="0" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+              <gridbag weightx="1.0" weighty="1.0"/>
             </constraints>
             <properties>
               <font size="28"/>
@@ -248,24 +248,17 @@
           <component id="60d36" class="javax.swing.JLabel" binding="lucarioIntro">
             <constraints>
               <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+              <gridbag weightx="1.0" weighty="1.0"/>
             </constraints>
             <properties>
               <icon value="img/lucarioIntro.png"/>
               <text value=""/>
             </properties>
           </component>
-          <component id="bbc69" class="javax.swing.JLabel" binding="zeraoraIntro">
-            <constraints>
-              <grid row="1" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <icon value="img/zeraoraIntro.png"/>
-              <text value=""/>
-            </properties>
-          </component>
           <component id="d0091" class="javax.swing.JLabel" binding="zoroarkIntro">
             <constraints>
               <grid row="1" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+              <gridbag weightx="1.0" weighty="1.0"/>
             </constraints>
             <properties>
               <icon value="img/zoroarkIntro.png"/>
@@ -275,6 +268,7 @@
           <component id="4a5a4" class="javax.swing.JButton" binding="buttonSelectLucario">
             <constraints>
               <grid row="2" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+              <gridbag weightx="1.0" weighty="1.0"/>
             </constraints>
             <properties>
               <background color="-1286"/>
@@ -286,6 +280,7 @@
           <component id="65206" class="javax.swing.JButton" binding="buttonInfoLucario">
             <constraints>
               <grid row="3" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+              <gridbag weightx="1.0" weighty="1.0"/>
             </constraints>
             <properties>
               <background color="-983809"/>
@@ -298,6 +293,7 @@
           <component id="ff908" class="javax.swing.JButton" binding="buttonSelectZeraora">
             <constraints>
               <grid row="2" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+              <gridbag weightx="1.0" weighty="1.0"/>
             </constraints>
             <properties>
               <background color="-983809"/>
@@ -309,6 +305,7 @@
           <component id="1d2fd" class="javax.swing.JButton" binding="buttonInfoZeraora">
             <constraints>
               <grid row="3" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+              <gridbag weightx="1.0" weighty="1.0"/>
             </constraints>
             <properties>
               <background color="-983809"/>
@@ -321,6 +318,7 @@
           <component id="67655" class="javax.swing.JButton" binding="buttonSelectZoroark">
             <constraints>
               <grid row="2" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+              <gridbag weightx="1.0" weighty="1.0"/>
             </constraints>
             <properties>
               <background color="-983809"/>
@@ -332,12 +330,23 @@
           <component id="47bf6" class="javax.swing.JButton" binding="buttonInfoZoroark">
             <constraints>
               <grid row="3" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+              <gridbag weightx="1.0" weighty="1.0"/>
             </constraints>
             <properties>
               <background color="-983809"/>
               <font name="Comic Sans MS" size="26"/>
               <foreground color="-14142827"/>
               <text value="Info"/>
+            </properties>
+          </component>
+          <component id="bbc69" class="javax.swing.JLabel" binding="zeraoraIntro">
+            <constraints>
+              <grid row="1" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+              <gridbag weightx="1.0" weighty="1.0"/>
+            </constraints>
+            <properties>
+              <icon value="img/zeraoraIntro.png"/>
+              <text value=""/>
             </properties>
           </component>
         </children>

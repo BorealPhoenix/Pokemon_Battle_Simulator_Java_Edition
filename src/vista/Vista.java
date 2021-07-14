@@ -154,6 +154,9 @@ public class Vista {
         return zoroarkIntro;
     }
 
+
+
+
     //Arranque de la ventana principal
     public Vista (){
         JFrame frame = new JFrame();
