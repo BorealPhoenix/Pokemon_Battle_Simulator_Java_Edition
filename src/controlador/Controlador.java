@@ -19,17 +19,25 @@ public class Controlador {
     //Constructor
     public Controlador(Vista vista) {
         this.vista = vista;
-        controladorPanelesIniciales();
-        registrarEventos();
+
+
+        vista.getButtonStart().addActionListener(e->{
+            vista.getFrame().remove(vista.getIntroPanel());
+            vista.getFrame().add(vista.getCombatPanel());
+            vista.getFrame().revalidate();
+            vista.getFrame().repaint();
+            controladorPanelesInicialesPanelSeleccion();
+        });
+
+        registrarEventosPanelSeleccionPokemon();
+
     }
 
-    private void controladorPanelesIniciales() {
-        vista.getTopPanel().setVisible(false);
-        vista.getBottomPanel().setVisible(false);
-        vista.getInfoPanel().setVisible(false);
+    private void controladorPanelesInicialesPanelSeleccion() {
+           vista.getInfoPanel().setVisible(false);
     }
 
-    private void registrarEventos() {
+    private void registrarEventosPanelSeleccionPokemon() {
         //Evento Botón Info Lucario
         vista.getButtonInfoLucario().addActionListener(e->{
             vista.getInfoPanel().setVisible(true);
@@ -74,7 +82,7 @@ public class Controlador {
                 lucarioScyther.add(lucariovsscyther);
                 vista.getCentralPanel().add(lucarioScyther);
 
-                vista.getCentralPanel().invalidate();
+                vista.getCentralPanel().revalidate();
                 vista.getCentralPanel().repaint();
                 lucarioScyther.setVisible(true);
 
@@ -87,7 +95,7 @@ public class Controlador {
                 lucariovslycanroc.setIcon(new ImageIcon("img/lucarioVSlycanroc.png"));
                 lucarioLycanroc.add(lucariovslycanroc);
                 vista.getCentralPanel().add(lucarioLycanroc);
-                vista.getCentralPanel().invalidate();
+                vista.getCentralPanel().revalidate();
                 vista.getCentralPanel().repaint();
                 lucarioLycanroc.setVisible(true);
             }
@@ -100,7 +108,7 @@ public class Controlador {
                 lucarioRaikou.add(lucariovsraikou);
                 vista.getCentralPanel().add(lucarioRaikou);
 
-                vista.getCentralPanel().validate();
+                vista.getCentralPanel().revalidate();
                 vista.getCentralPanel().repaint();
                 lucarioRaikou.setVisible(true);
             }

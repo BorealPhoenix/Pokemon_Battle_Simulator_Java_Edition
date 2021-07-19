@@ -1,354 +1,422 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="vista.Vista">
-  <grid id="27dc6" binding="mainPanel" layout-manager="BorderLayout" hgap="0" vgap="0">
+  <grid id="27dc6" binding="mainPanel" layout-manager="CardLayout" hgap="0" vgap="0" show="2abda">
     <constraints>
-      <xy x="20" y="20" width="2344" height="795"/>
+      <xy x="20" y="20" width="2344" height="1208"/>
     </constraints>
     <properties/>
     <border type="none"/>
     <children>
-      <grid id="13f1" binding="bottomPanel" layout-manager="GridLayoutManager" row-count="1" column-count="4" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
-        <margin top="0" left="0" bottom="0" right="0"/>
-        <constraints border-constraint="South"/>
-        <properties/>
-        <border type="none"/>
-        <children>
-          <component id="98f61" class="javax.swing.JButton" binding="buttonAtaque1">
-            <constraints>
-              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <text value="Usar"/>
-            </properties>
-          </component>
-          <component id="564f1" class="javax.swing.JButton" binding="buttonAtaque2">
-            <constraints>
-              <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <text value="Usar"/>
-            </properties>
-          </component>
-          <component id="952e0" class="javax.swing.JButton" binding="buttonAtaque3">
-            <constraints>
-              <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <text value="Usar"/>
-            </properties>
-          </component>
-          <component id="5f4fd" class="javax.swing.JButton" binding="buttonAtaque4">
-            <constraints>
-              <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <text value="Usar"/>
-            </properties>
-          </component>
-        </children>
-      </grid>
-      <grid id="3e659" binding="topPanel" layout-manager="GridLayoutManager" row-count="2" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
-        <margin top="0" left="0" bottom="0" right="0"/>
-        <constraints border-constraint="North"/>
-        <properties/>
-        <border type="none"/>
-        <children>
-          <component id="eaa36" class="javax.swing.JLabel" binding="vidaLabel">
-            <constraints>
-              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <text value="Vida Pokemon:"/>
-            </properties>
-          </component>
-          <component id="9206c" class="javax.swing.JLabel" binding="vidaRivalLabel">
-            <constraints>
-              <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <text value="Vida Pokemon Rival:"/>
-            </properties>
-          </component>
-          <component id="f4f44" class="javax.swing.JTextField" binding="textFieldVidaPokemon">
-            <constraints>
-              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties/>
-          </component>
-          <component id="cf87a" class="javax.swing.JTextField" binding="textFieldVidaPokemonRival">
-            <constraints>
-              <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties/>
-          </component>
-        </children>
-      </grid>
-      <grid id="3dadb" binding="infoPanel" layout-manager="GridLayoutManager" row-count="13" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
-        <margin top="0" left="0" bottom="0" right="0"/>
-        <constraints border-constraint="East"/>
-        <properties>
-          <background color="-6642689"/>
-          <font size="22"/>
-          <foreground color="-14142827"/>
-        </properties>
-        <border type="none"/>
-        <children>
-          <component id="5f062" class="javax.swing.JLabel" binding="nombreLabel">
-            <constraints>
-              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <font size="22"/>
-              <text value="Nombre Pokemon:"/>
-            </properties>
-          </component>
-          <component id="866a4" class="javax.swing.JTextField" binding="textFieldInfoPokemon">
-            <constraints>
-              <grid row="1" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
-                <preferred-size width="150" height="-1"/>
-              </grid>
-            </constraints>
-            <properties>
-              <font size="22"/>
-            </properties>
-          </component>
-          <component id="ce8f1" class="javax.swing.JLabel" binding="tipoPokemonLabel">
-            <constraints>
-              <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <font size="22"/>
-              <text value="Tipo:"/>
-            </properties>
-          </component>
-          <component id="67924" class="javax.swing.JTextField" binding="textFieldTipoPokemon">
-            <constraints>
-              <grid row="2" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
-                <preferred-size width="150" height="-1"/>
-              </grid>
-            </constraints>
-            <properties>
-              <font size="22"/>
-            </properties>
-          </component>
-          <component id="ca8f" class="javax.swing.JLabel" binding="InfoVidaLabel">
-            <constraints>
-              <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <font size="22"/>
-              <text value="Vida:"/>
-            </properties>
-          </component>
-          <component id="ae5fe" class="javax.swing.JTextField" binding="textFieldInfoVida">
-            <constraints>
-              <grid row="3" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
-                <preferred-size width="150" height="-1"/>
-              </grid>
-            </constraints>
-            <properties>
-              <font size="22"/>
-            </properties>
-          </component>
-          <component id="33864" class="javax.swing.JLabel" binding="PokedexLabel">
-            <constraints>
-              <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <font size="22"/>
-              <text value="Pokedex Nacional:"/>
-            </properties>
-          </component>
-          <component id="8dcbd" class="javax.swing.JTextField" binding="textFieldPokedex">
-            <constraints>
-              <grid row="4" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
-                <preferred-size width="150" height="-1"/>
-              </grid>
-            </constraints>
-            <properties>
-              <font size="22"/>
-            </properties>
-          </component>
-          <component id="c8e43" class="javax.swing.JLabel" binding="HabilidadLabel">
-            <constraints>
-              <grid row="5" column="0" row-span="6" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <font size="22"/>
-              <text value="Habilidad:"/>
-            </properties>
-          </component>
-          <component id="127b1" class="javax.swing.JButton" binding="buttonOcultarInfo">
-            <constraints>
-              <grid row="12" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <font size="20"/>
-              <text value="Ocultar"/>
-            </properties>
-          </component>
-          <component id="aa2e1" class="javax.swing.JLabel" binding="InfoLabel">
-            <constraints>
-              <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <font size="28"/>
-              <text value="Info"/>
-            </properties>
-          </component>
-          <component id="74c8b" class="javax.swing.JLabel" binding="InfoGeneracionLabel">
-            <constraints>
-              <grid row="11" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <font size="22"/>
-              <text value="Generacion:"/>
-            </properties>
-          </component>
-          <component id="fb6a9" class="javax.swing.JTextField" binding="textFieldInfoGeneracion">
-            <constraints>
-              <grid row="11" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
-                <preferred-size width="150" height="-1"/>
-              </grid>
-            </constraints>
-            <properties>
-              <font size="24"/>
-            </properties>
-          </component>
-          <component id="4ab46" class="javax.swing.JTextArea" binding="textAreaInfoHabilidad">
-            <constraints>
-              <grid row="6" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="3" indent="0" use-parent-layout="false">
-                <preferred-size width="30" height="-1"/>
-              </grid>
-            </constraints>
-            <properties>
-              <font size="22"/>
-              <rows value="0"/>
-            </properties>
-          </component>
-        </children>
-      </grid>
-      <grid id="1351e" binding="centralPanel" layout-manager="GridBagLayout">
-        <constraints border-constraint="Center"/>
+      <grid id="81d49" binding="combatPanel" layout-manager="BorderLayout" hgap="0" vgap="0">
+        <constraints>
+          <card name="Card2"/>
+        </constraints>
         <properties>
           <enabled value="true"/>
         </properties>
         <border type="none"/>
         <children>
-          <component id="94cae" class="javax.swing.JLabel" binding="SeleccionPokemonLabel">
-            <constraints>
-              <grid row="0" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-              <gridbag weightx="1.0" weighty="1.0"/>
-            </constraints>
+          <grid id="466fa" binding="topPanel" layout-manager="GridLayoutManager" row-count="2" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+            <margin top="0" left="0" bottom="0" right="0"/>
+            <constraints border-constraint="North"/>
+            <properties/>
+            <border type="none"/>
+            <children>
+              <component id="f04f4" class="javax.swing.JLabel" binding="vidaLabel">
+                <constraints>
+                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="Vida Pokemon:"/>
+                </properties>
+              </component>
+              <component id="6d0e9" class="javax.swing.JLabel" binding="vidaRivalLabel">
+                <constraints>
+                  <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="Vida Pokemon Rival:"/>
+                </properties>
+              </component>
+              <component id="c7994" class="javax.swing.JTextField" binding="textFieldVidaPokemon">
+                <constraints>
+                  <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties/>
+              </component>
+              <component id="18e70" class="javax.swing.JTextField" binding="textFieldVidaPokemonRival">
+                <constraints>
+                  <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties/>
+              </component>
+            </children>
+          </grid>
+          <grid id="dfec8" binding="bottomPanel" layout-manager="GridBagLayout">
+            <constraints border-constraint="South"/>
+            <properties/>
+            <border type="none"/>
+            <children>
+              <component id="8b7ee" class="javax.swing.JButton" binding="buttonAtaque1">
+                <constraints>
+                  <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                  <gridbag weightx="1.0" weighty="1.0"/>
+                </constraints>
+                <properties>
+                  <text value="Usar"/>
+                </properties>
+              </component>
+              <component id="649a0" class="javax.swing.JButton" binding="buttonAtaque2">
+                <constraints>
+                  <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                  <gridbag weightx="1.0" weighty="1.0"/>
+                </constraints>
+                <properties>
+                  <text value="Usar"/>
+                </properties>
+              </component>
+              <component id="f7330" class="javax.swing.JButton" binding="buttonAtaque3">
+                <constraints>
+                  <grid row="1" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                  <gridbag weightx="1.0" weighty="1.0"/>
+                </constraints>
+                <properties>
+                  <text value="Usar"/>
+                </properties>
+              </component>
+              <component id="b34bd" class="javax.swing.JButton" binding="buttonAtaque4">
+                <constraints>
+                  <grid row="1" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                  <gridbag weightx="1.0" weighty="1.0"/>
+                </constraints>
+                <properties>
+                  <text value="Usar"/>
+                </properties>
+              </component>
+              <component id="cf1c1" class="javax.swing.JTextField" binding="textFieldNarrador">
+                <constraints>
+                  <grid row="0" column="1" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                    <preferred-size width="150" height="-1"/>
+                  </grid>
+                  <gridbag weightx="0.0" weighty="0.0"/>
+                </constraints>
+                <properties/>
+              </component>
+            </children>
+          </grid>
+          <component id="6834d" class="javax.swing.JLabel" binding="backgroundImageLabel">
+            <constraints border-constraint="Center"/>
             <properties>
-              <font size="28"/>
-              <text value="Seleccione que Pokemon sacar:"/>
+              <icon value="img/zeraoravsraikou.jpg"/>
+              <text value=""/>
+              <verticalAlignment value="0"/>
             </properties>
           </component>
-          <component id="60d36" class="javax.swing.JLabel" binding="lucarioIntro">
+        </children>
+      </grid>
+      <grid id="2abda" binding="introPanel" layout-manager="GridBagLayout">
+        <constraints>
+          <card name="Card1"/>
+        </constraints>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <component id="a9915" class="javax.swing.JLabel" binding="introImage">
             <constraints>
-              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-              <gridbag weightx="1.0" weighty="1.0"/>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+              <gridbag weightx="0.0" weighty="0.0"/>
             </constraints>
             <properties>
-              <icon value="img/lucarioIntro.png"/>
+              <icon value="img/pokemonLandscape.png"/>
               <text value=""/>
             </properties>
           </component>
-          <component id="d0091" class="javax.swing.JLabel" binding="zoroarkIntro">
+          <component id="1a64f" class="javax.swing.JButton" binding="buttonStart">
             <constraints>
-              <grid row="1" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-              <gridbag weightx="1.0" weighty="1.0"/>
+              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+              <gridbag weightx="0.0" weighty="0.0"/>
             </constraints>
             <properties>
-              <icon value="img/zoroarkIntro.png"/>
-              <text value=""/>
+              <text value="Start"/>
             </properties>
           </component>
-          <component id="4a5a4" class="javax.swing.JButton" binding="buttonSelectLucario">
-            <constraints>
-              <grid row="2" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-              <gridbag weightx="1.0" weighty="1.0"/>
-            </constraints>
+        </children>
+      </grid>
+      <grid id="b2ac2" binding="centralPanel" layout-manager="BorderLayout" hgap="0" vgap="0">
+        <constraints>
+          <card name="Card3"/>
+        </constraints>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <grid id="edb8f" binding="infoPanel" layout-manager="GridLayoutManager" row-count="13" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+            <margin top="0" left="0" bottom="0" right="0"/>
+            <constraints border-constraint="East"/>
             <properties>
-              <background color="-1286"/>
-              <font name="Source Code Pro Black" size="24"/>
-              <foreground color="-4975841"/>
-              <text value="Escoger"/>
+              <background color="-6642689"/>
+              <font size="22"/>
+              <foreground color="-14142827"/>
             </properties>
-          </component>
-          <component id="65206" class="javax.swing.JButton" binding="buttonInfoLucario">
-            <constraints>
-              <grid row="3" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-              <gridbag weightx="1.0" weighty="1.0"/>
-            </constraints>
+            <border type="none"/>
+            <children>
+              <component id="f5488" class="javax.swing.JLabel" binding="nombreLabel">
+                <constraints>
+                  <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <font size="22"/>
+                  <text value="Nombre Pokemon:"/>
+                </properties>
+              </component>
+              <component id="eecbe" class="javax.swing.JTextField" binding="textFieldInfoPokemon">
+                <constraints>
+                  <grid row="1" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                    <preferred-size width="150" height="-1"/>
+                  </grid>
+                </constraints>
+                <properties>
+                  <font size="22"/>
+                </properties>
+              </component>
+              <component id="fe1cc" class="javax.swing.JLabel" binding="tipoPokemonLabel">
+                <constraints>
+                  <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <font size="22"/>
+                  <text value="Tipo:"/>
+                </properties>
+              </component>
+              <component id="7eef5" class="javax.swing.JTextField" binding="textFieldTipoPokemon">
+                <constraints>
+                  <grid row="2" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                    <preferred-size width="150" height="-1"/>
+                  </grid>
+                </constraints>
+                <properties>
+                  <font size="22"/>
+                </properties>
+              </component>
+              <component id="11b0b" class="javax.swing.JLabel" binding="InfoVidaLabel">
+                <constraints>
+                  <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <font size="22"/>
+                  <text value="Vida:"/>
+                </properties>
+              </component>
+              <component id="4fbb1" class="javax.swing.JTextField" binding="textFieldInfoVida">
+                <constraints>
+                  <grid row="3" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                    <preferred-size width="150" height="-1"/>
+                  </grid>
+                </constraints>
+                <properties>
+                  <font size="22"/>
+                </properties>
+              </component>
+              <component id="465f" class="javax.swing.JLabel" binding="PokedexLabel">
+                <constraints>
+                  <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <font size="22"/>
+                  <text value="Pokedex Nacional:"/>
+                </properties>
+              </component>
+              <component id="2215f" class="javax.swing.JTextField" binding="textFieldPokedex">
+                <constraints>
+                  <grid row="4" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                    <preferred-size width="150" height="-1"/>
+                  </grid>
+                </constraints>
+                <properties>
+                  <font size="22"/>
+                </properties>
+              </component>
+              <component id="41cd6" class="javax.swing.JLabel" binding="HabilidadLabel">
+                <constraints>
+                  <grid row="5" column="0" row-span="6" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <font size="22"/>
+                  <text value="Habilidad:"/>
+                </properties>
+              </component>
+              <component id="ec3f5" class="javax.swing.JButton" binding="buttonOcultarInfo">
+                <constraints>
+                  <grid row="12" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <font size="20"/>
+                  <text value="Ocultar"/>
+                </properties>
+              </component>
+              <component id="672f3" class="javax.swing.JLabel" binding="InfoLabel">
+                <constraints>
+                  <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <font size="28"/>
+                  <text value="Info"/>
+                </properties>
+              </component>
+              <component id="66ce6" class="javax.swing.JLabel" binding="InfoGeneracionLabel">
+                <constraints>
+                  <grid row="11" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <font size="22"/>
+                  <text value="Generacion:"/>
+                </properties>
+              </component>
+              <component id="93e3e" class="javax.swing.JTextField" binding="textFieldInfoGeneracion">
+                <constraints>
+                  <grid row="11" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                    <preferred-size width="150" height="-1"/>
+                  </grid>
+                </constraints>
+                <properties>
+                  <font size="24"/>
+                </properties>
+              </component>
+              <component id="fc419" class="javax.swing.JTextArea" binding="textAreaInfoHabilidad">
+                <constraints>
+                  <grid row="6" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="3" indent="0" use-parent-layout="false">
+                    <preferred-size width="30" height="-1"/>
+                  </grid>
+                </constraints>
+                <properties>
+                  <font size="22"/>
+                  <rows value="0"/>
+                </properties>
+              </component>
+            </children>
+          </grid>
+          <grid id="14e9d" binding="selecctionlPanel" layout-manager="GridBagLayout">
+            <constraints border-constraint="Center"/>
             <properties>
-              <background color="-983809"/>
               <enabled value="true"/>
-              <font name="Comic Sans MS" size="26"/>
-              <foreground color="-14142827"/>
-              <text value="Info"/>
             </properties>
-          </component>
-          <component id="ff908" class="javax.swing.JButton" binding="buttonSelectZeraora">
-            <constraints>
-              <grid row="2" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-              <gridbag weightx="1.0" weighty="1.0"/>
-            </constraints>
-            <properties>
-              <background color="-983809"/>
-              <font name="Source Code Pro Black" size="24"/>
-              <foreground color="-4975841"/>
-              <text value="Escoger"/>
-            </properties>
-          </component>
-          <component id="1d2fd" class="javax.swing.JButton" binding="buttonInfoZeraora">
-            <constraints>
-              <grid row="3" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-              <gridbag weightx="1.0" weighty="1.0"/>
-            </constraints>
-            <properties>
-              <background color="-983809"/>
-              <enabled value="true"/>
-              <font name="Comic Sans MS" size="26"/>
-              <foreground color="-14142827"/>
-              <text value="Info"/>
-            </properties>
-          </component>
-          <component id="67655" class="javax.swing.JButton" binding="buttonSelectZoroark">
-            <constraints>
-              <grid row="2" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-              <gridbag weightx="1.0" weighty="1.0"/>
-            </constraints>
-            <properties>
-              <background color="-983809"/>
-              <font name="Source Code Pro Black" size="24"/>
-              <foreground color="-4975841"/>
-              <text value="Escoger"/>
-            </properties>
-          </component>
-          <component id="47bf6" class="javax.swing.JButton" binding="buttonInfoZoroark">
-            <constraints>
-              <grid row="3" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-              <gridbag weightx="1.0" weighty="1.0"/>
-            </constraints>
-            <properties>
-              <background color="-983809"/>
-              <font name="Comic Sans MS" size="26"/>
-              <foreground color="-14142827"/>
-              <text value="Info"/>
-            </properties>
-          </component>
-          <component id="bbc69" class="javax.swing.JLabel" binding="zeraoraIntro">
-            <constraints>
-              <grid row="1" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-              <gridbag weightx="1.0" weighty="1.0"/>
-            </constraints>
-            <properties>
-              <icon value="img/zeraoraIntro.png"/>
-              <text value=""/>
-            </properties>
-          </component>
+            <border type="none"/>
+            <children>
+              <component id="8d569" class="javax.swing.JLabel" binding="SeleccionPokemonLabel">
+                <constraints>
+                  <grid row="0" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                  <gridbag weightx="1.0" weighty="1.0"/>
+                </constraints>
+                <properties>
+                  <font size="28"/>
+                  <text value="Seleccione que Pokemon sacar:"/>
+                </properties>
+              </component>
+              <component id="102ac" class="javax.swing.JLabel" binding="lucarioIntro">
+                <constraints>
+                  <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                  <gridbag weightx="1.0" weighty="1.0"/>
+                </constraints>
+                <properties>
+                  <icon value="img/lucarioIntro.png"/>
+                  <text value=""/>
+                </properties>
+              </component>
+              <component id="92ede" class="javax.swing.JLabel" binding="zoroarkIntro">
+                <constraints>
+                  <grid row="1" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                  <gridbag weightx="1.0" weighty="1.0"/>
+                </constraints>
+                <properties>
+                  <icon value="img/zoroarkIntro.png"/>
+                  <text value=""/>
+                </properties>
+              </component>
+              <component id="4f77a" class="javax.swing.JButton" binding="buttonSelectLucario">
+                <constraints>
+                  <grid row="2" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                  <gridbag weightx="1.0" weighty="1.0"/>
+                </constraints>
+                <properties>
+                  <background color="-1286"/>
+                  <font name="Source Code Pro Black" size="24"/>
+                  <foreground color="-4975841"/>
+                  <text value="Escoger"/>
+                </properties>
+              </component>
+              <component id="76e36" class="javax.swing.JButton" binding="buttonInfoLucario">
+                <constraints>
+                  <grid row="3" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                  <gridbag weightx="1.0" weighty="1.0"/>
+                </constraints>
+                <properties>
+                  <background color="-983809"/>
+                  <enabled value="true"/>
+                  <font name="Comic Sans MS" size="26"/>
+                  <foreground color="-14142827"/>
+                  <text value="Info"/>
+                </properties>
+              </component>
+              <component id="7946" class="javax.swing.JButton" binding="buttonSelectZeraora">
+                <constraints>
+                  <grid row="2" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                  <gridbag weightx="1.0" weighty="1.0"/>
+                </constraints>
+                <properties>
+                  <background color="-983809"/>
+                  <font name="Source Code Pro Black" size="24"/>
+                  <foreground color="-4975841"/>
+                  <text value="Escoger"/>
+                </properties>
+              </component>
+              <component id="86569" class="javax.swing.JButton" binding="buttonInfoZeraora">
+                <constraints>
+                  <grid row="3" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                  <gridbag weightx="1.0" weighty="1.0"/>
+                </constraints>
+                <properties>
+                  <background color="-983809"/>
+                  <enabled value="true"/>
+                  <font name="Comic Sans MS" size="26"/>
+                  <foreground color="-14142827"/>
+                  <text value="Info"/>
+                </properties>
+              </component>
+              <component id="3d054" class="javax.swing.JButton" binding="buttonSelectZoroark">
+                <constraints>
+                  <grid row="2" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                  <gridbag weightx="1.0" weighty="1.0"/>
+                </constraints>
+                <properties>
+                  <background color="-983809"/>
+                  <font name="Source Code Pro Black" size="24"/>
+                  <foreground color="-4975841"/>
+                  <text value="Escoger"/>
+                </properties>
+              </component>
+              <component id="438cf" class="javax.swing.JButton" binding="buttonInfoZoroark">
+                <constraints>
+                  <grid row="3" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                  <gridbag weightx="1.0" weighty="1.0"/>
+                </constraints>
+                <properties>
+                  <background color="-983809"/>
+                  <font name="Comic Sans MS" size="26"/>
+                  <foreground color="-14142827"/>
+                  <text value="Info"/>
+                </properties>
+              </component>
+              <component id="42ed0" class="javax.swing.JLabel" binding="zeraoraIntro">
+                <constraints>
+                  <grid row="1" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                  <gridbag weightx="1.0" weighty="1.0"/>
+                </constraints>
+                <properties>
+                  <icon value="img/zeraoraIntro.png"/>
+                  <text value=""/>
+                </properties>
+              </component>
+            </children>
+          </grid>
         </children>
       </grid>
     </children>

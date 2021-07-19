@@ -5,30 +5,22 @@ import java.awt.*;
 
 public class Vista {
     private JPanel mainPanel;
-    private JPanel bottomPanel;
+    private JPanel buttonsMovementPanel;
     private JPanel topPanel;
     private JPanel infoPanel;
-    private JPanel centralPanel;
-    private JLabel vidaLabel;
+    private JPanel introPanel;
+    private JPanel combatPanel;
     private JTextField textFieldVidaPokemon;
-    private JLabel vidaRivalLabel;
     private JTextField textFieldVidaPokemonRival;
     private JButton buttonAtaque1;
     private JButton buttonAtaque2;
     private JButton buttonAtaque3;
     private JButton buttonAtaque4;
-    private JLabel nombreLabel;
     private JTextField textFieldInfoPokemon;
-    private JLabel tipoPokemonLabel;
     private JTextField textFieldTipoPokemon;
-    private JLabel InfoVidaLabel;
     private JTextField textFieldInfoVida;
-    private JLabel PokedexLabel;
     private JTextField textFieldPokedex;
-    private JLabel HabilidadLabel;
     private JButton buttonOcultarInfo;
-    private JLabel InfoLabel;
-    private JLabel SeleccionPokemonLabel;
     private JLabel lucarioIntro;
     private JButton buttonSelectLucario;
     private JButton buttonInfoLucario;
@@ -38,15 +30,32 @@ public class Vista {
     private JButton buttonInfoZoroark;
     private JLabel zeraoraIntro;
     private JLabel zoroarkIntro;
-    private JLabel InfoGeneracionLabel;
     private JTextField textFieldInfoGeneracion;
     private JTextArea textAreaInfoHabilidad;
+    private JLabel vidaLabel;
+    private JLabel vidaRivalLabel;
+    private JPanel bottomPanel;
+    private JLabel backgroundImageLabel;
+    private JLabel introImage;
+    private JButton buttonStart;
+    private JTextField textFieldNarrador;
+    private JLabel nombreLabel;
+    private JLabel tipoPokemonLabel;
+    private JLabel InfoVidaLabel;
+    private JLabel PokedexLabel;
+    private JLabel HabilidadLabel;
+    private JLabel InfoLabel;
+    private JLabel InfoGeneracionLabel;
+    private JLabel SeleccionPokemonLabel;
+    private JPanel centralPanel;
+    private JFrame frame;
+    private JPanel selecctionlPanel;
 
 
     //Getters de Botones, TextField y paneles
 
     public JPanel getBottomPanel() {
-        return bottomPanel;
+        return buttonsMovementPanel;
     }
 
     public JPanel getTopPanel() {
@@ -59,6 +68,14 @@ public class Vista {
 
     public JPanel getCentralPanel() {
         return centralPanel;
+    }
+
+    public JPanel getCombatPanel() {
+        return combatPanel;
+    }
+
+    public JPanel getIntroPanel() {
+        return introPanel;
     }
 
     public JTextField getTextFieldVidaPokemon() {
@@ -100,7 +117,6 @@ public class Vista {
     public JTextField getTextFieldPokedex() {
         return textFieldPokedex;
     }
-
 
     public JTextField getTextFieldInfoGeneracion() {
         return textFieldInfoGeneracion;
@@ -155,11 +171,22 @@ public class Vista {
     }
 
 
+    public JPanel getButtonsMovementPanel() {
+        return buttonsMovementPanel;
+    }
 
+    public JButton getButtonStart() {
+        return buttonStart;
+    }
+
+    public JFrame getFrame() {
+        return frame;
+    }
 
     //Arranque de la ventana principal
     public Vista (){
-        JFrame frame = new JFrame();
+         frame = new JFrame();
+
         frame.setTitle("Pokemon Battle Simulator Java Edition");
         frame.setContentPane(mainPanel);
         Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
