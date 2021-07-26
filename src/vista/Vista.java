@@ -183,6 +183,15 @@ public class Vista {
         return frame;
     }
 
+    public JLabel getBackgroundImageLabel() {
+        return backgroundImageLabel;
+    }
+
+    public JTextField getTextFieldNarrador() {
+        return textFieldNarrador;
+    }
+
+
     //Arranque de la ventana principal
     public Vista (){
          frame = new JFrame();
@@ -195,9 +204,6 @@ public class Vista {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
     }
-
-
-
 }
 
 

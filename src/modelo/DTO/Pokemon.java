@@ -17,12 +17,12 @@ public class Pokemon {
     private String nombreMov4;
     private tiposMovimiento tipoMov1;
     private tiposMovimiento tipoMov2;
-    private tiposMovimiento tipoMov13;
+    private tiposMovimiento tipoMov3;
     private tiposMovimiento tipoMov4;
 
     //Constructor
 
-    public Pokemon(nombrePokemon nombre, tipoPokemon tipo, int vida, int mov1, int mov2, int mov3, int mov4, String nombreMov1, String nombreMov2, String nombreMov3, String nombreMov4, tiposMovimiento tipoMov1, tiposMovimiento tipoMov2, tiposMovimiento tipoMov13, tiposMovimiento tipoMov4) {
+    public Pokemon(nombrePokemon nombre, tipoPokemon tipo, int vida, int mov1, int mov2, int mov3, int mov4, String nombreMov1, String nombreMov2, String nombreMov3, String nombreMov4, tiposMovimiento tipoMov1, tiposMovimiento tipoMov2, tiposMovimiento tipoMov3, tiposMovimiento tipoMov4) {
         this.nombre = nombre;
         this.tipo = tipo;
         this.vida = vida;
@@ -36,7 +36,7 @@ public class Pokemon {
         this.nombreMov4 = nombreMov4;
         this.tipoMov1 = tipoMov1;
         this.tipoMov2 = tipoMov2;
-        this.tipoMov13 = tipoMov13;
+        this.tipoMov3 = tipoMov3;
         this.tipoMov4 = tipoMov4;
     }
 
@@ -90,5 +90,21 @@ public class Pokemon {
 
     public void setVida(int vida) {
         this.vida = vida;
+    }
+
+    public tiposMovimiento getTipoMov1() {
+        return tipoMov1;
+    }
+
+    public tiposMovimiento getTipoMov2() {
+        return tipoMov2;
+    }
+
+    public tiposMovimiento getTipoMov3() {
+        return tipoMov3;
+    }
+
+    public tiposMovimiento getTipoMov4() {
+        return tipoMov4;
     }
 }
