@@ -6,12 +6,16 @@ import modelo.DTO.tipoPokemon;
 import modelo.DTO.tiposMovimiento;
 import vista.Vista;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
+import java.io.File;
+import java.io.IOException;
 
 public class Controlador {
     //Atributos
     private Vista vista;
     private Pokemon pokemon;
+    public static Pokemon pokemonRivalParteCombate;
     
     
     
@@ -29,7 +33,70 @@ public class Controlador {
         });
 
         registrarEventosPanelSeleccionPokemon();
+        registrarEventosPanelCombatePokemon();
 
+    }
+
+    private void registrarEventosPanelCombatePokemon() {
+        //Evento de respuesta de Informacion del Pokemon Rival
+        vista.getButtonInfoPokemonRival().addActionListener(e->{
+
+            //Seteamos la informacion del pokemon rival en los textFields
+            if (Controlador.pokemonRivalParteCombate.getNombre().toString().equalsIgnoreCase("Lycanroc")){
+                vista.getNombrePokemonRivalTextField().setText(Controlador.pokemonRivalParteCombate.getNombre().toString());
+                vista.getTipoPOkemonRivalTextField().setText(Controlador.pokemonRivalParteCombate.getTipo().toString());
+                vista.getVidaPokemonRivalTextField().setText(String.valueOf(Controlador.pokemonRivalParteCombate.getVida()));
+                vista.getHabilidadPokemonRivalTextField().setText("Un Pokémon tranquilo y prudente. Su melena de piedra es tan afilada como una cuchilla.");
+                vista.getPokedecPokemonRivalTextField().setText("745");
+                vista.getGeneracionPokemonRivalTextField().setText("7");
+                vista.getInfoPokemonRivalPanel().setVisible(true);
+            }
+
+            if (Controlador.pokemonRivalParteCombate.getNombre().toString().equalsIgnoreCase("Scyther")){
+                //Seteamos la informacion del pokemon rival en los textFields
+                vista.getNombrePokemonRivalTextField().setText(Controlador.pokemonRivalParteCombate.getNombre().toString());
+                vista.getTipoPOkemonRivalTextField().setText("Bicho/Volador");
+                vista.getVidaPokemonRivalTextField().setText(String.valueOf(Controlador.pokemonRivalParteCombate.getVida()));
+                vista.getHabilidadPokemonRivalTextField().setText("Sus guadañas se vuelven más afiladas con cada combate. Es capaz de rebanar troncos gruesos de un tajo.");
+                vista.getPokedecPokemonRivalTextField().setText("123");
+                vista.getGeneracionPokemonRivalTextField().setText("1");
+                vista.getInfoPokemonRivalPanel().setVisible(true);
+            }
+
+            if (Controlador.pokemonRivalParteCombate.getNombre().toString().equalsIgnoreCase("Raikou")){
+                //Seteamos la informacion del pokemon rival en los textFields
+                vista.getNombrePokemonRivalTextField().setText(Controlador.pokemonRivalParteCombate.getNombre().toString());
+                vista.getTipoPOkemonRivalTextField().setText(Controlador.pokemonRivalParteCombate.getTipo().toString());
+                vista.getVidaPokemonRivalTextField().setText(String.valueOf(Controlador.pokemonRivalParteCombate.getVida()));
+                vista.getHabilidadPokemonRivalTextField().setText("Raikou tiene la velocidad del rayo. Los rugidos de este Pokémon emiten ondas de choque que se esparcen vibrando por el aire y sacuden el suelo como si fueran auténticas descargas de rayo.");
+                vista.getPokedecPokemonRivalTextField().setText("243");
+                vista.getGeneracionPokemonRivalTextField().setText("2");
+                vista.getInfoPokemonRivalPanel().setVisible(true);
+            }
+        });
+
+        //Controlamos el boton de cancelar
+        vista.getOcultarInfoPokemonRivalButton().addActionListener(f->{
+            vista.getTextFieldInfoPokemon().setText("");
+            vista.getTextFieldTipoPokemon().setText("");
+            vista.getTextFieldPokedex().setText("");
+            vista.getTextAreaInfoHabilidad().setText("");
+            vista.getTextFieldInfoGeneracion().setText("");
+            vista.getInfoPokemonRivalPanel().setVisible(false);
+        });
+
+        //Controlamos el evento de luchar= Comienza el combate
+        vista.getButtonFight().addActionListener(e->{
+
+            //Ocultamos el panel Pre-Combate
+            vista.getPreCombatPanel().setVisible(false);
+
+            //Seteamos un texto arriba
+            vista.getTextFieldNarrador().setText("QUE COMIENZE EL COMBATE!!!");
+            //Llamamos a la clase del combate
+         //   combateLucario(pokemonRivalParteCombate, pokemon);
+            // TODO: 26/07/2021 Averiguar donde llamar a la clase de combateLucario, para poder empezar el combate fuera del evento de escoger a Lucario, y sin que se ejecute automaticamente al estar dentro del controlador
+        });
     }
 
     private void controladorPanelesInicialesPanelSeleccion() {
@@ -86,12 +153,16 @@ public class Controlador {
 
                 //seteamos la vida inicial de ambos pokemon
                 vista.getTextFieldVidaPokemon().setText(String.valueOf(pokemon.getVida()));
+
+                //Seteamos la visibilidad del panel de informacion y el de precombate
+                vista.getPreCombatPanel().setVisible(true);
+                vista.getInfoPokemonRivalPanel().setVisible(false);
             }
 
             if (pokemonRival.getNombre().toString().equalsIgnoreCase("Lycanroc")){
                 //creamos panel con lucarioVSlycanroc.jpg
                 // TODO: 26/07/2021 Solucionar problema de visualizado de Jlabel de Lycanroc VS Lucario, el metodo funciona, pero acaba siendo nulo al salir del metodo (comprobado en debugger)
-                vista.getBackgroundImageLabel().setIcon(new ImageIcon("img/lucariovslycanroc.jpg"));
+               vista.getBackgroundImageLabel().setIcon(new ImageIcon("img/lucariovslycanroc.jpg"));
 
 
 
@@ -99,9 +170,12 @@ public class Controlador {
                 vista.getTextFieldNarrador().setText("El Entrenador Juan saca a "+ pokemonRival.getNombre());
 
                 //seteamos la vida inicial de ambos pokemon
-
                 vista.getTextFieldVidaPokemon().setText(String.valueOf(pokemon.getVida()));
                 vista.getTextFieldVidaPokemonRival().setText(String.valueOf(pokemonRival.getVida()));
+
+                //Seteamos la visibilidad del panel de informacion y el de precombate
+                vista.getPreCombatPanel().setVisible(true);
+                vista.getInfoPokemonRivalPanel().setVisible(false);
             }
 
             if (pokemonRival.getNombre().toString().equalsIgnoreCase("Raikou")){
@@ -111,25 +185,22 @@ public class Controlador {
                 vista.getTextFieldNarrador().setText("El Entrenador Juan saca a "+ pokemonRival.getNombre());
 
                 //seteamos la vida inicial de ambos pokemon
-
                 vista.getTextFieldVidaPokemon().setText(String.valueOf(pokemon.getVida()));
                 vista.getTextFieldVidaPokemonRival().setText(String.valueOf(pokemonRival.getVida()));
+
+                //Seteamos la visibilidad del panel de informacion y el de precombate
+                vista.getPreCombatPanel().setVisible(true);
+                vista.getInfoPokemonRivalPanel().setVisible(false);
             }
 
-
         });
-// TODO: 26/07/2021 Averiguar donde llamar a la clase de combateLucario, para poder empezar el combate fuera del evento de escoger a Lucario, y sin que se ejecute automaticamente al estar dentro del controlador
-
-
-        //Evento Escoger  (Hacer una vez testeada y comprobada funcionalidad de Escoger Lucario
-
 
     }
 
     private void combateLucario(Pokemon pokemonRival, Pokemon pokemon) {
 
-        //Mientras tengan vida sigue el combate
-        while (pokemon.getVida()<=0 || pokemonRival.getVida()<=0){
+        //Mientras tengan vida sigue el combate Vida>0
+        while (pokemon.getVida()>0 || pokemonRival.getVida()>0){
 
             //BARRAS DE VIDA TOP PANEL
             vista.getTextFieldVidaPokemon().setText(String.valueOf(pokemon.getVida()));
@@ -1050,18 +1121,21 @@ public class Controlador {
             , 75, 60, "Roca Veloz", "Triturar", "Avalancha", "Mordisco"
             , tiposMovimiento.Roca, tiposMovimiento.Siniestro, tiposMovimiento.Roca, tiposMovimiento.Siniestro);
             System.out.println("Lycanroc");
+            Controlador.pokemonRivalParteCombate=pokemon;
         }
         if (random >3 && random<=6){
             pokemon = new Pokemon(nombrePokemon.Scyther, tipoPokemon.Bicho_Volador, 200, 60, 80, 75, 40
                     , "Ataque Ala", "Tijera X", "Tajo Aéreo", "Corte Furia",
                     tiposMovimiento.Volador, tiposMovimiento.Bicho, tiposMovimiento.Volador, tiposMovimiento.Bicho);
             System.out.println("Scyther");
+            Controlador.pokemonRivalParteCombate=pokemon;
         }
         if (random>6 && random<=9){
             pokemon = new Pokemon(nombrePokemon.Raikou, tipoPokemon.Electrico, 200, 80, 40, 110, 80
             , "Paranormal", "Golpe Roca", "Trueno", "Chispazo",
                     tiposMovimiento.Psiquico, tiposMovimiento.Lucha, tiposMovimiento.Electrico, tiposMovimiento.Electrico);
             System.out.println("Raikou");
+            Controlador.pokemonRivalParteCombate=pokemon;
         }
         System.out.println(random);
 

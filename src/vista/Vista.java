@@ -11,7 +11,7 @@ public class Vista {
     private JPanel introPanel;
     private JPanel combatPanel;
     private JTextField textFieldVidaPokemon;
-    private JTextField textFieldVidaPokemonRival;
+    private JTextField textFieldVidaPokemonRivalSuperior;
     private JButton buttonAtaque1;
     private JButton buttonAtaque2;
     private JButton buttonAtaque3;
@@ -50,6 +50,19 @@ public class Vista {
     private JPanel centralPanel;
     private JFrame frame;
     private JPanel selecctionlPanel;
+    private JPanel infoPokemonRivalPanel;
+    private JLabel preCombatLabel;
+    private JPanel preCombatPanel;
+    private JButton buttonFight;
+    private JButton buttonInfoPokemonRival;
+    private JTextField nombrePokemonRivalTextField;
+    private JTextField tipoPOkemonRivalTextField;
+    private JTextField vidaPokemonRivalTextField;
+    private JTextField pokedecPokemonRivalTextField;
+    private JTextArea habilidadPokemonRivalTextField;
+    private JTextField generacionPokemonRivalTextField;
+    private JButton ocultarInfoPokemonRivalButton;
+    private JLabel movimientosLabel;
 
 
     //Getters de Botones, TextField y paneles
@@ -83,7 +96,7 @@ public class Vista {
     }
 
     public JTextField getTextFieldVidaPokemonRival() {
-        return textFieldVidaPokemonRival;
+        return textFieldVidaPokemonRivalSuperior;
     }
 
     public JButton getButtonAtaque1() {
@@ -170,7 +183,6 @@ public class Vista {
         return zoroarkIntro;
     }
 
-
     public JPanel getButtonsMovementPanel() {
         return buttonsMovementPanel;
     }
@@ -191,6 +203,53 @@ public class Vista {
         return textFieldNarrador;
     }
 
+    public JPanel getSelecctionlPanel() {
+        return selecctionlPanel;
+    }
+
+    public JPanel getInfoPokemonRivalPanel() {
+        return infoPokemonRivalPanel;
+    }
+
+    public JPanel getPreCombatPanel() {
+        return preCombatPanel;
+    }
+
+    public JButton getButtonFight() {
+        return buttonFight;
+    }
+
+    public JButton getButtonInfoPokemonRival() {
+        return buttonInfoPokemonRival;
+    }
+
+    public JTextField getNombrePokemonRivalTextField() {
+        return nombrePokemonRivalTextField;
+    }
+
+    public JTextField getTipoPOkemonRivalTextField() {
+        return tipoPOkemonRivalTextField;
+    }
+
+    public JTextField getVidaPokemonRivalTextField() {
+        return vidaPokemonRivalTextField;
+    }
+
+    public JTextField getPokedecPokemonRivalTextField() {
+        return pokedecPokemonRivalTextField;
+    }
+
+    public JTextArea getHabilidadPokemonRivalTextField() {
+        return habilidadPokemonRivalTextField;
+    }
+
+    public JTextField getGeneracionPokemonRivalTextField() {
+        return generacionPokemonRivalTextField;
+    }
+
+    public JButton getOcultarInfoPokemonRivalButton() {
+        return ocultarInfoPokemonRivalButton;
+    }
 
     //Arranque de la ventana principal
     public Vista (){
@@ -204,6 +263,8 @@ public class Vista {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
     }
+
+
 }
 
 
