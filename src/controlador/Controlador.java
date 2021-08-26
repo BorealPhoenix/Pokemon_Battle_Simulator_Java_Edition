@@ -14,8 +14,9 @@ import java.io.IOException;
 public class Controlador {
     //Atributos
     private Vista vista;
-    private Pokemon pokemon;
-    public static Pokemon pokemonRivalParteCombate;
+    private Pokemon pokemonRival;
+    private Pokemon pokemonPropio;
+
     
     
     
@@ -38,36 +39,37 @@ public class Controlador {
     }
 
     private void registrarEventosPanelCombatePokemon() {
+
         //Evento de respuesta de Informacion del Pokemon Rival
         vista.getButtonInfoPokemonRival().addActionListener(e->{
 
             //Seteamos la informacion del pokemon rival en los textFields
-            if (Controlador.pokemonRivalParteCombate.getNombre().toString().equalsIgnoreCase("Lycanroc")){
-                vista.getNombrePokemonRivalTextField().setText(Controlador.pokemonRivalParteCombate.getNombre().toString());
-                vista.getTipoPOkemonRivalTextField().setText(Controlador.pokemonRivalParteCombate.getTipo().toString());
-                vista.getVidaPokemonRivalTextField().setText(String.valueOf(Controlador.pokemonRivalParteCombate.getVida()));
+            if (pokemonRival.getNombre().toString().equalsIgnoreCase("Lycanroc")){
+                vista.getNombrePokemonRivalTextField().setText(pokemonRival.getNombre().toString());
+                vista.getTipoPOkemonRivalTextField().setText(pokemonRival.getTipo().toString());
+                vista.getVidaPokemonRivalTextField().setText(String.valueOf(pokemonRival.getVida()));
                 vista.getHabilidadPokemonRivalTextField().setText("Un Pokémon tranquilo y prudente. Su melena de piedra es tan afilada como una cuchilla.");
                 vista.getPokedecPokemonRivalTextField().setText("745");
                 vista.getGeneracionPokemonRivalTextField().setText("7");
                 vista.getInfoPokemonRivalPanel().setVisible(true);
             }
 
-            if (Controlador.pokemonRivalParteCombate.getNombre().toString().equalsIgnoreCase("Scyther")){
+            if (pokemonRival.getNombre().toString().equalsIgnoreCase("Scyther")){
                 //Seteamos la informacion del pokemon rival en los textFields
-                vista.getNombrePokemonRivalTextField().setText(Controlador.pokemonRivalParteCombate.getNombre().toString());
+                vista.getNombrePokemonRivalTextField().setText(pokemonRival.getNombre().toString());
                 vista.getTipoPOkemonRivalTextField().setText("Bicho/Volador");
-                vista.getVidaPokemonRivalTextField().setText(String.valueOf(Controlador.pokemonRivalParteCombate.getVida()));
+                vista.getVidaPokemonRivalTextField().setText(String.valueOf(pokemonRival.getVida()));
                 vista.getHabilidadPokemonRivalTextField().setText("Sus guadañas se vuelven más afiladas con cada combate. Es capaz de rebanar troncos gruesos de un tajo.");
                 vista.getPokedecPokemonRivalTextField().setText("123");
                 vista.getGeneracionPokemonRivalTextField().setText("1");
                 vista.getInfoPokemonRivalPanel().setVisible(true);
             }
 
-            if (Controlador.pokemonRivalParteCombate.getNombre().toString().equalsIgnoreCase("Raikou")){
+            if (pokemonRival.getNombre().toString().equalsIgnoreCase("Raikou")){
                 //Seteamos la informacion del pokemon rival en los textFields
-                vista.getNombrePokemonRivalTextField().setText(Controlador.pokemonRivalParteCombate.getNombre().toString());
-                vista.getTipoPOkemonRivalTextField().setText(Controlador.pokemonRivalParteCombate.getTipo().toString());
-                vista.getVidaPokemonRivalTextField().setText(String.valueOf(Controlador.pokemonRivalParteCombate.getVida()));
+                vista.getNombrePokemonRivalTextField().setText(pokemonRival.getNombre().toString());
+                vista.getTipoPOkemonRivalTextField().setText(pokemonRival.getTipo().toString());
+                vista.getVidaPokemonRivalTextField().setText(String.valueOf(pokemonRival.getVida()));
                 vista.getHabilidadPokemonRivalTextField().setText("Raikou tiene la velocidad del rayo. Los rugidos de este Pokémon emiten ondas de choque que se esparcen vibrando por el aire y sacuden el suelo como si fueran auténticas descargas de rayo.");
                 vista.getPokedecPokemonRivalTextField().setText("243");
                 vista.getGeneracionPokemonRivalTextField().setText("2");
@@ -93,10 +95,11 @@ public class Controlador {
 
             //Seteamos un texto arriba
             vista.getTextFieldNarrador().setText("QUE COMIENZE EL COMBATE!!!");
+
             //Llamamos a la clase del combate
-         //   combateLucario(pokemonRivalParteCombate, pokemon);
-            // TODO: 26/07/2021 Averiguar donde llamar a la clase de combateLucario, para poder empezar el combate fuera del evento de escoger a Lucario, y sin que se ejecute automaticamente al estar dentro del controlador
+            combateLucario(pokemonRival, pokemonPropio);
         });
+
     }
 
     private void controladorPanelesInicialesPanelSeleccion() {
@@ -130,19 +133,20 @@ public class Controlador {
             vista.getFrame().repaint();;
             
             
-            pokemon= new Pokemon(nombrePokemon.Lucario, tipoPokemon.Lucha_Acero, 200, 80, 120,
+            pokemonPropio= new Pokemon(nombrePokemon.Lucario, tipoPokemon.Lucha_Acero, 200, 80, 120,
                     25, 120, "Esfera Aural", "A Bocajarro", "Ataque Óseo", "Onda Certera"
             ,tiposMovimiento.Lucha ,tiposMovimiento.Lucha, tiposMovimiento.Tierra, tiposMovimiento.Lucha );
-            vista.getButtonAtaque1().setText(pokemon.getNombreMov1());
-            vista.getButtonAtaque2().setText(pokemon.getNombreMov2());
-            vista.getButtonAtaque3().setText(pokemon.getNombreMov3());
-            vista.getButtonAtaque4().setText(pokemon.getNombreMov4());
+            vista.getButtonAtaque1().setText(pokemonPropio.getNombreMov1());
+            vista.getButtonAtaque2().setText(pokemonPropio.getNombreMov2());
+            vista.getButtonAtaque3().setText(pokemonPropio.getNombreMov3());
+            vista.getButtonAtaque4().setText(pokemonPropio.getNombreMov4());
 
-            Pokemon pokemonRival =escogerPokemonRival();
+             pokemonRival =escogerPokemonRival();
 
             if (pokemonRival.getNombre().toString().equalsIgnoreCase("Scyther")){
                 //creamos panel con lucarioVSscyther.jpg
                 // TODO: 26/07/2021 Solucionar problema de visualizacion de Jlabel de Lucario VS Scyther
+
                vista.getBackgroundImageLabel().setIcon(new ImageIcon("img/lucariovsscyther.jpg"));
                 System.out.printf(String.valueOf(vista.getBackgroundImageLabel().getIcon()));
 
@@ -152,7 +156,7 @@ public class Controlador {
 
 
                 //seteamos la vida inicial de ambos pokemon
-                vista.getTextFieldVidaPokemon().setText(String.valueOf(pokemon.getVida()));
+                vista.getTextFieldVidaPokemon().setText(String.valueOf(pokemonPropio.getVida()));
 
                 //Seteamos la visibilidad del panel de informacion y el de precombate
                 vista.getPreCombatPanel().setVisible(true);
@@ -165,12 +169,11 @@ public class Controlador {
                vista.getBackgroundImageLabel().setIcon(new ImageIcon("img/lucariovslycanroc.jpg"));
 
 
-
                 //seteamos un texto a modo de narrador
                 vista.getTextFieldNarrador().setText("El Entrenador Juan saca a "+ pokemonRival.getNombre());
 
                 //seteamos la vida inicial de ambos pokemon
-                vista.getTextFieldVidaPokemon().setText(String.valueOf(pokemon.getVida()));
+                vista.getTextFieldVidaPokemon().setText(String.valueOf(pokemonPropio.getVida()));
                 vista.getTextFieldVidaPokemonRival().setText(String.valueOf(pokemonRival.getVida()));
 
                 //Seteamos la visibilidad del panel de informacion y el de precombate
@@ -185,12 +188,13 @@ public class Controlador {
                 vista.getTextFieldNarrador().setText("El Entrenador Juan saca a "+ pokemonRival.getNombre());
 
                 //seteamos la vida inicial de ambos pokemon
-                vista.getTextFieldVidaPokemon().setText(String.valueOf(pokemon.getVida()));
+                vista.getTextFieldVidaPokemon().setText(String.valueOf(pokemonPropio.getVida()));
                 vista.getTextFieldVidaPokemonRival().setText(String.valueOf(pokemonRival.getVida()));
 
                 //Seteamos la visibilidad del panel de informacion y el de precombate
                 vista.getPreCombatPanel().setVisible(true);
                 vista.getInfoPokemonRivalPanel().setVisible(false);
+
             }
 
         });
@@ -199,31 +203,31 @@ public class Controlador {
 
     private void combateLucario(Pokemon pokemonRival, Pokemon pokemon) {
 
-        //Mientras tengan vida sigue el combate Vida>0
-        while (pokemon.getVida()>0 || pokemonRival.getVida()>0){
+        //BARRAS DE VIDA TOP PANEL
+        vista.getTextFieldVidaPokemon().setText(String.valueOf(pokemon.getVida()));
+        vista.getTextFieldVidaPokemonRival().setText(String.valueOf(pokemonRival.getVida()));
 
-            //BARRAS DE VIDA TOP PANEL
-            vista.getTextFieldVidaPokemon().setText(String.valueOf(pokemon.getVida()));
-            vista.getTextFieldVidaPokemonRival().setText(String.valueOf(pokemonRival.getVida()));
-
-            //Hacemos Visible los botones de ataque para cuando se inicie la siguiente ronda de ataque
-            vista.getButtonAtaque1().setVisible(true);
-            vista.getButtonAtaque2().setVisible(true);
-            vista.getButtonAtaque3().setVisible(true);
-            vista.getButtonAtaque4().setVisible(true);
+        //Hacemos Visible los botones de ataque para cuando se inicie la siguiente ronda de ataque
+        vista.getButtonAtaque1().setEnabled(true);
+        vista.getButtonAtaque2().setEnabled(true);
+        vista.getButtonAtaque3().setEnabled(true);
+        vista.getButtonAtaque4().setEnabled(true);
 
 
 
-            //ATAQUE 1: Esfera Aural = 80 Potencia (Debil contra Scyther)
-            vista.getButtonAtaque1().addActionListener(e->{
-                vista.getButtonAtaque2().setVisible(false);
-                vista.getButtonAtaque3().setVisible(false);
-                vista.getButtonAtaque4().setVisible(false);
+        //ATAQUE 1: Esfera Aural = 80 Potencia (Debil contra Scyther)
+        vista.getButtonAtaque1().addActionListener(e->{
+
+            //Deshabilitamos los botones para evitar doble pulsacion a distintos ataques
+            vista.getButtonAtaque1().setEnabled(false);
+            vista.getButtonAtaque2().setEnabled(false);
+            vista.getButtonAtaque3().setEnabled(false);
+            vista.getButtonAtaque4().setEnabled(false);
             int vidaRestante=0;
 
             //Debilidad contra Bicho/Volador (20% reduccion)
             if (pokemonRival.getTipo().toString().equals("Bicho_Volador")){
-                vidaRestante = pokemonRival.getVida()- (int) (pokemon.getMov1()*0.2);
+                vidaRestante = pokemonRival.getVida()- (int) (pokemon.getMov1()-pokemon.getMov1()*0.2);
                 pokemonRival.setVida(vidaRestante);
                 vista.getTextFieldVidaPokemonRival().setText(String.valueOf(vidaRestante));
 
@@ -233,526 +237,279 @@ public class Controlador {
 
                 //Salida en el campo de narracion
                 vista.getTextFieldNarrador().setText(pokemon.getNombre()+" ha usado "+pokemon.getNombreMov1() + " contra "+ pokemonRival.getNombre()
-                +". "+pokemon.getNombreMov1() + " es poco eficaz contra " + pokemonRival.getNombre());
+                        +". "+pokemon.getNombreMov1() + " es poco eficaz contra " + pokemonRival.getNombre());
 
+
+
+            } else {
+                //Sin debilidad
+                vidaRestante = pokemonRival.getVida() - pokemon.getMov1();
+                pokemonRival.setVida(vidaRestante);
+
+                vista.getTextFieldVidaPokemonRival().setText(String.valueOf(vidaRestante));
+
+                System.out.println(pokemon.getNombre() + " ha usado " + pokemon.getNombreMov1() + " contra " + pokemonRival.getNombre());
+
+                vista.getTextFieldNarrador().setText(pokemon.getNombre() + " ha usado " + pokemon.getNombreMov1() + " contra " + pokemonRival.getNombre());
             }
 
-            //Sin debilidad
-                vidaRestante= pokemonRival.getVida()- pokemon.getMov1();
-            pokemonRival.setVida(vidaRestante);
-
-                vista.getTextFieldVidaPokemonRival().setText(String.valueOf(vidaRestante));
-
-                System.out.println(pokemon.getNombre()+" ha usado "+pokemon.getNombreMov1() + " contra "+ pokemonRival.getNombre());
-
-                vista.getTextFieldNarrador().setText(pokemon.getNombre()+" ha usado "+pokemon.getNombreMov1() + " contra "+ pokemonRival.getNombre());
-
-                //Realizamos el ataque del rival
-            ataquePokemonRivalLucario(pokemon,pokemonRival);
-
-            });
-
-
-            //ATAQUE 2: A Bocajarro: 120 (Debil contral bicho/volador)
-            vista.getButtonAtaque2().addActionListener(e->{
-                vista.getButtonAtaque1().setVisible(false);
-                vista.getButtonAtaque3().setVisible(false);
-                vista.getButtonAtaque4().setVisible(false);
-                int vidaRestante=0;
-
-                //Debilidad contra Bicho/Volador (20% reduccion)
-                if (pokemonRival.getTipo().toString().equals("Bicho_Volador")){
-                    vidaRestante = pokemonRival.getVida()- (int) (pokemon.getMov2()*0.2);
-                    pokemonRival.setVida(vidaRestante);
-                    vista.getTextFieldVidaPokemonRival().setText(String.valueOf(vidaRestante));
-
-                    //Salida por consola
-     System.out.println(pokemon.getNombre()+" ha usado "+pokemon.getNombreMov2() + " contra "+ pokemonRival.getNombre());
-                    System.out.println(pokemon.getNombreMov2() + " es poco eficaz contra " + pokemonRival.getNombre());
-
-                    //Salida campo de narracion
-                    vista.getTextFieldNarrador().setText(pokemon.getNombre()+" ha usado "+pokemon.getNombreMov2() + " contra "+ pokemonRival.getNombre()
-                    + ". "+pokemon.getNombreMov2() + " es poco eficaz contra " + pokemonRival.getNombre() );
-                }
-
-                //Sin debilidad
-                vidaRestante= pokemonRival.getVida()- pokemon.getMov2();
-                pokemonRival.setVida(vidaRestante);
-
-                vista.getTextFieldVidaPokemonRival().setText(String.valueOf(vidaRestante));
-
-                System.out.println(pokemon.getNombre()+" ha usado "+pokemon.getNombreMov2() + " contra "+ pokemonRival.getNombre());
-                vista.getTextFieldNarrador().setText(pokemon.getNombre()+" ha usado "+pokemon.getNombreMov2() + " contra "+ pokemonRival.getNombre());
-
-
-                //Ataque del rival
-                ataquePokemonRivalLucario(pokemon, pokemonRival);
-            });
-
-
-            //ATAQUE 3: Ataque Oseo: 25 (Debil contral bicho/volador, Fuerte contra Electrico y Roca)
-            vista.getButtonAtaque3().addActionListener(e->{
-                vista.getButtonAtaque1().setVisible(false);
-                vista.getButtonAtaque2().setVisible(false);
-                vista.getButtonAtaque4().setVisible(false);
-                int vidaRestante=0;
-
-                //Debilidad contra Bicho/Volador (20% reduccion)
-                if (pokemonRival.getTipo().toString().equals("Bicho_Volador")){
-                    vidaRestante = pokemonRival.getVida()- (int) (pokemon.getMov3()*0.2);
-                    pokemonRival.setVida(vidaRestante);
-                    vista.getTextFieldVidaPokemonRival().setText(String.valueOf(vidaRestante));
-
-                    //Salida por consola
-                    System.out.println(pokemon.getNombre()+" ha usado "+pokemon.getNombreMov3() + " contra "+ pokemonRival.getNombre());
-                    System.out.println(pokemon.getNombreMov3() + " es poco eficaz contra " + pokemonRival.getNombre());
-
-                    //Salida campo narracion
-                    vista.getTextFieldNarrador().setText(pokemon.getNombre()+" ha usado "+pokemon.getNombreMov3() + " contra "+ pokemonRival.getNombre()
-                    +". "+pokemon.getNombreMov3() + " es poco eficaz contra " + pokemonRival.getNombre() );
-                }
-
-                //Fortaleza contra Electrico y Roca (50% aumento)
-                if (pokemonRival.getTipo().toString().equalsIgnoreCase("Electrico") ||
-                        pokemonRival.getTipo().toString().equalsIgnoreCase("Roca")){
-
-                    vidaRestante = pokemonRival.getVida()- (int) (pokemon.getMov3()*0.5+ pokemon.getMov3());
-                    pokemonRival.setVida(vidaRestante);
-                    vista.getTextFieldVidaPokemonRival().setText(String.valueOf(vidaRestante));
-
-                    //Salida por consola
-                    System.out.println(pokemon.getNombre()+" ha usado "+pokemon.getNombreMov3() + " contra "+ pokemonRival.getNombre());
-                    System.out.println("Es supereficaz!!!");
-
-                    //Salida campo de narracion
-                    vista.getTextFieldNarrador().setText(pokemon.getNombre()+" ha usado "+pokemon.getNombreMov3() + " contra "+ pokemonRival.getNombre()
-                            +". Es supereficaz!!!");
-                }
-
-
-                //Sin debilidad
-                vidaRestante= pokemonRival.getVida()- pokemon.getMov3();
-                pokemonRival.setVida(vidaRestante);
-                vista.getTextFieldVidaPokemonRival().setText(String.valueOf(vidaRestante));
-                System.out.println(pokemon.getNombre()+" ha usado "+pokemon.getNombreMov3() + " contra "+ pokemonRival.getNombre());
-                vista.getTextFieldNarrador().setText(pokemon.getNombre()+" ha usado "+pokemon.getNombreMov3() + " contra "+ pokemonRival.getNombre());
-
-                //Ataque del rival
-                ataquePokemonRivalLucario(pokemon, pokemonRival);
-            });
-
-            //ATAQUE 4: Onda Certera: 120 (Debil contral bicho/volador)
-            vista.getButtonAtaque4().addActionListener(e->{
-                vista.getButtonAtaque1().setVisible(false);
-                vista.getButtonAtaque3().setVisible(false);
-                vista.getButtonAtaque2().setVisible(false);
-                int vidaRestante=0;
-
-                //Debilidad contra Bicho/Volador (20% reduccion)
-                if (pokemonRival.getTipo().toString().equals("Bicho_Volador")){
-                    vidaRestante = pokemonRival.getVida()- (int) (pokemon.getMov4()*0.2);
-                    pokemonRival.setVida(vidaRestante);
-                    vista.getTextFieldVidaPokemonRival().setText(String.valueOf(vidaRestante));
-
-                    //Salida por consola
-                    System.out.println(pokemon.getNombre()+" ha usado "+pokemon.getNombreMov4() + " contra "+ pokemonRival.getNombre());
-                    System.out.println(pokemon.getNombreMov4() + " es poco eficaz contra " + pokemonRival.getNombre());
-
-                    //Salida campo narracion
-                    vista.getTextFieldNarrador().setText(pokemon.getNombre()+" ha usado "+pokemon.getNombreMov4() + " contra "+ pokemonRival.getNombre()
-                            +". "+ pokemon.getNombreMov4() + " es poco eficaz contra " + pokemonRival.getNombre());
-
-                }
-
-                //Sin debilidad
-                vidaRestante= pokemonRival.getVida()- pokemon.getMov4();
-                pokemonRival.setVida(vidaRestante);
-                vista.getTextFieldVidaPokemonRival().setText(String.valueOf(vidaRestante));
-                System.out.println(pokemon.getNombre()+" ha usado "+pokemon.getNombreMov4() + " contra "+ pokemonRival.getNombre());
-                vista.getTextFieldNarrador().setText(pokemon.getNombre()+" ha usado "+pokemon.getNombreMov4() + " contra "+ pokemonRival.getNombre());
-
-                //Ataque del rival
-                ataquePokemonRivalLucario(pokemon, pokemonRival);
-            });
-        }
-
-    }
-
-    private void combateZeraora(Pokemon pokemonRival, Pokemon pokemon) {
-
-        //Mientras tengan vida sigue el combate
-        while (pokemon.getVida()<=0 || pokemonRival.getVida()<=0){
-
-            //BARRAS DE VIDA TOP PANEL
-            vista.getTextFieldVidaPokemon().setText(String.valueOf(pokemon.getVida()));
-            vista.getTextFieldVidaPokemonRival().setText(String.valueOf(pokemonRival.getVida()));
+            //Realizamos el ataque del rival
+            System.out.println("ATAQUE DEL POKEMON RIVAL!!");
+            ataquePokemonRivalLucario(pokemonRival,pokemon);
 
             //Hacemos Visible los botones de ataque para cuando se inicie la siguiente ronda de ataque
-            vista.getButtonAtaque1().setVisible(true);
-            vista.getButtonAtaque2().setVisible(true);
-            vista.getButtonAtaque3().setVisible(true);
-            vista.getButtonAtaque4().setVisible(true);
+            vista.getButtonAtaque1().setEnabled(true);
+            vista.getButtonAtaque2().setEnabled(true);
+            vista.getButtonAtaque3().setEnabled(true);
+            vista.getButtonAtaque4().setEnabled(true);
 
+            //Si alguno de los dos pokemon alcanzan 0 o menos vida se acaba el combate
+            if(pokemon.getVida()<=0 || pokemonRival.getVida()<=0){
 
+                System.out.println("Fin del combate");
 
-            //ATAQUE 1: Ataque Fulgor = 120  (Fuerte contra Scyther, debil contra Lyc y Rk)
-            vista.getButtonAtaque1().addActionListener(e->{
-                vista.getButtonAtaque2().setVisible(false);
-                vista.getButtonAtaque3().setVisible(false);
-                vista.getButtonAtaque4().setVisible(false);
-                int vidaRestante=0;
-
-                //Fortaleza contra Bicho/Volador (50% aumento)
-                if (pokemonRival.getTipo().toString().equals("Bicho_Volador")){
-                    vidaRestante = pokemonRival.getVida()- (int) (pokemon.getMov1()*0.5+ pokemon.getMov1());
-                    pokemonRival.setVida(vidaRestante);
-                    vista.getTextFieldVidaPokemonRival().setText(String.valueOf(vidaRestante));
-
-                    //Salida por Consola
-                    System.out.println(pokemon.getNombre()+" ha usado "+pokemon.getNombreMov1() + " contra "+ pokemonRival.getNombre());
-                    System.out.println("Es supereficaz!!!");
-
-                    //Salida campo narracion
-                    vista.getTextFieldNarrador().setText(pokemon.getNombre()+" ha usado "+pokemon.getNombreMov1() + " contra "+ pokemonRival.getNombre());
-
+                //Seteamos el campo del narrador para indicar el fin del combate
+                if (pokemon.getVida()<=0){
+                    vista.getTextFieldNarrador().setText(pokemon.getNombre().toString()+" esta fuera de combate!!!!");
+                    vista.getTextFieldVidaPokemon().setText("0");
+                }
+                if (pokemonRival.getVida()<=0){
+                    vista.getTextFieldNarrador().setText(pokemonRival.getNombre().toString()+" esta fuera de combate!!!!");
+                    vista.getTextFieldVidaPokemonRival().setText("0");
                 }
 
-                //Debilidad contra Roca y Electrico (20% reduccion)
-                if (pokemonRival.getTipo().toString().equalsIgnoreCase("Electrico")||
-                    pokemonRival.getTipo().toString().equalsIgnoreCase("Roca")){
+                //Deshabilitamos los botones de los movimientos
+                vista.getButtonAtaque1().setEnabled(false);
+                vista.getButtonAtaque2().setEnabled(false);
+                vista.getButtonAtaque3().setEnabled(false);
+                vista.getButtonAtaque4().setEnabled(false);
+            }
+        });
 
-                    vidaRestante = pokemonRival.getVida()- (int) (pokemon.getMov1()*0.2);
-                    pokemonRival.setVida(vidaRestante);
-                    vista.getTextFieldVidaPokemonRival().setText(String.valueOf(vidaRestante));
 
-                    //Salida por consola
-                    System.out.println(pokemon.getNombre()+" ha usado "+pokemon.getNombreMov1() + " contra "+ pokemonRival.getNombre());
-                    System.out.println(pokemon.getNombreMov1() + " es poco eficaz contra " + pokemonRival.getNombre());
+        //ATAQUE 2: A Bocajarro: 120 (Debil contral bicho/volador)
+        vista.getButtonAtaque2().addActionListener(e->{
 
-                    //Salida campo de narracion
-                    vista.getTextFieldNarrador().setText(pokemon.getNombre()+" ha usado "+pokemon.getNombreMov1() + " contra "+ pokemonRival.getNombre()
-                            +". "+pokemon.getNombreMov1() + " es poco eficaz contra " + pokemonRival.getNombre());
-                }
+            //Deshabilitamos los botones para que no se realize ningún ataque entre medias de pulsar 1
+            vista.getButtonAtaque1().setEnabled(false);
+            vista.getButtonAtaque2().setEnabled(false);
+            vista.getButtonAtaque3().setEnabled(false);
+            vista.getButtonAtaque4().setEnabled(false);
+            int vidaRestante=0;
 
-                //Sin debilidad
-                vidaRestante= pokemonRival.getVida()- pokemon.getMov1();
+            //Debilidad contra Bicho/Volador (20% reduccion)
+            if (pokemonRival.getTipo().toString().equals("Bicho_Volador")){
+                vidaRestante = pokemonRival.getVida()- (int) (pokemon.getMov2()-pokemon.getMov2()*0.2);
                 pokemonRival.setVida(vidaRestante);
                 vista.getTextFieldVidaPokemonRival().setText(String.valueOf(vidaRestante));
-                System.out.println(pokemon.getNombre()+" ha usado "+pokemon.getMov1() + " contra "+ pokemonRival.getNombre());
-                vista.getTextFieldNarrador().setText(pokemon.getNombre()+" ha usado "+pokemon.getNombreMov1() + " contra "+ pokemonRival.getNombre());
 
-                //Realizamos el ataque del rival
-                    ataquePokemonRivalZeraora(pokemon, pokemonRival);
-
-            });
-
-
-            //ATAQUE 2: Rayo: 120 (Fuerte contra Scyther, debil contra Lyc y Rk)
-            vista.getButtonAtaque2().addActionListener(e->{
-                vista.getButtonAtaque1().setVisible(false);
-                vista.getButtonAtaque3().setVisible(false);
-                vista.getButtonAtaque4().setVisible(false);
-                int vidaRestante=0;
-
-                //Fortaleza contra Bicho/Volador (50% aumento)
-                if (pokemonRival.getTipo().toString().equals("Bicho_Volador")){
-                    vidaRestante = pokemonRival.getVida()- (int) (pokemon.getMov2()*0.5+ pokemon.getMov2());
-                    pokemonRival.setVida(vidaRestante);
-                    vista.getTextFieldVidaPokemonRival().setText(String.valueOf(vidaRestante));
-
-                    //Salida por consola
-                    System.out.println(pokemon.getNombre()+" ha usado "+pokemon.getNombreMov2() + " contra "+ pokemonRival.getNombre());
-                    System.out.println("Es supereficaz!!!");
-
-                    //Salida campo de narracion
-                    vista.getTextFieldNarrador().setText(pokemon.getNombre()+" ha usado "+pokemon.getNombreMov2() + " contra "+ pokemonRival.getNombre()
-                            +". Es supereficaz!!!");
-
-                }
-
-                //Debilidad contra Roca y Electrico (20% reduccion)
-                if (pokemonRival.getTipo().toString().equalsIgnoreCase("Electrico")||
-                        pokemonRival.getTipo().toString().equalsIgnoreCase("Roca")){
-
-                    vidaRestante = pokemonRival.getVida()- (int) (pokemon.getMov2()*0.2);
-                    pokemonRival.setVida(vidaRestante);
-                    vista.getTextFieldVidaPokemonRival().setText(String.valueOf(vidaRestante));
-
-                    //Salida por consola
-                    System.out.println(pokemon.getNombre()+" ha usado "+pokemon.getNombreMov2() + " contra "+ pokemonRival.getNombre());
-                    System.out.println(pokemon.getNombreMov2() + " es poco eficaz contra " + pokemonRival.getNombre());
-
-                    //Salida campo de narracion
-                    vista.getTextFieldNarrador().setText(pokemon.getNombre()+" ha usado "+pokemon.getNombreMov2() + " contra "+ pokemonRival.getNombre()
-                            +". "+pokemon.getNombreMov2() + " es poco eficaz contra " + pokemonRival.getNombre());
-                }
-
-                //Sin debilidad
-                vidaRestante= pokemonRival.getVida()- pokemon.getMov2();
-                pokemonRival.setVida(vidaRestante);
-                vista.getTextFieldVidaPokemonRival().setText(String.valueOf(vidaRestante));
+                //Salida por consola
                 System.out.println(pokemon.getNombre()+" ha usado "+pokemon.getNombreMov2() + " contra "+ pokemonRival.getNombre());
-                vista.getTextFieldNarrador().setText(pokemon.getNombre()+" ha usado "+pokemon.getNombreMov2() + " contra "+ pokemonRival.getNombre());
+                System.out.println(pokemon.getNombreMov2() + " es poco eficaz contra " + pokemonRival.getNombre());
 
-
-                //Realizamos el ataque del rival
-                ataquePokemonRivalZeraora(pokemon, pokemonRival);
-            });
-
-
-            //ATAQUE 3: Puños Plasma: 100 (Fuerte contra bicho/volador, Debil contra Electrico y Roca)
-            vista.getButtonAtaque3().addActionListener(e->{
-                vista.getButtonAtaque1().setVisible(false);
-                vista.getButtonAtaque2().setVisible(false);
-                vista.getButtonAtaque4().setVisible(false);
-                int vidaRestante=0;
-
-                //Fortaleza contra Bicho/Volador (50% aumento)
-                if (pokemonRival.getTipo().toString().equals("Bicho_Volador")){
-                    vidaRestante = pokemonRival.getVida()- (int) (pokemon.getMov3()*0.5+ pokemon.getMov3());
-                    pokemonRival.setVida(vidaRestante);
-                    vista.getTextFieldVidaPokemonRival().setText(String.valueOf(vidaRestante));
-
-                    //Salida por consola
-                    System.out.println(pokemon.getNombre()+" ha usado "+pokemon.getNombreMov3() + " contra "+ pokemonRival.getNombre());
-                    System.out.println("Es supereficaz!!!");
-
-                    //Salida campo de narracion
-                    vista.getTextFieldNarrador().setText(pokemon.getNombre()+" ha usado "+pokemon.getNombreMov3() + " contra "+ pokemonRival.getNombre()
-                            +". Es supereficaz!!!");
-
-                }
-
-                //Debilidad contra Roca y Electrico (20% reduccion)
-                if (pokemonRival.getTipo().toString().equalsIgnoreCase("Electrico")||
-                        pokemonRival.getTipo().toString().equalsIgnoreCase("Roca")){
-
-                    vidaRestante = pokemonRival.getVida()- (int) (pokemon.getMov3()*0.2);
-                    pokemonRival.setVida(vidaRestante);
-                    vista.getTextFieldVidaPokemonRival().setText(String.valueOf(vidaRestante));
-
-                    //Salida por consola
-                    System.out.println(pokemon.getNombre()+" ha usado "+pokemon.getNombreMov3() + " contra "+ pokemonRival.getNombre());
-                    System.out.println(pokemon.getNombreMov3() + " es poco eficaz contra " + pokemonRival.getNombre());
-
-                    //Salida campo narracion
-                    vista.getTextFieldNarrador().setText(pokemon.getNombre()+" ha usado "+pokemon.getNombreMov3() + " contra "+ pokemonRival.getNombre()
-                            +". "+pokemon.getNombreMov3() + " es poco eficaz contra " + pokemonRival.getNombre());
-                }
+                //Salida campo de narracion
+                vista.getTextFieldNarrador().setText(pokemon.getNombre()+" ha usado "+pokemon.getNombreMov2() + " contra "+ pokemonRival.getNombre()
+                        + ". "+pokemon.getNombreMov2() + " es poco eficaz contra " + pokemonRival.getNombre() );
+            } else {
 
                 //Sin debilidad
-                vidaRestante= pokemonRival.getVida()- pokemon.getMov3();
+                vidaRestante = pokemonRival.getVida() - pokemon.getMov2();
                 pokemonRival.setVida(vidaRestante);
+
                 vista.getTextFieldVidaPokemonRival().setText(String.valueOf(vidaRestante));
-                System.out.println(pokemon.getNombre()+" ha usado "+pokemon.getNombreMov3() + " contra "+ pokemonRival.getNombre());
-                vista.getTextFieldNarrador().setText(pokemon.getNombre()+" ha usado "+pokemon.getNombreMov3() + " contra "+ pokemonRival.getNombre());
 
+                System.out.println(pokemon.getNombre() + " ha usado " + pokemon.getNombreMov2() + " contra " + pokemonRival.getNombre());
+                vista.getTextFieldNarrador().setText(pokemon.getNombre() + " ha usado " + pokemon.getNombreMov2() + " contra " + pokemonRival.getNombre());
+            }
 
-                //Realizamos el ataque del rival
-                ataquePokemonRivalZeraora(pokemon, pokemonRival);
-            });
-
-            //ATAQUE 4: A Bocajarro: 120 (Debil contral bicho/volador)
-            vista.getButtonAtaque4().addActionListener(e->{
-                vista.getButtonAtaque1().setVisible(false);
-                vista.getButtonAtaque3().setVisible(false);
-                vista.getButtonAtaque2().setVisible(false);
-                int vidaRestante=0;
-
-                //Debilidad contra Bicho/Volador (20% reduccion)
-                if (pokemonRival.getTipo().toString().equals("Bicho_Volador")){
-                    vidaRestante = pokemonRival.getVida()- (int) (pokemon.getMov4()*0.2);
-                    pokemonRival.setVida(vidaRestante);
-                    vista.getTextFieldVidaPokemonRival().setText(String.valueOf(vidaRestante));
-
-                    //Salida por consola
-                    System.out.println(pokemon.getNombre()+" ha usado "+pokemon.getNombreMov4() + " contra "+ pokemonRival.getNombre());
-                    System.out.println(pokemon.getNombreMov4() + " es poco eficaz contra " + pokemonRival.getNombre());
-
-                    //Salida campo narracion
-                    vista.getTextFieldNarrador().setText(pokemon.getNombre()+" ha usado "+pokemon.getNombreMov4() + " contra "+ pokemonRival.getNombre()
-                            +". "+pokemon.getNombreMov4() + " es poco eficaz contra " + pokemonRival.getNombre() );
-
-                }
-
-                //Sin debilidad
-                vidaRestante= pokemonRival.getVida()- pokemon.getMov4();
-                pokemonRival.setVida(vidaRestante);
-                vista.getTextFieldVidaPokemonRival().setText(String.valueOf(vidaRestante));
-                System.out.println(pokemon.getNombre()+" ha usado "+pokemon.getNombreMov4() + " contra "+ pokemonRival.getNombre());
-                vista.getTextFieldNarrador().setText(pokemon.getNombre()+" ha usado "+pokemon.getNombreMov4() + " contra "+ pokemonRival.getNombre());
-
-                //Ataque del rival
-                ataquePokemonRivalZeraora(pokemon, pokemonRival);
-            });
-        }
-
-    }
-
-    private void combateZoroark(Pokemon pokemonRival, Pokemon pokemon) {
-
-        //Mientras tengan vida sigue el combate
-        while (pokemon.getVida()<=0 || pokemonRival.getVida()<=0){
-
-            //BARRAS DE VIDA TOP PANEL
-            vista.getTextFieldVidaPokemon().setText(String.valueOf(pokemon.getVida()));
-            vista.getTextFieldVidaPokemonRival().setText(String.valueOf(pokemonRival.getVida()));
+            //Ataque del rival
+            ataquePokemonRivalLucario(pokemonRival,pokemon);
 
             //Hacemos Visible los botones de ataque para cuando se inicie la siguiente ronda de ataque
-            vista.getButtonAtaque1().setVisible(true);
-            vista.getButtonAtaque2().setVisible(true);
-            vista.getButtonAtaque3().setVisible(true);
-            vista.getButtonAtaque4().setVisible(true);
+            vista.getButtonAtaque1().setEnabled(true);
+            vista.getButtonAtaque2().setEnabled(true);
+            vista.getButtonAtaque3().setEnabled(true);
+            vista.getButtonAtaque4().setEnabled(true);
 
 
+            //Si alguno de los dos pokemon alcanzan 0 o menos vida se acaba el combate
+            if(pokemon.getVida()<=0 || pokemonRival.getVida()<=0){
 
-            //ATAQUE 1: Pulso Noche = 85  (Debil contra Lucario)
-            vista.getButtonAtaque1().addActionListener(e->{
-                vista.getButtonAtaque2().setVisible(false);
-                vista.getButtonAtaque3().setVisible(false);
-                vista.getButtonAtaque4().setVisible(false);
-                int vidaRestante=0;
+                System.out.println("Fin del combate");
 
-                //Debilidad contra Lucha_Acero (20% reduccion)
-                if (pokemonRival.getTipo().toString().equalsIgnoreCase("Lucha_Acero")){
-
-                    vidaRestante = pokemonRival.getVida()- (int) (pokemon.getMov1()*0.2);
-                    pokemonRival.setVida(vidaRestante);
-                    vista.getTextFieldVidaPokemonRival().setText(String.valueOf(vidaRestante));
-
-                    //Salida por consola
-                    System.out.println(pokemon.getNombre()+" ha usado "+pokemon.getNombreMov1() + " contra "+ pokemonRival.getNombre());
-                    System.out.println(pokemon.getNombreMov1() + " es poco eficaz contra " + pokemonRival.getNombre());
-
-                    //Salida campo narracion
-                    vista.getTextFieldNarrador().setText(pokemon.getNombre()+" ha usado "+pokemon.getNombreMov1() + " contra "+ pokemonRival.getNombre()
-                    +". "+pokemon.getNombreMov1() + " es poco eficaz contra " + pokemonRival.getNombre());
+                //Seteamos el campo del narrador para indicar el fin del combate
+                if (pokemon.getVida()<=0){
+                    vista.getTextFieldNarrador().setText(pokemon.getNombre().toString()+" esta fuera de combate!!!!");
+                    vista.getTextFieldVidaPokemon().setText("0");
+                }
+                if (pokemonRival.getVida()<=0){
+                    vista.getTextFieldNarrador().setText(pokemonRival.getNombre().toString()+" esta fuera de combate!!!!");
+                    vista.getTextFieldVidaPokemonRival().setText("0");
                 }
 
-                //Sin debilidad
-                vidaRestante= pokemonRival.getVida()- pokemon.getMov1();
+                //Deshabilitamos los botones de los movimientos
+                vista.getButtonAtaque1().setEnabled(false);
+                vista.getButtonAtaque2().setEnabled(false);
+                vista.getButtonAtaque3().setEnabled(false);
+                vista.getButtonAtaque4().setEnabled(false);
+            }
+        });
+
+
+        //ATAQUE 3: Ataque Oseo: 25 (Debil contral bicho/volador, Fuerte contra Electrico y Roca)
+        vista.getButtonAtaque3().addActionListener(e->{
+
+
+            //Deshabilitamos los botones para evitar pulsar 2 botones a la vez
+            vista.getButtonAtaque1().setEnabled(false);
+            vista.getButtonAtaque2().setEnabled(false);
+            vista.getButtonAtaque3().setEnabled(false);
+            vista.getButtonAtaque4().setEnabled(false);
+            int vidaRestante=0;
+
+            //Debilidad contra Bicho/Volador (20% reduccion)
+            if (pokemonRival.getTipo().toString().equals("Bicho_Volador")){
+                vidaRestante = pokemonRival.getVida()- (int) (pokemon.getMov3()-pokemon.getMov3()*0.2);
                 pokemonRival.setVida(vidaRestante);
                 vista.getTextFieldVidaPokemonRival().setText(String.valueOf(vidaRestante));
-                System.out.println(pokemon.getNombre()+" ha usado "+pokemon.getNombreMov1() + " contra "+ pokemonRival.getNombre());
-                vista.getTextFieldNarrador().setText(pokemon.getNombre()+" ha usado "+pokemon.getNombreMov1() + " contra "+ pokemonRival.getNombre());
 
+                //Salida por consola
+                System.out.println(pokemon.getNombre()+" ha usado "+pokemon.getNombreMov3() + " contra "+ pokemonRival.getNombre());
+                System.out.println(pokemon.getNombreMov3() + " es poco eficaz contra " + pokemonRival.getNombre());
 
-                //Realizamos el ataque del rival
-                ataquePokemonRivalZoroark(pokemon, pokemonRival);
+                //Salida campo narracion
+                vista.getTextFieldNarrador().setText(pokemon.getNombre()+" ha usado "+pokemon.getNombreMov3() + " contra "+ pokemonRival.getNombre()
+                        +". "+pokemon.getNombreMov3() + " es poco eficaz contra " + pokemonRival.getNombre() );
+            }
 
-            });
-
-
-            //ATAQUE 2: Pulso Umbrio: 80 (Debil contra Lucario)
-            vista.getButtonAtaque2().addActionListener(e->{
-                vista.getButtonAtaque1().setVisible(false);
-                vista.getButtonAtaque3().setVisible(false);
-                vista.getButtonAtaque4().setVisible(false);
-                int vidaRestante=0;
-                    //Debilidad contra Lucha_Acero (20% reduccion)
-                if (pokemonRival.getTipo().toString().equalsIgnoreCase("Lucha_Acero")){
-
-                    vidaRestante = pokemonRival.getVida()- (int) (pokemon.getMov2()*0.2);
-                    pokemonRival.setVida(vidaRestante);
-                    vista.getTextFieldVidaPokemonRival().setText(String.valueOf(vidaRestante));
-
-                    //Salida por consola
-                    System.out.println(pokemon.getNombre()+" ha usado "+pokemon.getNombreMov2() + " contra "+ pokemonRival.getNombre());
-                    System.out.println(pokemon.getNombreMov2() + " es poco eficaz contra " + pokemonRival.getNombre());
-
-                    //Salida campo narracion
-                    vista.getTextFieldNarrador().setText(pokemon.getNombre()+" ha usado "+pokemon.getNombreMov2() + " contra "+ pokemonRival.getNombre()+
-                            ". "+pokemon.getNombreMov2() + " es poco eficaz contra " + pokemonRival.getNombre());
-                }
-
-                //Sin debilidad
-                vidaRestante= pokemonRival.getVida()- pokemon.getMov2();
-                pokemonRival.setVida(vidaRestante);
-                vista.getTextFieldVidaPokemonRival().setText(String.valueOf(vidaRestante));
-                System.out.println(pokemon.getNombre()+" ha usado "+pokemon.getNombreMov2() + " contra "+ pokemonRival.getNombre());
-                vista.getTextFieldNarrador().setText(pokemon.getNombre()+" ha usado "+pokemon.getNombreMov2() + " contra "+ pokemonRival.getNombre());
-
-
-                //Realizamos el ataque del rival
-                ataquePokemonRivalZoroark(pokemon, pokemonRival);
-
-            });
-
-
-            //ATAQUE 3: Corte: 50 (Debil contra Lucario y Lycanroc)
-            vista.getButtonAtaque3().addActionListener(e->{
-                vista.getButtonAtaque1().setVisible(false);
-                vista.getButtonAtaque2().setVisible(false);
-                vista.getButtonAtaque4().setVisible(false);
-                int vidaRestante=0;
-
-                //Debilidad contra Lucha_Acero y Roca (20% reduccion)
-                if (pokemonRival.getTipo().toString().equalsIgnoreCase("Lucha_Acero")||
+            //Fortaleza contra Electrico y Roca (50% aumento)
+            if (pokemonRival.getTipo().toString().equalsIgnoreCase("Electrico") ||
                     pokemonRival.getTipo().toString().equalsIgnoreCase("Roca")){
 
-                    vidaRestante = pokemonRival.getVida()- (int) (pokemon.getMov3()*0.2);
-                    pokemonRival.setVida(vidaRestante);
-                    vista.getTextFieldVidaPokemonRival().setText(String.valueOf(vidaRestante));
-
-                    //Salida por consola
-                    System.out.println(pokemon.getNombre()+" ha usado "+pokemon.getNombreMov3() + " contra "+ pokemonRival.getNombre());
-                    System.out.println(pokemon.getNombreMov3() + " es poco eficaz contra " + pokemonRival.getNombre());
-
-                    //Salida campo narracion
-                    vista.getTextFieldNarrador().setText(pokemon.getNombre()+" ha usado "+pokemon.getNombreMov3() + " contra "+ pokemonRival.getNombre()
-                            +". "+pokemon.getNombreMov3() + " es poco eficaz contra " + pokemonRival.getNombre());
-                }
-
-                //Sin debilidad
-                vidaRestante= pokemonRival.getVida()- pokemon.getMov3();
+                vidaRestante = pokemonRival.getVida()- (int) (pokemon.getMov3()*0.5+ pokemon.getMov3());
                 pokemonRival.setVida(vidaRestante);
                 vista.getTextFieldVidaPokemonRival().setText(String.valueOf(vidaRestante));
+
+                //Salida por consola
                 System.out.println(pokemon.getNombre()+" ha usado "+pokemon.getNombreMov3() + " contra "+ pokemonRival.getNombre());
-                vista.getTextFieldNarrador().setText(pokemon.getNombre()+" ha usado "+pokemon.getNombreMov3() + " contra "+ pokemonRival.getNombre());
+                System.out.println("Es supereficaz!!!");
 
-
-                //Realizamos el ataque del rival
-                ataquePokemonRivalZoroark(pokemon, pokemonRival);
-            });
-
-            //ATAQUE 4:Bola Sombra: 80 (Fuerte contral bicho/volador)
-            vista.getButtonAtaque4().addActionListener(e->{
-                vista.getButtonAtaque1().setVisible(false);
-                vista.getButtonAtaque3().setVisible(false);
-                vista.getButtonAtaque2().setVisible(false);
-                int vidaRestante=0;
-
-                //Fortaleza contra Bicho/Volador (50% reduccion)
-                if (pokemonRival.getTipo().toString().equals("Bicho_Volador")){
-                    vidaRestante = pokemonRival.getVida()- (int) (pokemon.getMov4()*0.5+ pokemon.getMov4());
-                    pokemonRival.setVida(vidaRestante);
-                    vista.getTextFieldVidaPokemonRival().setText(String.valueOf(vidaRestante));
-
-                    //Salida por consola
-                    System.out.println(pokemon.getNombre()+" ha usado "+pokemon.getNombreMov4() + " contra "+ pokemonRival.getNombre());
-                    System.out.println("Es supereficaz!!!");
-
-                    //Salida campo narracion
-                    vista.getTextFieldNarrador().setText(pokemon.getNombre()+" ha usado "+pokemon.getNombreMov4() + " contra "+ pokemonRival.getNombre()
-                            +". Es supereficaz!!!");
-
-                }
-
+                //Salida campo de narracion
+                vista.getTextFieldNarrador().setText(pokemon.getNombre()+" ha usado "+pokemon.getNombreMov3() + " contra "+ pokemonRival.getNombre()
+                        +". Es supereficaz!!!");
+            }
+            else {
                 //Sin debilidad
-                vidaRestante= pokemonRival.getVida()- pokemon.getMov4();
+                vidaRestante = pokemonRival.getVida() - pokemon.getMov3();
                 pokemonRival.setVida(vidaRestante);
                 vista.getTextFieldVidaPokemonRival().setText(String.valueOf(vidaRestante));
-                System.out.println(pokemon.getNombre()+" ha usado "+pokemon.getNombreMov4() + " contra "+ pokemonRival.getNombre());
-                vista.getTextFieldNarrador().setText(pokemon.getNombre()+" ha usado "+pokemon.getNombreMov4() + " contra "+ pokemonRival.getNombre());
+                System.out.println(pokemon.getNombre() + " ha usado " + pokemon.getNombreMov3() + " contra " + pokemonRival.getNombre());
+                vista.getTextFieldNarrador().setText(pokemon.getNombre() + " ha usado " + pokemon.getNombreMov3() + " contra " + pokemonRival.getNombre());
+            }
 
-                //Ataque del rival
-                ataquePokemonRivalZoroark(pokemon, pokemonRival);
-            });
-        }
+            //Ataque del rival
+            ataquePokemonRivalLucario(pokemonRival,pokemon);
+
+            //Hacemos Visible los botones de ataque para cuando se inicie la siguiente ronda de ataque
+            vista.getButtonAtaque1().setEnabled(true);
+            vista.getButtonAtaque2().setEnabled(true);
+            vista.getButtonAtaque3().setEnabled(true);
+            vista.getButtonAtaque4().setEnabled(true);
+
+            //Si alguno de los dos pokemon alcanzan 0 o menos vida se acaba el combate
+            if(pokemon.getVida()<=0 || pokemonRival.getVida()<=0){
+
+                System.out.println("Fin del combate");
+
+                //Seteamos el campo del narrador para indicar el fin del combate
+                if (pokemon.getVida()<=0){
+                    vista.getTextFieldNarrador().setText(pokemon.getNombre().toString()+" esta fuera de combate!!!!");
+                    vista.getTextFieldVidaPokemon().setText("0");
+                }
+                if (pokemonRival.getVida()<=0){
+                    vista.getTextFieldNarrador().setText(pokemonRival.getNombre().toString()+" esta fuera de combate!!!!");
+                    vista.getTextFieldVidaPokemonRival().setText("0");
+                }
+
+                //Deshabilitamos los botones de los movimientos
+                vista.getButtonAtaque1().setEnabled(false);
+                vista.getButtonAtaque2().setEnabled(false);
+                vista.getButtonAtaque3().setEnabled(false);
+                vista.getButtonAtaque4().setEnabled(false);
+            }
+        });
+
+        //ATAQUE 4: Onda Certera: 120 (Debil contral bicho/volador)
+        vista.getButtonAtaque4().addActionListener(e->{
+
+            //Deshabilitamos los botones para evitar 2 pulsaciones seguidas
+            vista.getButtonAtaque1().setEnabled(false);
+            vista.getButtonAtaque2().setEnabled(false);
+            vista.getButtonAtaque3().setEnabled(false);
+            vista.getButtonAtaque4().setEnabled(false);
+            int vidaRestante=0;
+
+            //Debilidad contra Bicho/Volador (20% reduccion)
+            if (pokemonRival.getTipo().toString().equals("Bicho_Volador")){
+                vidaRestante = pokemonRival.getVida()- (int) (pokemon.getMov4()-pokemon.getMov4()*0.2);
+                pokemonRival.setVida(vidaRestante);
+                vista.getTextFieldVidaPokemonRival().setText(String.valueOf(vidaRestante));
+
+                //Salida por consola
+                System.out.println(pokemon.getNombre()+" ha usado "+pokemon.getNombreMov4() + " contra "+ pokemonRival.getNombre());
+                System.out.println(pokemon.getNombreMov4() + " es poco eficaz contra " + pokemonRival.getNombre());
+
+                //Salida campo narracion
+                vista.getTextFieldNarrador().setText(pokemon.getNombre()+" ha usado "+pokemon.getNombreMov4() + " contra "+ pokemonRival.getNombre()
+                        +". "+ pokemon.getNombreMov4() + " es poco eficaz contra " + pokemonRival.getNombre());
+
+            } else {
+                //Sin debilidad
+                vidaRestante = pokemonRival.getVida() - pokemon.getMov4();
+                pokemonRival.setVida(vidaRestante);
+                vista.getTextFieldVidaPokemonRival().setText(String.valueOf(vidaRestante));
+                System.out.println(pokemon.getNombre() + " ha usado " + pokemon.getNombreMov4() + " contra " + pokemonRival.getNombre());
+                vista.getTextFieldNarrador().setText(pokemon.getNombre() + " ha usado " + pokemon.getNombreMov4() + " contra " + pokemonRival.getNombre());
+            }
+
+            //Ataque del rival
+            ataquePokemonRivalLucario(pokemonRival,pokemon);
+
+            //Hacemos Visible los botones de ataque para cuando se inicie la siguiente ronda de ataque
+            vista.getButtonAtaque1().setEnabled(true);
+            vista.getButtonAtaque2().setEnabled(true);
+            vista.getButtonAtaque3().setEnabled(true);
+            vista.getButtonAtaque4().setEnabled(true);
+
+
+            //Si alguno de los dos pokemon alcanzan 0 o menos vida se acaba el combate
+            if(pokemon.getVida()<=0 || pokemonRival.getVida()<=0){
+
+                System.out.println("Fin del combate");
+
+                //Seteamos el campo del narrador para indicar el fin del combate
+                if (pokemon.getVida()<=0){
+                    vista.getTextFieldNarrador().setText(pokemon.getNombre().toString()+" esta fuera de combate!!!!");
+                    vista.getTextFieldVidaPokemon().setText("0");
+                }
+                if (pokemonRival.getVida()<=0){
+                    vista.getTextFieldNarrador().setText(pokemonRival.getNombre().toString()+" esta fuera de combate!!!!");
+                    vista.getTextFieldVidaPokemonRival().setText("0");
+                }
+
+                //Deshabilitamos los botones de los movimientos
+                vista.getButtonAtaque1().setEnabled(false);
+                vista.getButtonAtaque2().setEnabled(false);
+                vista.getButtonAtaque3().setEnabled(false);
+                vista.getButtonAtaque4().setEnabled(false);
+            }
+        });
+
 
     }
 
-    private void ataquePokemonRivalLucario(Pokemon pokemon, Pokemon pokemonRival) {
+
+    private void ataquePokemonRivalLucario(Pokemon pokemonRival, Pokemon pokemon) {
         //El ataque se realizara aleatoriamente con un Math.Random
         int random = (int) (Math.random()*4);
         int vidaRestante=0;
@@ -779,12 +536,12 @@ public class Controlador {
                 vista.getTextFieldNarrador().setText(pokemonRival.getNombre()+" ha usado "+pokemonRival.getNombreMov1() + " contra "+ pokemon.getNombre()
                         +". Ha sido superficaz!!!");
             }
-
+                return;
             }
 
                 //Reduccion de un 20% si es debil contra Lucario
             if (pokemonRival.getTipoMov1().toString().equalsIgnoreCase("Roca")){
-                vidaRestante = pokemon.getVida()-(int) (pokemonRival.getMov1()*0.20);
+                vidaRestante = pokemon.getVida()-(int) (pokemonRival.getMov1()-pokemonRival.getMov1()*0.20);
                 pokemon.setVida(vidaRestante);
                 vista.getTextFieldVidaPokemon().setText(String.valueOf(vidaRestante));
 
@@ -797,6 +554,7 @@ public class Controlador {
                 vista.getTextFieldNarrador().setText(pokemonRival.getNombre()+" ha usado "+pokemonRival.getNombreMov1() + " contra "+ pokemon.getNombre()
                         +". "+pokemonRival.getNombreMov1() + " es poco eficaz contra " + pokemon.getNombre());
 
+                return;
             }
 
 
@@ -814,7 +572,7 @@ public class Controlador {
             //Reduccion de un 20% de daño contra Lucario
             if (pokemonRival.getTipoMov2().toString().equalsIgnoreCase("Bicho")||
                 pokemonRival.getTipoMov2().toString().equalsIgnoreCase("Siniestro")){
-                vidaRestante = pokemon.getVida()-(int) (pokemonRival.getMov2()*0.20);
+                vidaRestante = pokemon.getVida()-(int) (pokemonRival.getMov2()-pokemonRival.getMov2()*0.20);
                 pokemon.setVida(vidaRestante);
                 vista.getTextFieldVidaPokemon().setText(String.valueOf(vidaRestante));
 
@@ -826,6 +584,8 @@ public class Controlador {
                 //Salida campo narracion
                 vista.getTextFieldNarrador().setText(pokemonRival.getNombre()+" ha usado "+pokemonRival.getNombreMov2() + " contra "+ pokemon.getNombre()
                         +". "+pokemonRival.getNombreMov2() + " es poco eficaz contra " + pokemon.getNombre());
+
+                return;
             }
 
             vidaRestante= pokemon.getVida()- pokemonRival.getMov2();
@@ -855,12 +615,12 @@ public class Controlador {
                 //Salida campo narracion
                 vista.getTextFieldNarrador().setText(pokemonRival.getNombre()+" ha usado "+pokemonRival.getNombreMov3() + " contra "+ pokemon.getNombre()
                         +". Ha sido supereficaz!!!");
-
+                return;
             }
 
             //Reduccion del 20% de daño contra Lucario
             if (pokemonRival.getTipoMov3().toString().equalsIgnoreCase("Roca")){
-                vidaRestante = pokemon.getVida()-(int) (pokemonRival.getMov3()*0.20);
+                vidaRestante = pokemon.getVida()-(int) (pokemonRival.getMov3()-pokemonRival.getMov3()*0.20);
                 pokemon.setVida(vidaRestante);
                 vista.getTextFieldVidaPokemon().setText(String.valueOf(vidaRestante));
 
@@ -872,6 +632,7 @@ public class Controlador {
                 //Salida campo narracion
                 vista.getTextFieldNarrador().setText(pokemonRival.getNombre()+" ha usado "+pokemonRival.getNombreMov3() + " contra "+ pokemon.getNombre()
                         +". "+pokemonRival.getNombreMov3() + " es poco eficaz contra " + pokemon.getNombre());
+                return;
             }
 
             vidaRestante= pokemon.getVida() - pokemonRival.getMov3();
@@ -889,7 +650,7 @@ public class Controlador {
             //Reduccion de un 20% de daño contra Lucario
             if (pokemonRival.getTipoMov4().toString().equalsIgnoreCase("Siniestro")||
                     pokemonRival.getTipoMov4().toString().equalsIgnoreCase("Bicho")){
-                vidaRestante = pokemon.getVida()-(int) (pokemonRival.getMov4()*0.20);
+                vidaRestante = pokemon.getVida()-(int) (pokemonRival.getMov4()-pokemonRival.getMov4()*0.20);
                 pokemon.setVida(vidaRestante);
                 vista.getTextFieldVidaPokemon().setText(String.valueOf(vidaRestante));
 
@@ -901,6 +662,7 @@ public class Controlador {
                 //Salida campo narracion
                 vista.getTextFieldNarrador().setText(pokemonRival.getNombre()+" ha usado "+pokemonRival.getNombreMov4() + " contra "+ pokemon.getNombre()
                         +". "+pokemonRival.getNombreMov4() + " es poco eficaz contra " + pokemon.getNombre());
+                return;
             }
 
             vidaRestante= pokemon.getVida()- pokemonRival.getMov4();
@@ -1112,34 +874,35 @@ public class Controlador {
     }
 
     private Pokemon escogerPokemonRival() {
+        //Variable privada del pokemonEscogido
+        Pokemon pokemonEscogido = null;
         //Se elegirá con un Math random cualquiera
         int random = (int) (Math.random()*10-1);
         
         //Si <=3 :Lycanroc | >3 <=6: Scyther | >6 <=9: Raikou
         if (random<=3){
-            pokemon = new Pokemon(nombrePokemon.Lycanroc, tipoPokemon.Roca, 200,40, 80
+            pokemonEscogido = new Pokemon(nombrePokemon.Lycanroc, tipoPokemon.Roca, 200,40, 80
             , 75, 60, "Roca Veloz", "Triturar", "Avalancha", "Mordisco"
             , tiposMovimiento.Roca, tiposMovimiento.Siniestro, tiposMovimiento.Roca, tiposMovimiento.Siniestro);
             System.out.println("Lycanroc");
-            Controlador.pokemonRivalParteCombate=pokemon;
+          
         }
         if (random >3 && random<=6){
-            pokemon = new Pokemon(nombrePokemon.Scyther, tipoPokemon.Bicho_Volador, 200, 60, 80, 75, 40
+            pokemonEscogido = new Pokemon(nombrePokemon.Scyther, tipoPokemon.Bicho_Volador, 200, 60, 80, 75, 40
                     , "Ataque Ala", "Tijera X", "Tajo Aéreo", "Corte Furia",
                     tiposMovimiento.Volador, tiposMovimiento.Bicho, tiposMovimiento.Volador, tiposMovimiento.Bicho);
             System.out.println("Scyther");
-            Controlador.pokemonRivalParteCombate=pokemon;
+    
         }
         if (random>6 && random<=9){
-            pokemon = new Pokemon(nombrePokemon.Raikou, tipoPokemon.Electrico, 200, 80, 40, 110, 80
+            pokemonEscogido = new Pokemon(nombrePokemon.Raikou, tipoPokemon.Electrico, 200, 80, 40, 110, 80
             , "Paranormal", "Golpe Roca", "Trueno", "Chispazo",
                     tiposMovimiento.Psiquico, tiposMovimiento.Lucha, tiposMovimiento.Electrico, tiposMovimiento.Electrico);
             System.out.println("Raikou");
-            Controlador.pokemonRivalParteCombate=pokemon;
         }
         System.out.println(random);
 
-        return pokemon;
+        return pokemonEscogido;
     }
 
     private void mostrarInfoZoroark() {
@@ -1191,7 +954,7 @@ public class Controlador {
         vista.getTextAreaInfoHabilidad().setText("Hace jirones al oponente con sus garras electrificadas. " +
                 "Aunque este esquive los golpes, acaba electrocutado por las descargas");
         vista.getTextAreaInfoHabilidad().setLineWrap(true);
-        vista.getTextFieldInfoGeneracion().setText("8");
+        vista.getTextFieldInfoGeneracion().setText("7");
 
         //Evitamos que sea editable
         vista.getTextFieldInfoPokemon().setEditable(false);
