@@ -264,26 +264,7 @@ public class Controlador {
             vista.getButtonAtaque4().setEnabled(true);
 
             //Si alguno de los dos pokemon alcanzan 0 o menos vida se acaba el combate
-            if(pokemon.getVida()<=0 || pokemonRival.getVida()<=0){
-
-                System.out.println("Fin del combate");
-
-                //Seteamos el campo del narrador para indicar el fin del combate
-                if (pokemon.getVida()<=0){
-                    vista.getTextFieldNarrador().setText(pokemon.getNombre().toString()+" esta fuera de combate!!!!");
-                    vista.getTextFieldVidaPokemon().setText("0");
-                }
-                if (pokemonRival.getVida()<=0){
-                    vista.getTextFieldNarrador().setText(pokemonRival.getNombre().toString()+" esta fuera de combate!!!!");
-                    vista.getTextFieldVidaPokemonRival().setText("0");
-                }
-
-                //Deshabilitamos los botones de los movimientos
-                vista.getButtonAtaque1().setEnabled(false);
-                vista.getButtonAtaque2().setEnabled(false);
-                vista.getButtonAtaque3().setEnabled(false);
-                vista.getButtonAtaque4().setEnabled(false);
-            }
+            comprobarVidaPokemon();
         });
 
 
@@ -333,32 +314,13 @@ public class Controlador {
 
 
             //Si alguno de los dos pokemon alcanzan 0 o menos vida se acaba el combate
-            if(pokemon.getVida()<=0 || pokemonRival.getVida()<=0){
+            comprobarVidaPokemon();
 
-                System.out.println("Fin del combate");
-
-                //Seteamos el campo del narrador para indicar el fin del combate
-                if (pokemon.getVida()<=0){
-                    vista.getTextFieldNarrador().setText(pokemon.getNombre().toString()+" esta fuera de combate!!!!");
-                    vista.getTextFieldVidaPokemon().setText("0");
-                }
-                if (pokemonRival.getVida()<=0){
-                    vista.getTextFieldNarrador().setText(pokemonRival.getNombre().toString()+" esta fuera de combate!!!!");
-                    vista.getTextFieldVidaPokemonRival().setText("0");
-                }
-
-                //Deshabilitamos los botones de los movimientos
-                vista.getButtonAtaque1().setEnabled(false);
-                vista.getButtonAtaque2().setEnabled(false);
-                vista.getButtonAtaque3().setEnabled(false);
-                vista.getButtonAtaque4().setEnabled(false);
-            }
         });
 
 
         //ATAQUE 3: Ataque Oseo: 25 (Debil contral bicho/volador, Fuerte contra Electrico y Roca)
         vista.getButtonAtaque3().addActionListener(e->{
-
 
             //Deshabilitamos los botones para evitar pulsar 2 botones a la vez
             vista.getButtonAtaque1().setEnabled(false);
@@ -417,26 +379,7 @@ public class Controlador {
             vista.getButtonAtaque4().setEnabled(true);
 
             //Si alguno de los dos pokemon alcanzan 0 o menos vida se acaba el combate
-            if(pokemon.getVida()<=0 || pokemonRival.getVida()<=0){
-
-                System.out.println("Fin del combate");
-
-                //Seteamos el campo del narrador para indicar el fin del combate
-                if (pokemon.getVida()<=0){
-                    vista.getTextFieldNarrador().setText(pokemon.getNombre().toString()+" esta fuera de combate!!!!");
-                    vista.getTextFieldVidaPokemon().setText("0");
-                }
-                if (pokemonRival.getVida()<=0){
-                    vista.getTextFieldNarrador().setText(pokemonRival.getNombre().toString()+" esta fuera de combate!!!!");
-                    vista.getTextFieldVidaPokemonRival().setText("0");
-                }
-
-                //Deshabilitamos los botones de los movimientos
-                vista.getButtonAtaque1().setEnabled(false);
-                vista.getButtonAtaque2().setEnabled(false);
-                vista.getButtonAtaque3().setEnabled(false);
-                vista.getButtonAtaque4().setEnabled(false);
-            }
+            comprobarVidaPokemon();
         });
 
         //ATAQUE 4: Onda Certera: 120 (Debil contral bicho/volador)
@@ -483,26 +426,7 @@ public class Controlador {
 
 
             //Si alguno de los dos pokemon alcanzan 0 o menos vida se acaba el combate
-            if(pokemon.getVida()<=0 || pokemonRival.getVida()<=0){
-
-                System.out.println("Fin del combate");
-
-                //Seteamos el campo del narrador para indicar el fin del combate
-                if (pokemon.getVida()<=0){
-                    vista.getTextFieldNarrador().setText(pokemon.getNombre().toString()+" esta fuera de combate!!!!");
-                    vista.getTextFieldVidaPokemon().setText("0");
-                }
-                if (pokemonRival.getVida()<=0){
-                    vista.getTextFieldNarrador().setText(pokemonRival.getNombre().toString()+" esta fuera de combate!!!!");
-                    vista.getTextFieldVidaPokemonRival().setText("0");
-                }
-
-                //Deshabilitamos los botones de los movimientos
-                vista.getButtonAtaque1().setEnabled(false);
-                vista.getButtonAtaque2().setEnabled(false);
-                vista.getButtonAtaque3().setEnabled(false);
-                vista.getButtonAtaque4().setEnabled(false);
-            }
+            comprobarVidaPokemon();
         });
 
 
@@ -510,61 +434,94 @@ public class Controlador {
 
 
     private void ataquePokemonRivalLucario(Pokemon pokemonRival, Pokemon pokemon) {
+
+        //Si alguno de los 2 pokemon se quedan sin vida, se acaba el combate
+        if (pokemonPropio.getVida() <= 0 || pokemonRival.getVida() <= 0) {
+
+            System.out.println("Fin del combate");
+
+            //Seteamos el campo del narrador para indicar el fin del combate
+            if (pokemonPropio.getVida() <= 0) {
+                vista.getTextFieldNarrador().setText(pokemonPropio.getNombre().toString() + " esta fuera de combate!!!!    " + pokemonRival.getNombre()+" gana!!!");
+                vista.getTextFieldVidaPokemon().setText("0");
+            }
+            if (pokemonRival.getVida() <= 0) {
+                vista.getTextFieldNarrador().setText(pokemonRival.getNombre().toString() + " esta fuera de combate!!!!    " + pokemonPropio.getNombre()+" gana!!!");
+                vista.getTextFieldVidaPokemonRival().setText("0");
+            }
+
+            //Deshabilitamos los botones de los movimientos
+            vista.getButtonAtaque1().setEnabled(false);
+            vista.getButtonAtaque2().setEnabled(false);
+            vista.getButtonAtaque3().setEnabled(false);
+            vista.getButtonAtaque4().setEnabled(false);
+
+            //Salimos del combate rival
+            return;
+        }
+
+
         //El ataque se realizara aleatoriamente con un Math.Random
         int random = (int) (Math.random()*4);
         int vidaRestante=0;
 
+        //Si sale 0 el pokemon no atacaba
+        if (random==0){
+            random=2;
+        }
 
         //Posibles Ataques: Roca Veloz (Lyc), Ataque Ala (Sc), Paranormal (Rk)
         //Roca Veloz= Debil contra Lucario, Ataque Ala y Paranormal = Fuerte contra Lucario
-        if (random==1){
+        if (random==1) {
 
-            if (pokemonRival.getTipoMov1().toString().equalsIgnoreCase("Psiquico")||
-                pokemonRival.getTipoMov1().toString().equalsIgnoreCase("Volador")){
+            if (pokemonRival.getTipoMov1().toString().equalsIgnoreCase("Psiquico") ||
+                    pokemonRival.getTipoMov1().toString().equalsIgnoreCase("Volador")) {
 
                 //Incremento de un 50% del daño si es fuerte contra Lucario
-                vidaRestante = pokemon.getVida()-(int) (pokemonRival.getMov1()*0.50+pokemonRival.getMov1());
+                vidaRestante = pokemon.getVida() - (int) (pokemonRival.getMov1() * 0.50 + pokemonRival.getMov1());
                 pokemon.setVida(vidaRestante);
                 vista.getTextFieldVidaPokemon().setText(String.valueOf(vidaRestante));
 
                 //Salida por consola
-                System.out.println(pokemonRival.getNombre()+" ha usado " + pokemonRival.getNombreMov1()
-                + " contra "+ pokemon.getNombre());
+                System.out.println(pokemonRival.getNombre() + " ha usado " + pokemonRival.getNombreMov1()
+                        + " contra " + pokemon.getNombre());
                 System.out.println("Ha sido supereficaz!!");
 
                 //Salida campo de narracion
-                vista.getTextFieldNarrador().setText(pokemonRival.getNombre()+" ha usado "+pokemonRival.getNombreMov1() + " contra "+ pokemon.getNombre()
-                        +". Ha sido superficaz!!!");
-            }
+                vista.getTextFieldNarrador().setText(pokemonRival.getNombre() + " ha usado " + pokemonRival.getNombreMov1() + " contra " + pokemon.getNombre()
+                        + ". Ha sido superficaz!!!");
+
                 return;
             }
 
-                //Reduccion de un 20% si es debil contra Lucario
-            if (pokemonRival.getTipoMov1().toString().equalsIgnoreCase("Roca")){
-                vidaRestante = pokemon.getVida()-(int) (pokemonRival.getMov1()-pokemonRival.getMov1()*0.20);
+
+
+            //Reduccion de un 20% si es debil contra Lucario
+            if (pokemonRival.getTipoMov1().toString().equalsIgnoreCase("Roca")) {
+                vidaRestante = pokemon.getVida() - (int) (pokemonRival.getMov1() - pokemonRival.getMov1() * 0.20);
                 pokemon.setVida(vidaRestante);
                 vista.getTextFieldVidaPokemon().setText(String.valueOf(vidaRestante));
 
                 //Salida por consola
-                System.out.println(pokemonRival.getNombre()+" ha usado " + pokemonRival.getNombreMov1()
-                        + " contra "+ pokemon.getNombre());
+                System.out.println(pokemonRival.getNombre() + " ha usado " + pokemonRival.getNombreMov1()
+                        + " contra " + pokemon.getNombre());
                 System.out.println("Ha sido poco eficaz...");
 
                 //Salida campo narracion
-                vista.getTextFieldNarrador().setText(pokemonRival.getNombre()+" ha usado "+pokemonRival.getNombreMov1() + " contra "+ pokemon.getNombre()
-                        +". "+pokemonRival.getNombreMov1() + " es poco eficaz contra " + pokemon.getNombre());
+                vista.getTextFieldNarrador().setText(pokemonRival.getNombre() + " ha usado " + pokemonRival.getNombreMov1() + " contra " + pokemon.getNombre()
+                        + ". " + pokemonRival.getNombreMov1() + " es poco eficaz contra " + pokemon.getNombre());
 
                 return;
             }
 
 
-            vidaRestante = pokemon.getVida()-pokemonRival.getMov1();
+            vidaRestante = pokemon.getVida() - pokemonRival.getMov1();
             pokemon.setVida(vidaRestante);
             vista.getTextFieldVidaPokemon().setText(String.valueOf(vidaRestante));
-            System.out.println(pokemonRival.getNombre()+" ha usado " + pokemonRival.getNombreMov1()
-                    + " contra "+ pokemon.getNombre());
-        vista.getTextFieldNarrador().setText(pokemonRival.getNombre()+" ha usado "+pokemonRival.getNombreMov1() + " contra "+ pokemon.getNombre());
-
+            System.out.println(pokemonRival.getNombre() + " ha usado " + pokemonRival.getNombreMov1()
+                    + " contra " + pokemon.getNombre());
+            vista.getTextFieldNarrador().setText(pokemonRival.getNombre() + " ha usado " + pokemonRival.getNombreMov1() + " contra " + pokemon.getNombre());
+        }
 
         //Posibles Ataques: Triturar (Lyc), Tijera X (Sc), Golpe Roca (Rk)
         //Triturar y Tijera X (bicho y siniestro) = Debil contra Lucario,
@@ -994,5 +951,28 @@ public class Controlador {
         vista.getTextAreaInfoHabilidad().setEditable(false);
         vista.getTextFieldInfoGeneracion().setEditable(false);
 
+    }
+
+    private void comprobarVidaPokemon () {
+        if (pokemonPropio.getVida() <= 0 || pokemonRival.getVida() <= 0) {
+
+            System.out.println("Fin del combate");
+
+            //Seteamos el campo del narrador para indicar el fin del combate
+            if (pokemonPropio.getVida() <= 0) {
+                vista.getTextFieldNarrador().setText(pokemonPropio.getNombre().toString() + " esta fuera de combate!!!!    " + pokemonRival.getNombre()+" gana!!!");
+                vista.getTextFieldVidaPokemon().setText("0");
+            }
+            if (pokemonRival.getVida() <= 0) {
+                vista.getTextFieldNarrador().setText(pokemonRival.getNombre().toString() + " esta fuera de combate!!!!    " + pokemonPropio.getNombre()+" gana!!!");
+                vista.getTextFieldVidaPokemonRival().setText("0");
+            }
+
+            //Deshabilitamos los botones de los movimientos
+            vista.getButtonAtaque1().setEnabled(false);
+            vista.getButtonAtaque2().setEnabled(false);
+            vista.getButtonAtaque3().setEnabled(false);
+            vista.getButtonAtaque4().setEnabled(false);
+        }
     }
 }
