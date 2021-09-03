@@ -80,7 +80,7 @@
                   <gridbag weightx="1.0" weighty="1.0"/>
                 </constraints>
                 <properties>
-                  <enabled value="true"/>
+                  <enabled value="false"/>
                   <font name="Lucida Sans Unicode" size="16" style="1"/>
                   <text value="Usar"/>
                 </properties>
@@ -91,7 +91,7 @@
                   <gridbag weightx="1.0" weighty="1.0"/>
                 </constraints>
                 <properties>
-                  <enabled value="true"/>
+                  <enabled value="false"/>
                   <font name="Lucida Sans Unicode" size="16" style="1"/>
                   <text value="Usar"/>
                 </properties>
@@ -102,7 +102,7 @@
                   <gridbag weightx="1.0" weighty="1.0"/>
                 </constraints>
                 <properties>
-                  <enabled value="true"/>
+                  <enabled value="false"/>
                   <font name="Lucida Sans Unicode" size="16" style="1"/>
                   <text value="Usar"/>
                 </properties>
@@ -113,7 +113,7 @@
                   <gridbag weightx="1.0" weighty="1.0"/>
                 </constraints>
                 <properties>
-                  <enabled value="true"/>
+                  <enabled value="false"/>
                   <font name="Lucida Sans Unicode" size="16" style="1"/>
                   <text value="Usar"/>
                 </properties>

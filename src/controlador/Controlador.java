@@ -77,7 +77,7 @@ public class Controlador {
             }
         });
 
-        //Controlamos el boton de cancelar
+        //Controlamos el boton de cancelar Informacion
         vista.getOcultarInfoPokemonRivalButton().addActionListener(f->{
             vista.getTextFieldInfoPokemon().setText("");
             vista.getTextFieldTipoPokemon().setText("");
@@ -89,6 +89,12 @@ public class Controlador {
 
         //Controlamos el evento de luchar= Comienza el combate
         vista.getButtonFight().addActionListener(e->{
+
+            //Activamos los botones de los movimientos
+            vista.getButtonAtaque1().setEnabled(true);
+            vista.getButtonAtaque2().setEnabled(true);
+            vista.getButtonAtaque3().setEnabled(true);
+            vista.getButtonAtaque4().setEnabled(true);
 
             //Ocultamos el panel Pre-Combate
             vista.getPreCombatPanel().setVisible(false);
@@ -329,44 +335,54 @@ public class Controlador {
             vista.getButtonAtaque4().setEnabled(false);
             int vidaRestante=0;
 
-            //Debilidad contra Bicho/Volador (20% reduccion)
-            if (pokemonRival.getTipo().toString().equals("Bicho_Volador")){
-                vidaRestante = pokemonRival.getVida()- (int) (pokemon.getMov3()-pokemon.getMov3()*0.2);
-                pokemonRival.setVida(vidaRestante);
-                vista.getTextFieldVidaPokemonRival().setText(String.valueOf(vidaRestante));
-
-                //Salida por consola
-                System.out.println(pokemon.getNombre()+" ha usado "+pokemon.getNombreMov3() + " contra "+ pokemonRival.getNombre());
-                System.out.println(pokemon.getNombreMov3() + " es poco eficaz contra " + pokemonRival.getNombre());
-
-                //Salida campo narracion
-                vista.getTextFieldNarrador().setText(pokemon.getNombre()+" ha usado "+pokemon.getNombreMov3() + " contra "+ pokemonRival.getNombre()
-                        +". "+pokemon.getNombreMov3() + " es poco eficaz contra " + pokemonRival.getNombre() );
+            //Calculamos el numero de golpes de Ataque Óseo
+            int random = (int) (Math.random()*3);
+            if (random==0){
+                random=2;
             }
+            System.out.println("Numero de Golpes Ataque Óseo: " + random);
 
-            //Fortaleza contra Electrico y Roca (50% aumento)
-            if (pokemonRival.getTipo().toString().equalsIgnoreCase("Electrico") ||
-                    pokemonRival.getTipo().toString().equalsIgnoreCase("Roca")){
+            //Segun el numero de golpes determinado, el ataque se realizará dichas veces
+            for (int i = 0; i <random; i++) {
 
-                vidaRestante = pokemonRival.getVida()- (int) (pokemon.getMov3()*0.5+ pokemon.getMov3());
-                pokemonRival.setVida(vidaRestante);
-                vista.getTextFieldVidaPokemonRival().setText(String.valueOf(vidaRestante));
+                //Debilidad contra Bicho/Volador (20% reduccion)
+                if (pokemonRival.getTipo().toString().equals("Bicho_Volador")) {
+                    vidaRestante = pokemonRival.getVida() - (int) (pokemon.getMov3() - pokemon.getMov3() * 0.2);
+                    pokemonRival.setVida(vidaRestante);
+                    vista.getTextFieldVidaPokemonRival().setText(String.valueOf(vidaRestante));
 
-                //Salida por consola
-                System.out.println(pokemon.getNombre()+" ha usado "+pokemon.getNombreMov3() + " contra "+ pokemonRival.getNombre());
-                System.out.println("Es supereficaz!!!");
+                    //Salida por consola
+                    System.out.println(pokemon.getNombre() + " ha usado " + pokemon.getNombreMov3() + " contra " + pokemonRival.getNombre());
+                    System.out.println(pokemon.getNombreMov3() + " es poco eficaz contra " + pokemonRival.getNombre());
 
-                //Salida campo de narracion
-                vista.getTextFieldNarrador().setText(pokemon.getNombre()+" ha usado "+pokemon.getNombreMov3() + " contra "+ pokemonRival.getNombre()
-                        +". Es supereficaz!!!");
-            }
-            else {
-                //Sin debilidad
-                vidaRestante = pokemonRival.getVida() - pokemon.getMov3();
-                pokemonRival.setVida(vidaRestante);
-                vista.getTextFieldVidaPokemonRival().setText(String.valueOf(vidaRestante));
-                System.out.println(pokemon.getNombre() + " ha usado " + pokemon.getNombreMov3() + " contra " + pokemonRival.getNombre());
-                vista.getTextFieldNarrador().setText(pokemon.getNombre() + " ha usado " + pokemon.getNombreMov3() + " contra " + pokemonRival.getNombre());
+                    //Salida campo narracion
+                    vista.getTextFieldNarrador().setText(pokemon.getNombre() + " ha usado " + pokemon.getNombreMov3() + " contra " + pokemonRival.getNombre()
+                            + ". " + pokemon.getNombreMov3() + " es poco eficaz contra " + pokemonRival.getNombre());
+                }
+
+                //Fortaleza contra Electrico y Roca (50% aumento)
+                if (pokemonRival.getTipo().toString().equalsIgnoreCase("Electrico") ||
+                        pokemonRival.getTipo().toString().equalsIgnoreCase("Roca")) {
+
+                    vidaRestante = pokemonRival.getVida() - (int) (pokemon.getMov3() * 0.5 + pokemon.getMov3());
+                    pokemonRival.setVida(vidaRestante);
+                    vista.getTextFieldVidaPokemonRival().setText(String.valueOf(vidaRestante));
+
+                    //Salida por consola
+                    System.out.println(pokemon.getNombre() + " ha usado " + pokemon.getNombreMov3() + " contra " + pokemonRival.getNombre());
+                    System.out.println("Es supereficaz!!!");
+
+                    //Salida campo de narracion
+                    vista.getTextFieldNarrador().setText(pokemon.getNombre() + " ha usado " + pokemon.getNombreMov3() + " contra " + pokemonRival.getNombre()
+                            + ". Es supereficaz!!!");
+                } else {
+                    //Sin debilidad
+                    vidaRestante = pokemonRival.getVida() - pokemon.getMov3();
+                    pokemonRival.setVida(vidaRestante);
+                    vista.getTextFieldVidaPokemonRival().setText(String.valueOf(vidaRestante));
+                    System.out.println(pokemon.getNombre() + " ha usado " + pokemon.getNombreMov3() + " contra " + pokemonRival.getNombre());
+                    vista.getTextFieldNarrador().setText(pokemon.getNombre() + " ha usado " + pokemon.getNombreMov3() + " contra " + pokemonRival.getNombre());
+                }
             }
 
             //Ataque del rival
@@ -428,7 +444,6 @@ public class Controlador {
             //Si alguno de los dos pokemon alcanzan 0 o menos vida se acaba el combate
             comprobarVidaPokemon();
         });
-
 
     }
 
