@@ -69,7 +69,8 @@ because I searched them on the Internet). These attacks are in Spanish because I
 3) Trueno = 110 pt
 4) Chispazo = 80 pt
 -------------------------------------------------------------------------------------
-I want to thank my friend "rps1999" and one of the best Java Programmer I know, for helping my with some issues in my code... Thank you buddy.
+I want to thank my friend "rpsPRO
+" and one of the best Java Programmer I know, for helping my with some issues in my code... Thank you buddy.
 
 --------------------------------------------------------------------------------------
 Version 1.0: Changes Implemented
