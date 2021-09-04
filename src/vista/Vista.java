@@ -63,6 +63,8 @@ public class Vista {
     private JTextField generacionPokemonRivalTextField;
     private JButton ocultarInfoPokemonRivalButton;
     private JLabel movimientosLabel;
+    private JButton buttonSeleccionarPokemonPropio;
+    private JButton buttonAbandonar;
 
 
     //Getters de Botones, TextField y paneles
@@ -249,6 +251,14 @@ public class Vista {
 
     public JButton getOcultarInfoPokemonRivalButton() {
         return ocultarInfoPokemonRivalButton;
+    }
+
+    public JButton getButtonSeleccionarPokemonPropio() {
+        return buttonSeleccionarPokemonPropio;
+    }
+
+    public JButton getButtonAbandonar() {
+        return buttonAbandonar;
     }
 
     //Arranque de la ventana principal

@@ -85,7 +85,12 @@ public class Controlador {
             vista.getTextAreaInfoHabilidad().setText("");
             vista.getTextFieldInfoGeneracion().setText("");
             vista.getInfoPokemonRivalPanel().setVisible(false);
+
         });
+
+        //Ocultamos El boton de seleccion de nuevo pokemon y el de abandonar combate (Solo disponibles en K.O.)
+        vista.getButtonAbandonar().setVisible(false);
+        vista.getButtonSeleccionarPokemonPropio().setVisible(false);
 
         //Controlamos el evento de luchar= Comienza el combate
         vista.getButtonFight().addActionListener(e->{
@@ -113,23 +118,8 @@ public class Controlador {
     }
 
     private void registrarEventosPanelSeleccionPokemon() {
-        //Evento Botón Info Lucario
-        vista.getButtonInfoLucario().addActionListener(e->{
-            vista.getInfoPanel().setVisible(true);
-            mostrarInfoLucario();
-        });
-
-        //Evento Boton Info Zeraora
-        vista.getButtonInfoZeraora().addActionListener(e->{
-            vista.getInfoPanel().setVisible(true);
-            mostrarInfoZeraora();
-        });
-
-        //Evento Boton Info Zoroark
-        vista.getButtonInfoZoroark().addActionListener(e->{
-            vista.getInfoPanel().setVisible(true);
-            mostrarInfoZoroark();
-        });
+        //Llamamos a la clase que contiene los eventos que reaccionan a los botones de Info de los pokemon
+       informacionPokemonPanelSeleccion();
         
         //Evento Escoger Lucario
         vista.getButtonSelectLucario().addActionListener(e->{
@@ -207,6 +197,26 @@ public class Controlador {
 
     }
 
+    private void informacionPokemonPanelSeleccion() {
+        //Evento Botón Info Lucario
+        vista.getButtonInfoLucario().addActionListener(e->{
+            vista.getInfoPanel().setVisible(true);
+            mostrarInfoLucario();
+        });
+
+        //Evento Boton Info Zeraora
+        vista.getButtonInfoZeraora().addActionListener(e->{
+            vista.getInfoPanel().setVisible(true);
+            mostrarInfoZeraora();
+        });
+
+        //Evento Boton Info Zoroark
+        vista.getButtonInfoZoroark().addActionListener(e->{
+            vista.getInfoPanel().setVisible(true);
+            mostrarInfoZoroark();
+        });
+    }
+
     private void combateLucario(Pokemon pokemonRival, Pokemon pokemon) {
 
         //BARRAS DE VIDA TOP PANEL
@@ -271,6 +281,7 @@ public class Controlador {
 
             //Si alguno de los dos pokemon alcanzan 0 o menos vida se acaba el combate
             comprobarVidaPokemon();
+
         });
 
 
@@ -969,6 +980,7 @@ public class Controlador {
     }
 
     private void comprobarVidaPokemon () {
+        //Si alguno de los 2 pokemon tienen una vida igual o inferior a 0, fin dle combate
         if (pokemonPropio.getVida() <= 0 || pokemonRival.getVida() <= 0) {
 
             System.out.println("Fin del combate");
@@ -977,6 +989,54 @@ public class Controlador {
             if (pokemonPropio.getVida() <= 0) {
                 vista.getTextFieldNarrador().setText(pokemonPropio.getNombre().toString() + " esta fuera de combate!!!!    " + pokemonRival.getNombre()+" gana!!!");
                 vista.getTextFieldVidaPokemon().setText("0");
+
+                //Hacemos visibles los botones para seleccionar nuevo pokemon o abandonar combate
+                vista.getButtonAbandonar().setVisible(true);
+                vista.getButtonSeleccionarPokemonPropio().setVisible(true);
+
+                //Seteamos los listener de ambos botones (Abandonar y Seleccionar otro pokemon)
+                vista.getButtonSeleccionarPokemonPropio().addActionListener(e->{ //BOTON SELECCIONAR
+
+                    if (pokemonPropio.getNombre().toString().equalsIgnoreCase("Lucario")){
+                        vista.getFrame().remove(vista.getCombatPanel()); //Nos cargamos el panel de combate
+                        vista.getFrame().add(vista.getCentralPanel()); //Cambiamos al panel de Seleccion de pokemon
+                        vista.getFrame().revalidate();
+                        vista.getFrame().repaint();
+                        vista.getInfoPanel().setVisible(false); //Hacemos invisible el panel de informacion de los pokemon
+                        vista.getButtonSelectLucario().setText("Fuera de Combate");
+                        vista.getButtonSelectLucario().setEnabled(false); //Como el pokemon ha sido derrotado, no se puede volver a usar
+                        informacionPokemonPanelSeleccion(); //Preparamos la informacion de los pokemon en el panel de seleccion
+
+                    }
+
+                    if (pokemonPropio.getNombre().toString().equalsIgnoreCase("Zeraora")){
+                        vista.getFrame().remove(vista.getCombatPanel()); //Nos cargamos el panel de combate
+                        vista.getFrame().add(vista.getCentralPanel()); //Cambiamos al panel de Seleccion de pokemon
+                        vista.getFrame().revalidate();
+                        vista.getFrame().repaint();
+                        vista.getInfoPanel().setVisible(false); //Hacemos invisible el panel de informacion de los pokemon
+                        vista.getButtonSelectZeraora().setText("Fuera de Combate");
+                        vista.getButtonSelectZeraora().setEnabled(false); //Como el pokemon ha sido derrotado, no se puede volver a usar
+                        informacionPokemonPanelSeleccion(); //Preparamos la informacion de los pokemon en el panel de seleccion
+
+                    }
+
+                    if (pokemonPropio.getNombre().toString().equalsIgnoreCase("Zoroark")){
+                        vista.getFrame().remove(vista.getCombatPanel()); //Nos cargamos el panel de combate
+                        vista.getFrame().add(vista.getCentralPanel()); //Cambiamos al panel de Seleccion de pokemon
+                        vista.getFrame().revalidate();
+                        vista.getFrame().repaint();
+                        vista.getInfoPanel().setVisible(false); //Hacemos invisible el panel de informacion de los pokemon
+                        vista.getButtonSelectZoroark().setText("Fuera de Combate");
+                        vista.getButtonSelectZoroark().setEnabled(false); //Como el pokemon ha sido derrotado, no se puede volver a usar
+                        informacionPokemonPanelSeleccion(); //Preparamos la informacion de los pokemon en el panel de seleccion
+
+                    }
+                });
+
+                vista.getButtonAbandonar().addActionListener(e->{ //BOTON ABANDONAR
+                    System.exit(1); //Cerramos el juego directamente
+                });
             }
             if (pokemonRival.getVida() <= 0) {
                 vista.getTextFieldNarrador().setText(pokemonRival.getNombre().toString() + " esta fuera de combate!!!!    " + pokemonPropio.getNombre()+" gana!!!");
@@ -988,6 +1048,8 @@ public class Controlador {
             vista.getButtonAtaque2().setEnabled(false);
             vista.getButtonAtaque3().setEnabled(false);
             vista.getButtonAtaque4().setEnabled(false);
+
+
         }
     }
 }

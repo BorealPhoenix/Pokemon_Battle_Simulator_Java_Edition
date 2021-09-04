@@ -69,8 +69,18 @@ because I searched them on the Internet). These attacks are in Spanish because I
 3) Trueno = 110 pt
 4) Chispazo = 80 pt
 -------------------------------------------------------------------------------------
-I want to thank my friend "rsp1999" and one of the best Java Programmer I know, for helping my with some issues in my code... Thank you buddy.
+I want to thank my friend "rpsPRO" and one of the best Java Programmer I know, for helping my with some issues in my code... Thank you buddy.
 
+--------------------------------------------------------------------------------------
+Version 1.0 (3/09/2021): Changes Implemented
+-I improved the code, by disarming Attacks Buttons on Pre-Combat Screen, for not no confuse the user
+-I've added a random system which determinates the hits number of 'Ataque Oseo' attack, from Lucario. It goes from 1 hit to 3 hits, like in the games...
+--------------------------------------------------------------------------------------
+Version 1.1 (4/09/2021): Changes Implemented
+-I've implemented two options when you are defeated by a Rival Pokemon. One Option is to leave the combat, closing the game, and the
+second one is to choose another of your two less Pokemon (Still Not Avaliable because of Images problems with JLabels I've been suffering...)
+
+--------------------------------------------------------------------------------------
 Thanks for reading this.
 
 Boreal Phoenix 
