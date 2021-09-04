@@ -79,7 +79,6 @@ Version 1.0 (3/09/2021): Changes Implemented
 Version 1.1 (4/09/2021): Changes Implemented
 -I've implemented two options when you are defeated by a Rival Pokemon. One Option is to leave the combat, closing the game, and the
 second one is to choose another of your two less Pokemon (Still Not Avaliable because of Images problems with JLabels I've been suffering...)
-
 --------------------------------------------------------------------------------------
 Thanks for reading this.
 
