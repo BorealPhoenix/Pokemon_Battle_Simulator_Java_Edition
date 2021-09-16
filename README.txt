@@ -80,6 +80,14 @@ Version 1.1 (4/09/2021): Changes Implemented
 -I've implemented two options when you are defeated by a Rival Pokemon. One Option is to leave the combat, closing the game, and the
 second one is to choose another of your two less Pokemon (Still Not Avaliable because of Images problems with JLabels I've been suffering...)
 --------------------------------------------------------------------------------------
+Version 1.2 (16/09/2021): Changes Implemented
+-I've implemented some events when you finish the first combat (no matter who wins) that gives you the option for choosing what to do next
+The button of continue fighting with the same pokemon (when you win) it's still not operative (it's giving some issues)
+
+-I've also implemente messages than warns you not to choose Zeraora or Zoroark when you pick them
+
+I'll continue working to improve it...
+
 Thanks for reading this.
 
 Boreal Phoenix 

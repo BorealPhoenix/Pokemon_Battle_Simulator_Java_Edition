@@ -10,12 +10,15 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.io.File;
 import java.io.IOException;
+import java.sql.Array;
+import java.util.ArrayList;
 
 public class Controlador {
     //Atributos
     private Vista vista;
     private Pokemon pokemonRival;
     private Pokemon pokemonPropio;
+    private ArrayList<Pokemon> listaRivales= new ArrayList<>();
 
     
     
@@ -24,22 +27,201 @@ public class Controlador {
     public Controlador(Vista vista) {
         this.vista = vista;
 
-
+        //Cuando se pulse el boton star en el panel principal cambia a la pantalla de seleccion
         vista.getButtonStart().addActionListener(e->{
             vista.getFrame().remove(vista.getIntroPanel());
             vista.getFrame().add(vista.getCombatPanel());
             vista.getFrame().revalidate();
             vista.getFrame().repaint();
-            controladorPanelesInicialesPanelSeleccion();
+            vista.getInfoPanel().setVisible(false);
+            controlarBotonesSelect(); //Controlamos los botones de seleccion de pokemon en el panel de seleccion
+            controlarBotonesInfo(); //Controlamos los botones de informacion de pokemon en el panel de seleccion
+            cargarListaPokemonRivales(); //Cargamos la lista que nos servira para llevar la cuenta de los pokemon rivales derrotados
+            controlarBotonesPreCombate(); //Controlamos los botones del panel de preCombate (Info Pokemon Rival y Luchar)
+            controlarBotonesPostCombate(); //Controlamos los botones del panel de postCombate
         });
-
-        registrarEventosPanelSeleccionPokemon();
-        registrarEventosPanelCombatePokemon();
 
     }
 
-    private void registrarEventosPanelCombatePokemon() {
+    private void cargarListaPokemonRivales() {
+        Pokemon Lycanroc = new Pokemon(nombrePokemon.Lycanroc, tipoPokemon.Roca, 200,40, 80
+                , 75, 60, "Roca Veloz", "Triturar", "Avalancha", "Mordisco"
+                , tiposMovimiento.Roca, tiposMovimiento.Siniestro, tiposMovimiento.Roca, tiposMovimiento.Siniestro);
+        System.out.println("Lycanroc");
 
+        Pokemon Scyther = new Pokemon(nombrePokemon.Scyther, tipoPokemon.Bicho_Volador, 200, 60, 80, 75, 40
+                , "Ataque Ala", "Tijera X", "Tajo Aéreo", "Corte Furia",
+                tiposMovimiento.Volador, tiposMovimiento.Bicho, tiposMovimiento.Volador, tiposMovimiento.Bicho);
+        System.out.println("Scyther");
+
+       Pokemon Raikou = new Pokemon(nombrePokemon.Raikou, tipoPokemon.Electrico, 200, 80, 40, 110, 80
+                , "Paranormal", "Golpe Roca", "Trueno", "Chispazo",
+                tiposMovimiento.Psiquico, tiposMovimiento.Lucha, tiposMovimiento.Electrico, tiposMovimiento.Electrico);
+        System.out.println("Raikou");
+        listaRivales.add(Lycanroc);
+        listaRivales.add(Scyther);
+        listaRivales.add(Raikou);
+
+    }
+
+    private void controlarBotonesPostCombate() {
+
+
+// TODO: 16/09/2021 Quitar la restriccion
+        vista.getButtonAbandonar().setEnabled(false);
+
+        //BOTON SELECCIONAR OTRO POKEMON
+        vista.getButtonSeleccionarPokemonPropio().addActionListener(e->{ //BOTON SELECCIONAR
+
+            //NUESTRO POKEMON PIERDE
+            if (pokemonPropio.getVida()==0) {
+                if (pokemonPropio.getNombre().toString().equalsIgnoreCase("Lucario")) {
+                    vista.getFrame().remove(vista.getCombatPanel()); //Nos cargamos el panel de combate
+                    vista.getFrame().add(vista.getCentralPanel()); //Cambiamos al panel de Seleccion de pokemon
+                    vista.getFrame().revalidate();
+                    vista.getFrame().repaint();
+                    vista.getInfoPanel().setVisible(false); //Hacemos invisible el panel de informacion de los pokemon
+                    vista.getButtonSelectLucario().setText("Fuera de Combate"); //Cambiamos el texto al boton de luchar con Lucario
+                    vista.getLucarioIntro().setEnabled(false); //Ponemos en gris la imagen de Lucario
+                    vista.getButtonSelectLucario().setEnabled(false); //Como el pokemon ha sido derrotado, no se puede volver a usar
+                    controlarBotonesInfo(); //Preparamos la informacion de los pokemon en el panel de seleccion
+
+                }
+
+                if (pokemonPropio.getNombre().toString().equalsIgnoreCase("Zeraora")) {
+                    vista.getFrame().remove(vista.getCombatPanel()); //Nos cargamos el panel de combate
+                    vista.getFrame().add(vista.getCentralPanel()); //Cambiamos al panel de Seleccion de pokemon
+                    vista.getFrame().revalidate();
+                    vista.getFrame().repaint();
+                    vista.getInfoPanel().setVisible(false); //Hacemos invisible el panel de informacion de los pokemon
+                    vista.getButtonSelectZeraora().setText("Fuera de Combate");
+                    vista.getButtonSelectZeraora().setEnabled(false); //Como el pokemon ha sido derrotado, no se puede volver a usar
+                    controlarBotonesInfo(); //Preparamos la informacion de los pokemon en el panel de seleccion
+
+                }
+
+                if (pokemonPropio.getNombre().toString().equalsIgnoreCase("Zoroark")) {
+                    vista.getFrame().remove(vista.getCombatPanel()); //Nos cargamos el panel de combate
+                    vista.getFrame().add(vista.getCentralPanel()); //Cambiamos al panel de Seleccion de pokemon
+                    vista.getFrame().revalidate();
+                    vista.getFrame().repaint();
+                    vista.getInfoPanel().setVisible(false); //Hacemos invisible el panel de informacion de los pokemon
+                    vista.getButtonSelectZoroark().setText("Fuera de Combate");
+                    vista.getButtonSelectZoroark().setEnabled(false); //Como el pokemon ha sido derrotado, no se puede volver a usar
+                    controlarBotonesInfo(); //Preparamos la informacion de los pokemon en el panel de seleccion
+
+                }
+            }
+
+            //EL POKEMON RIVAL PIERDE
+            if (pokemonRival.getVida()==0) {
+                if (pokemonPropio.getNombre().toString().equalsIgnoreCase("Lucario")) {
+                    vista.getFrame().remove(vista.getCombatPanel()); //Nos cargamos el panel de combate
+                    vista.getFrame().add(vista.getCentralPanel()); //Cambiamos al panel de Seleccion de pokemon
+                    vista.getFrame().revalidate();
+                    vista.getFrame().repaint();
+                    vista.getInfoPanel().setVisible(false); //Hacemos invisible el panel de informacion de los pokemon
+                    controlarBotonesInfo(); //Preparamos la informacion de los pokemon en el panel de seleccion
+
+                }
+
+                if (pokemonPropio.getNombre().toString().equalsIgnoreCase("Zeraora")) {
+                    vista.getFrame().remove(vista.getCombatPanel()); //Nos cargamos el panel de combate
+                    vista.getFrame().add(vista.getCentralPanel()); //Cambiamos al panel de Seleccion de pokemon
+                    vista.getFrame().revalidate();
+                    vista.getFrame().repaint();
+                    vista.getInfoPanel().setVisible(false); //Hacemos invisible el panel de informacion de los pokemon
+                    controlarBotonesInfo(); //Preparamos la informacion de los pokemon en el panel de seleccion
+
+                }
+
+                if (pokemonPropio.getNombre().toString().equalsIgnoreCase("Zoroark")) {
+                    vista.getFrame().remove(vista.getCombatPanel()); //Nos cargamos el panel de combate
+                    vista.getFrame().add(vista.getCentralPanel()); //Cambiamos al panel de Seleccion de pokemon
+                    vista.getFrame().revalidate();
+                    vista.getFrame().repaint();
+                    vista.getInfoPanel().setVisible(false); //Hacemos invisible el panel de informacion de los pokemon
+                    controlarBotonesInfo(); //Preparamos la informacion de los pokemon en el panel de seleccion
+
+                }
+            }
+        });
+
+        //BOTON DE SEGUIR LUCHANDO CON EL MISMO POKEMON
+        vista.getButtonAbandonar().addActionListener(e->{
+
+            seleccionarNuevoPokemonRival();
+            vista.getButtonAbandonar().setVisible(false);
+            vista.getButtonSeleccionarPokemonPropio().setVisible(false);
+
+
+            if (pokemonRival.getNombre().toString().equalsIgnoreCase("Lycanroc")) {
+               vista.getFrame().remove(vista.getCombatPanel());
+               vista.getFrame().add(vista.getCombatPanel());
+               vista.getFrame().revalidate();
+               vista.getFrame().repaint();
+               vista.getBackgroundImageLabel().setEnabled(false);
+               vista.getPreCombatPanel().setVisible(true);
+            }
+
+            if (pokemonRival.getNombre().toString().equalsIgnoreCase("Raikou")){
+                vista.getFrame().remove(vista.getCombatPanel());
+                vista.getFrame().add(vista.getCombatPanel());
+                vista.getFrame().revalidate();
+                vista.getFrame().repaint();
+                vista.getPreCombatPanel().setVisible(true);
+            }
+
+            if (pokemonRival.getNombre().toString().equalsIgnoreCase("Scyther")){
+                JLabel labelScyther = new JLabel("");
+                labelScyther.setIcon(new ImageIcon("img/lucariovsscyther.jpg"));
+                vista.getBackgroundImageLabel().removeAll();
+                vista.getCombatPanel().add(labelScyther);
+                vista.getPreCombatPanel().setVisible(true);
+            }
+        });
+
+
+    }
+
+    private void seleccionarNuevoPokemonRival() {
+        //Comprobamos el nombre del pokemon eliminado y lo quitamos de la lista
+         if (pokemonRival.getNombre().toString().equalsIgnoreCase("Lycanroc")){
+             listaRivales.remove(0); //Eliminamos el rival de la lista
+
+             while (true) { //Escogemos un rival que sea distinto al que acabamos de eliminar, y luego como no se volvera a entrar a este if no afectara el 3 rival
+                 pokemonRival = escogerPokemonRival();
+                 if (!pokemonRival.getNombre().toString().equalsIgnoreCase("Lycanroc")){
+                     break;
+                 }
+             }
+             return; //Lo sacamos del metodo porque sino borra tambien en nuevo pokemon rival escogido
+         }
+        if (pokemonRival.getNombre().toString().equalsIgnoreCase("Scyther")){
+            listaRivales.remove(1); //Eliminamos el rival de la lista
+            while (true) { //Escogemos un rival que sea distinto al que acabamos de eliminar, y luego como no se volvera a entrar a este if no afectara el 3 rival
+                pokemonRival = escogerPokemonRival();
+                if (!pokemonRival.getNombre().toString().equalsIgnoreCase("Lycanroc")){
+                    break;
+                }
+            }
+            return; //Lo sacamos del metodo porque sino borra tambien en nuevo pokemon rival escogido
+        }
+        if (pokemonRival.getNombre().toString().equalsIgnoreCase("Raikou")){
+            listaRivales.remove(2); //Eliminamos el rival de la lista
+            while (true) { //Escogemos un rival que sea distinto al que acabamos de eliminar, y luego como no se volvera a entrar a este if no afectara el 3 rival
+                pokemonRival = escogerPokemonRival();
+                if (!pokemonRival.getNombre().toString().equalsIgnoreCase("Lycanroc")){
+                    break;
+                }
+            }
+            return; //Lo sacamos del metodo porque sino borra tambien en nuevo pokemon rival escogido
+        }
+
+
+    }
+
+    private void controlarBotonesPreCombate() {
         //Evento de respuesta de Informacion del Pokemon Rival
         vista.getButtonInfoPokemonRival().addActionListener(e->{
 
@@ -110,44 +292,38 @@ public class Controlador {
             //Llamamos a la clase del combate
             combateLucario(pokemonRival, pokemonPropio);
         });
-
     }
 
-    private void controladorPanelesInicialesPanelSeleccion() {
-           vista.getInfoPanel().setVisible(false);
-    }
-
-    private void registrarEventosPanelSeleccionPokemon() {
-        //Llamamos a la clase que contiene los eventos que reaccionan a los botones de Info de los pokemon
-       informacionPokemonPanelSeleccion();
-        
-        //Evento Escoger Lucario
+    private void controlarBotonesSelect() {
+        //BOTON SELECT LUCARIO
         vista.getButtonSelectLucario().addActionListener(e->{
             vista.getFrame().remove(vista.getCentralPanel());
             vista.getFrame().add(vista.getCombatPanel());
             vista.getFrame().revalidate();
-            vista.getFrame().repaint();;
-            
-            
+            vista.getFrame().repaint();
+            vista.getInfoPanel().setVisible(false);
+
+
             pokemonPropio= new Pokemon(nombrePokemon.Lucario, tipoPokemon.Lucha_Acero, 200, 80, 120,
                     25, 120, "Esfera Aural", "A Bocajarro", "Ataque Óseo", "Onda Certera"
-            ,tiposMovimiento.Lucha ,tiposMovimiento.Lucha, tiposMovimiento.Tierra, tiposMovimiento.Lucha );
+                    ,tiposMovimiento.Lucha ,tiposMovimiento.Lucha, tiposMovimiento.Tierra, tiposMovimiento.Lucha );
             vista.getButtonAtaque1().setText(pokemonPropio.getNombreMov1());
             vista.getButtonAtaque2().setText(pokemonPropio.getNombreMov2());
             vista.getButtonAtaque3().setText(pokemonPropio.getNombreMov3());
             vista.getButtonAtaque4().setText(pokemonPropio.getNombreMov4());
 
-             pokemonRival =escogerPokemonRival();
+            pokemonRival =escogerPokemonRival();
 
             if (pokemonRival.getNombre().toString().equalsIgnoreCase("Scyther")){
                 //creamos panel con lucarioVSscyther.jpg
-                // TODO: 26/07/2021 Solucionar problema de visualizacion de Jlabel de Lucario VS Scyther
+                // TODO: 09/09/21 Solucionar problema con el border side de la imagen para que salga entera
 
-               vista.getBackgroundImageLabel().setIcon(new ImageIcon("img/lucariovsscyther.jpg"));
-                System.out.printf(String.valueOf(vista.getBackgroundImageLabel().getIcon()));
+                JLabel labelScyther = new JLabel("");
+                labelScyther.setIcon(new ImageIcon("img/lucariovsscyther.jpg"));
+                vista.getBackgroundImageLabel().removeAll();
+                vista.getCombatPanel().add(labelScyther);
 
-
-               //seteamos un texto a modo de narrador
+                //seteamos un texto a modo de narrador
                 vista.getTextFieldNarrador().setText("El Entrenador Juan saca a "+ pokemonRival.getNombre());
 
 
@@ -161,8 +337,7 @@ public class Controlador {
 
             if (pokemonRival.getNombre().toString().equalsIgnoreCase("Lycanroc")){
                 //creamos panel con lucarioVSlycanroc.jpg
-                // TODO: 26/07/2021 Solucionar problema de visualizado de Jlabel de Lycanroc VS Lucario, el metodo funciona, pero acaba siendo nulo al salir del metodo (comprobado en debugger)
-               vista.getBackgroundImageLabel().setIcon(new ImageIcon("img/lucariovslycanroc.jpg"));
+                vista.getBackgroundImageLabel().setEnabled(false);
 
 
                 //seteamos un texto a modo de narrador
@@ -178,7 +353,7 @@ public class Controlador {
             }
 
             if (pokemonRival.getNombre().toString().equalsIgnoreCase("Raikou")){
-               //Esta seteado a la imagen de raikou por defecto
+                //Esta seteado a la imagen de raikou por defecto
 
                 //seteamos un texto a modo de narrador
                 vista.getTextFieldNarrador().setText("El Entrenador Juan saca a "+ pokemonRival.getNombre());
@@ -195,9 +370,18 @@ public class Controlador {
 
         });
 
+        //BOTON SELECT ZERAORA
+        vista.getButtonSelectZeraora().addActionListener(e->{
+            JOptionPane.showMessageDialog(vista.getFrame(),"Zeraora no esta disponible aún","Select Zeraora",JOptionPane.WARNING_MESSAGE);
+        });
+
+        //BOTON SELECT ZOROARK
+        vista.getButtonSelectZoroark().addActionListener(e->{
+            JOptionPane.showMessageDialog(vista.getFrame(),"Zoroark no esta disponible aún","Select Zoroark",JOptionPane.WARNING_MESSAGE);
+        });
     }
 
-    private void informacionPokemonPanelSeleccion() {
+    private void controlarBotonesInfo() {
         //Evento Botón Info Lucario
         vista.getButtonInfoLucario().addActionListener(e->{
             vista.getInfoPanel().setVisible(true);
@@ -215,6 +399,130 @@ public class Controlador {
             vista.getInfoPanel().setVisible(true);
             mostrarInfoZoroark();
         });
+    }
+
+    private void mostrarInfoZeraora() {
+        //Boton de Ocultar Info
+        vista.getButtonOcultarInfo().addActionListener(e-> {
+            vista.getTextFieldInfoPokemon().setText("");
+            vista.getTextFieldTipoPokemon().setText("");
+            vista.getTextFieldPokedex().setText("");
+            vista.getTextAreaInfoHabilidad().setText("");
+            vista.getTextFieldInfoGeneracion().setText("");
+            vista.getInfoPanel().setVisible(false);
+        });
+
+        //Info Zeraora
+        vista.getTextFieldInfoPokemon().setText("Zeraora");
+        vista.getTextFieldTipoPokemon().setText("Electrico");
+        vista.getTextFieldInfoVida().setText("200");
+        vista.getTextFieldPokedex().setText("807");
+        vista.getTextAreaInfoHabilidad().setText("Hace jirones al oponente con sus garras electrificadas. " +
+                "Aunque este esquive los golpes, acaba electrocutado por las descargas");
+        vista.getTextAreaInfoHabilidad().setLineWrap(true);
+        vista.getTextFieldInfoGeneracion().setText("7");
+
+        //Evitamos que sea editable
+        vista.getTextFieldInfoPokemon().setEditable(false);
+        vista.getTextFieldTipoPokemon().setEditable(false);
+        vista.getTextFieldInfoVida().setEditable(false);
+        vista.getTextFieldPokedex().setEditable(false);
+        vista.getTextAreaInfoHabilidad().setEditable(false);
+        vista.getTextFieldInfoGeneracion().setEditable(false);
+    }
+
+    private void mostrarInfoLucario() {
+        //Boton de Ocultar Info
+        vista.getButtonOcultarInfo().addActionListener(e->{
+            vista.getTextFieldInfoPokemon().setText("");
+            vista.getTextFieldTipoPokemon().setText("");
+            vista.getTextFieldPokedex().setText("");
+            vista.getTextAreaInfoHabilidad().setText("");
+            vista.getTextFieldInfoGeneracion().setText("");
+            vista.getInfoPanel().setVisible(false);
+        });
+
+        //Info Lucario
+        vista.getTextFieldInfoPokemon().setText("Lucario");
+        vista.getTextFieldTipoPokemon().setText("Lucha/Acero");
+        vista.getTextFieldInfoVida().setText("200");
+        vista.getTextFieldPokedex().setText("448");
+        vista.getTextAreaInfoHabilidad().setText("Caza a sus presas manipulando una energía, " +
+                "denominada  a cuya potencia es capaz incluso de hacer añicos rocas enormes.");
+        vista.getTextAreaInfoHabilidad().setLineWrap(true);
+        vista.getTextFieldInfoGeneracion().setText("4");
+
+        //Evitamos que sea editable
+        vista.getTextFieldInfoPokemon().setEditable(false);
+        vista.getTextFieldTipoPokemon().setEditable(false);
+        vista.getTextFieldInfoVida().setEditable(false);
+        vista.getTextFieldPokedex().setEditable(false);
+        vista.getTextAreaInfoHabilidad().setEditable(false);
+        vista.getTextFieldInfoGeneracion().setEditable(false);
+
+    }
+
+    private void mostrarInfoZoroark() {
+        //Boton de Ocultar Info
+        vista.getButtonOcultarInfo().addActionListener(e-> {
+            vista.getTextFieldInfoPokemon().setText("");
+            vista.getTextFieldTipoPokemon().setText("");
+            vista.getTextFieldPokedex().setText("");
+            vista.getTextAreaInfoHabilidad().setText("");
+            vista.getTextFieldInfoGeneracion().setText("");
+            vista.getInfoPanel().setVisible(false);
+        });
+
+        //Info Zoroark
+        vista.getTextFieldInfoPokemon().setText("Zoroark");
+        vista.getTextFieldTipoPokemon().setText("Siniestro");
+        vista.getTextFieldInfoVida().setText("200");
+        vista.getTextFieldPokedex().setText("570");
+        vista.getTextAreaInfoHabilidad().setText("Cuida de sus semejantes. " +
+                "Provoca ilusiones terroríficas para proteger tanto su guarida como a su manada de sus adversarios.");
+        vista.getTextAreaInfoHabilidad().setLineWrap(true);
+        vista.getTextFieldInfoGeneracion().setText("5");
+
+        //Evitamos que sea editable
+        vista.getTextFieldInfoPokemon().setEditable(false);
+        vista.getTextFieldTipoPokemon().setEditable(false);
+        vista.getTextFieldInfoVida().setEditable(false);
+        vista.getTextFieldPokedex().setEditable(false);
+        vista.getTextAreaInfoHabilidad().setEditable(false);
+        vista.getTextFieldInfoGeneracion().setEditable(false);
+    }
+
+    private Pokemon escogerPokemonRival() {
+        //Variable privada del pokemonEscogido
+        Pokemon pokemonEscogido = null;
+        //Se elegirá con un Math random cualquiera
+        int random = (int) (Math.random()*10-1);
+
+        //Si <=3 :Lycanroc | >3 <=6: Scyther | >6 <=9: Raikou
+        if (random<=3){
+            pokemonEscogido = new Pokemon(nombrePokemon.Lycanroc, tipoPokemon.Roca, 200,40, 80
+                    , 75, 60, "Roca Veloz", "Triturar", "Avalancha", "Mordisco"
+                    , tiposMovimiento.Roca, tiposMovimiento.Siniestro, tiposMovimiento.Roca, tiposMovimiento.Siniestro);
+            System.out.println("Lycanroc");
+
+
+        }
+        if (random >3 && random<=6){
+            pokemonEscogido = new Pokemon(nombrePokemon.Scyther, tipoPokemon.Bicho_Volador, 200, 60, 80, 75, 40
+                    , "Ataque Ala", "Tijera X", "Tajo Aéreo", "Corte Furia",
+                    tiposMovimiento.Volador, tiposMovimiento.Bicho, tiposMovimiento.Volador, tiposMovimiento.Bicho);
+            System.out.println("Scyther");
+
+        }
+        if (random>6 && random<=9){
+            pokemonEscogido = new Pokemon(nombrePokemon.Raikou, tipoPokemon.Electrico, 200, 80, 40, 110, 80
+                    , "Paranormal", "Golpe Roca", "Trueno", "Chispazo",
+                    tiposMovimiento.Psiquico, tiposMovimiento.Lucha, tiposMovimiento.Electrico, tiposMovimiento.Electrico);
+            System.out.println("Raikou");
+        }
+        System.out.println(random);
+
+        return pokemonEscogido;
     }
 
     private void combateLucario(Pokemon pokemonRival, Pokemon pokemon) {
@@ -458,7 +766,6 @@ public class Controlador {
 
     }
 
-
     private void ataquePokemonRivalLucario(Pokemon pokemonRival, Pokemon pokemon) {
 
         //Si alguno de los 2 pokemon se quedan sin vida, se acaba el combate
@@ -554,7 +861,7 @@ public class Controlador {
         if (random==2){
             //Reduccion de un 20% de daño contra Lucario
             if (pokemonRival.getTipoMov2().toString().equalsIgnoreCase("Bicho")||
-                pokemonRival.getTipoMov2().toString().equalsIgnoreCase("Siniestro")){
+                    pokemonRival.getTipoMov2().toString().equalsIgnoreCase("Siniestro")){
                 vidaRestante = pokemon.getVida()-(int) (pokemonRival.getMov2()-pokemonRival.getMov2()*0.20);
                 pokemon.setVida(vidaRestante);
                 vista.getTextFieldVidaPokemon().setText(String.valueOf(vidaRestante));
@@ -585,7 +892,7 @@ public class Controlador {
         if (random==3){
 
             if (pokemonRival.getTipoMov3().toString().equalsIgnoreCase("Volador")){
-                    //incremento del 50% de daño contra Lucario
+                //incremento del 50% de daño contra Lucario
                 vidaRestante = pokemon.getVida()-(int) (pokemonRival.getMov3()*0.50+pokemonRival.getMov3());
                 pokemon.setVida(vidaRestante);
                 vista.getTextFieldVidaPokemon().setText(String.valueOf(vidaRestante));
@@ -659,333 +966,13 @@ public class Controlador {
 
     }
 
-    private void ataquePokemonRivalZeraora(Pokemon pokemon, Pokemon pokemonRival) {
-        //El ataque se realizara aleatoriamente con un Math.Random
-        int random = (int) (Math.random()*4);
-        int vidaRestante=0;
-
-
-        //Posibles Ataques: Roca Veloz (Lyc), Ataque Ala (Sc), Paranormal (Rk)
-        //Ataque Ala= Debil contra contra Zeraora
-
-        //Reduccion de un 20% si es debil contra Zeraora
-        if (pokemonRival.getTipoMov1().toString().equalsIgnoreCase("Volador")){
-            vidaRestante = pokemon.getVida()-(int) (pokemonRival.getMov1()*0.20);
-            pokemon.setVida(vidaRestante);
-            vista.getTextFieldVidaPokemon().setText(String.valueOf(vidaRestante));
-
-            //Salida por consola
-            System.out.println(pokemonRival.getNombre()+" ha usado " + pokemonRival.getNombreMov1()
-                    + " contra "+ pokemon.getNombre());
-            System.out.println("Ha sido poco eficaz...");
-
-            //Salida campo narracion
-            vista.getTextFieldNarrador().setText(pokemonRival.getNombre()+" ha usado "+pokemonRival.getNombreMov1() + " contra "+ pokemon.getNombre()
-                    +". "+pokemonRival.getNombreMov1() + " es poco eficaz contra " + pokemon.getNombre());
-
-        }
-
-        vidaRestante = pokemon.getVida()-pokemonRival.getMov1();
-        pokemon.setVida(vidaRestante);
-        vista.getTextFieldVidaPokemon().setText(String.valueOf(vidaRestante));
-        System.out.println(pokemonRival.getNombre()+" ha usado " + pokemonRival.getNombreMov1()
-                + " contra "+ pokemon.getNombre());
-        vista.getTextFieldNarrador().setText(pokemonRival.getNombre()+" ha usado "+pokemonRival.getNombreMov1() + " contra "+ pokemon.getNombre());
-
-
-        //Posibles Ataques: Triturar (Lyc), Tijera X (Sc), Golpe Roca (Rk)
-        //No afectan a Zeraora de ninguna manera especial
-
-        if (random==2){
-
-            vidaRestante= pokemon.getVida()- pokemonRival.getMov2();
-            pokemon.setVida(vidaRestante);
-            vista.getTextFieldVidaPokemon().setText(String.valueOf(vidaRestante));
-
-            System.out.println(pokemonRival.getNombre()+" ha usado " + pokemonRival.getNombreMov2()
-                    + " contra "+ pokemon.getNombre());
-            vista.getTextFieldNarrador().setText(pokemonRival.getNombre()+" ha usado "+pokemonRival.getNombreMov2() + " contra "+ pokemon.getNombre());
-        }
-
-        //Posibles Ataques: Avalancha (Lyc), Tajo Areo (Sc), Trueno (Rk)
-        //Tajo Areo (Volador) y Trueno (Electrico) = Debil contra Zeraora
-        if (random==3){
-
-            //Reduccion del 20% de daño contra Zeraora
-            if (pokemonRival.getTipoMov3().toString().equalsIgnoreCase("Volador")||
-                    pokemonRival.getTipoMov3().toString().equalsIgnoreCase("Electrico")){
-                vidaRestante = pokemon.getVida()-(int) (pokemonRival.getMov3()*0.20);
-                pokemon.setVida(vidaRestante);
-                vista.getTextFieldVidaPokemon().setText(String.valueOf(vidaRestante));
-
-                //Salida por consola
-                System.out.println(pokemonRival.getNombre()+" ha usado " + pokemonRival.getNombreMov3()
-                        + " contra "+ pokemon.getNombre());
-                System.out.println("Ha sido poco eficaz...");
-
-                //Salida campo narracion
-                vista.getTextFieldNarrador().setText(pokemonRival.getNombre()+" ha usado "+pokemonRival.getNombreMov3() + " contra "+ pokemon.getNombre()
-                        +". "+pokemonRival.getNombreMov3() + " es poco eficaz contra " + pokemon.getNombre());
-            }
-
-            vidaRestante= pokemon.getVida() - pokemonRival.getMov3();
-            pokemon.setVida(vidaRestante);
-            vista.getTextFieldVidaPokemon().setText(String.valueOf(vidaRestante));
-
-            System.out.println(pokemonRival.getNombre()+" ha usado " + pokemonRival.getNombreMov3()
-                    + " contra "+ pokemon.getNombre());
-            vista.getTextFieldNarrador().setText(pokemonRival.getNombre()+" ha usado "+pokemonRival.getNombreMov3() + " contra "+ pokemon.getNombre());
-        }
-
-        //Posibles Ataques= Mordisco (Lyc), Corte Furia (Sc), Chispazo (Rk)
-        //Chispazo (Electrico): Debil contra Zeraora
-        if (random==4){
-            //Reduccion de un 20% de daño contra Zeraora
-            if (pokemonRival.getTipoMov4().toString().equalsIgnoreCase("Electrico")){
-                vidaRestante = pokemon.getVida()-(int) (pokemonRival.getMov4()*0.20);
-                pokemon.setVida(vidaRestante);
-                vista.getTextFieldVidaPokemon().setText(String.valueOf(vidaRestante));
-
-                //Salida por consola
-                System.out.println(pokemonRival.getNombre()+" ha usado " + pokemonRival.getNombreMov4()
-                        + " contra "+ pokemon.getNombre());
-                System.out.println("Ha sido poco eficaz...");
-
-                //Salida campo narracion
-                vista.getTextFieldNarrador().setText(pokemonRival.getNombre()+" ha usado "+pokemonRival.getNombreMov4() + " contra "+ pokemon.getNombre()
-                        +". "+pokemonRival.getNombreMov4() + " es poco eficaz contra " + pokemon.getNombre());
-            }
-
-            vidaRestante= pokemon.getVida()- pokemonRival.getMov4();
-            pokemon.setVida(vidaRestante);
-            vista.getTextFieldVidaPokemon().setText(String.valueOf(vidaRestante));
-
-            System.out.println(pokemonRival.getNombre()+" ha usado " + pokemonRival.getNombreMov4()
-                    + " contra "+ pokemon.getNombre());
-            vista.getTextFieldNarrador().setText(pokemonRival.getNombre()+" ha usado "+pokemonRival.getNombreMov4() + " contra "+ pokemon.getNombre());
-        }
-
-    }
-
-    private void ataquePokemonRivalZoroark(Pokemon pokemon, Pokemon pokemonRival) {
-        //El ataque se realizara aleatoriamente con un Math.Random
-        int random = (int) (Math.random()*4);
-        int vidaRestante=0;
-
-
-        //Posibles Ataques: Roca Veloz (Lyc), Ataque Ala (Sc), Paranormal (Rk)
-        //Ninguno de estos ataques afecta de manera especial a Zoroark
-        if (random==1) {
-
-            vidaRestante = pokemon.getVida() - pokemonRival.getMov1();
-            pokemon.setVida(vidaRestante);
-            vista.getTextFieldVidaPokemon().setText(String.valueOf(vidaRestante));
-            System.out.println(pokemonRival.getNombre() + " ha usado " + pokemonRival.getNombreMov1()
-                    + " contra " + pokemon.getNombre());
-            vista.getTextFieldNarrador().setText(pokemonRival.getNombre() + " ha usado " + pokemonRival.getNombreMov1() + " contra " + pokemon.getNombre());
-        }
-
-        //Posibles Ataques: Triturar (Lyc), Tijera X (Sc), Golpe Roca (Rk)
-        //Tijera X (Bicho) = Fuerte contra Zoroark,
-        if (random==2){
-            //Aumento de un 50% de daño contra Zoroark
-            if (pokemonRival.getTipoMov2().toString().equalsIgnoreCase("Bicho")){
-                vidaRestante = pokemon.getVida()-(int) (pokemonRival.getMov2()*0.50 + pokemonRival.getMov2());
-                pokemon.setVida(vidaRestante);
-                vista.getTextFieldVidaPokemon().setText(String.valueOf(vidaRestante));
-
-                //Salida por consola
-                System.out.println(pokemonRival.getNombre()+" ha usado " + pokemonRival.getNombreMov2()
-                        + " contra "+ pokemon.getNombre());
-                System.out.println("Ha sido supereficaz!!!");
-
-                //Salida campo narracion
-                vista.getTextFieldNarrador().setText(pokemonRival.getNombre()+" ha usado "+pokemonRival.getNombreMov2() + " contra "+ pokemon.getNombre()
-                        +". "+pokemonRival.getNombreMov2() + " es supereficaz contra " + pokemon.getNombre());
-            }
-
-            vidaRestante= pokemon.getVida()- pokemonRival.getMov2();
-            pokemon.setVida(vidaRestante);
-            vista.getTextFieldVidaPokemon().setText(String.valueOf(vidaRestante));
-
-            System.out.println(pokemonRival.getNombre()+" ha usado " + pokemonRival.getNombreMov2()
-                    + " contra "+ pokemon.getNombre());
-            vista.getTextFieldNarrador().setText(pokemonRival.getNombre()+" ha usado "+pokemonRival.getNombreMov2() + " contra "+ pokemon.getNombre());
-        }
-
-        //Posibles Ataques: Avalancha (Lyc), Tajo Areo (Sc), Trueno (Rk)
-        //Ninguno de estos ataques afecta de manera especial a Zoroark
-        if (random==3){
-
-            vidaRestante= pokemon.getVida() - pokemonRival.getMov3();
-            pokemon.setVida(vidaRestante);
-            vista.getTextFieldVidaPokemon().setText(String.valueOf(vidaRestante));
-
-            System.out.println(pokemonRival.getNombre()+" ha usado " + pokemonRival.getNombreMov3()
-                    + " contra "+ pokemon.getNombre());
-            vista.getTextFieldNarrador().setText(pokemonRival.getNombre()+" ha usado "+pokemonRival.getNombreMov3() + " contra "+ pokemon.getNombre());
-        }
-
-        //Posibles Ataques= Mordisco (Lyc), Corte Furia (Sc), Chispazo (Rk)
-        //Cortes Furia (Bicho): Fuerte contra Zoroark
-        if (random==4){
-            //Aumento de un 50% de daño contra Zoroark
-            if (pokemonRival.getTipoMov4().toString().equalsIgnoreCase("Bicho")){
-                vidaRestante = pokemon.getVida()-(int) (pokemonRival.getMov4()*0.50 + pokemonRival.getMov4());
-                pokemon.setVida(vidaRestante);
-                vista.getTextFieldVidaPokemon().setText(String.valueOf(vidaRestante));
-
-                //Salida por consola
-                System.out.println(pokemonRival.getNombre()+" ha usado " + pokemonRival.getNombreMov4()
-                        + " contra "+ pokemon.getNombre());
-                System.out.println("Ha sido supereficaz!!!");
-
-                //Salida campo narracion
-                vista.getTextFieldNarrador().setText(pokemonRival.getNombre()+" ha usado "+pokemonRival.getNombreMov4() + " contra "+ pokemon.getNombre()
-                        +". "+pokemonRival.getNombreMov4() + " es supereficaz contra " + pokemon.getNombre());
-            }
-
-            vidaRestante= pokemon.getVida()- pokemonRival.getMov4();
-            pokemon.setVida(vidaRestante);
-            vista.getTextFieldVidaPokemon().setText(String.valueOf(vidaRestante));
-
-            System.out.println(pokemonRival.getNombre()+" ha usado " + pokemonRival.getNombreMov4()
-                    + " contra "+ pokemon.getNombre());
-            vista.getTextFieldNarrador().setText(pokemonRival.getNombre()+" ha usado "+pokemonRival.getNombreMov4() + " contra "+ pokemon.getNombre());
-        }
-
-    }
-
-    private Pokemon escogerPokemonRival() {
-        //Variable privada del pokemonEscogido
-        Pokemon pokemonEscogido = null;
-        //Se elegirá con un Math random cualquiera
-        int random = (int) (Math.random()*10-1);
-        
-        //Si <=3 :Lycanroc | >3 <=6: Scyther | >6 <=9: Raikou
-        if (random<=3){
-            pokemonEscogido = new Pokemon(nombrePokemon.Lycanroc, tipoPokemon.Roca, 200,40, 80
-            , 75, 60, "Roca Veloz", "Triturar", "Avalancha", "Mordisco"
-            , tiposMovimiento.Roca, tiposMovimiento.Siniestro, tiposMovimiento.Roca, tiposMovimiento.Siniestro);
-            System.out.println("Lycanroc");
-          
-        }
-        if (random >3 && random<=6){
-            pokemonEscogido = new Pokemon(nombrePokemon.Scyther, tipoPokemon.Bicho_Volador, 200, 60, 80, 75, 40
-                    , "Ataque Ala", "Tijera X", "Tajo Aéreo", "Corte Furia",
-                    tiposMovimiento.Volador, tiposMovimiento.Bicho, tiposMovimiento.Volador, tiposMovimiento.Bicho);
-            System.out.println("Scyther");
-    
-        }
-        if (random>6 && random<=9){
-            pokemonEscogido = new Pokemon(nombrePokemon.Raikou, tipoPokemon.Electrico, 200, 80, 40, 110, 80
-            , "Paranormal", "Golpe Roca", "Trueno", "Chispazo",
-                    tiposMovimiento.Psiquico, tiposMovimiento.Lucha, tiposMovimiento.Electrico, tiposMovimiento.Electrico);
-            System.out.println("Raikou");
-        }
-        System.out.println(random);
-
-        return pokemonEscogido;
-    }
-
-    private void mostrarInfoZoroark() {
-        //Boton de Ocultar Info
-        vista.getButtonOcultarInfo().addActionListener(e-> {
-            vista.getTextFieldInfoPokemon().setText("");
-            vista.getTextFieldTipoPokemon().setText("");
-            vista.getTextFieldPokedex().setText("");
-            vista.getTextAreaInfoHabilidad().setText("");
-            vista.getTextFieldInfoGeneracion().setText("");
-            vista.getInfoPanel().setVisible(false);
-        });
-
-        //Info Zoroark
-        vista.getTextFieldInfoPokemon().setText("Zoroark");
-        vista.getTextFieldTipoPokemon().setText("Siniestro");
-        vista.getTextFieldInfoVida().setText("200");
-        vista.getTextFieldPokedex().setText("570");
-        vista.getTextAreaInfoHabilidad().setText("Cuida de sus semejantes. " +
-                "Provoca ilusiones terroríficas para proteger tanto su guarida como a su manada de sus adversarios.");
-        vista.getTextAreaInfoHabilidad().setLineWrap(true);
-        vista.getTextFieldInfoGeneracion().setText("5");
-
-        //Evitamos que sea editable
-        vista.getTextFieldInfoPokemon().setEditable(false);
-        vista.getTextFieldTipoPokemon().setEditable(false);
-        vista.getTextFieldInfoVida().setEditable(false);
-        vista.getTextFieldPokedex().setEditable(false);
-        vista.getTextAreaInfoHabilidad().setEditable(false);
-        vista.getTextFieldInfoGeneracion().setEditable(false);
-    }
-
-    private void mostrarInfoZeraora() {
-        //Boton de Ocultar Info
-        vista.getButtonOcultarInfo().addActionListener(e-> {
-            vista.getTextFieldInfoPokemon().setText("");
-            vista.getTextFieldTipoPokemon().setText("");
-            vista.getTextFieldPokedex().setText("");
-            vista.getTextAreaInfoHabilidad().setText("");
-            vista.getTextFieldInfoGeneracion().setText("");
-            vista.getInfoPanel().setVisible(false);
-        });
-
-        //Info Zeraora
-        vista.getTextFieldInfoPokemon().setText("Zeraora");
-        vista.getTextFieldTipoPokemon().setText("Electrico");
-        vista.getTextFieldInfoVida().setText("200");
-        vista.getTextFieldPokedex().setText("807");
-        vista.getTextAreaInfoHabilidad().setText("Hace jirones al oponente con sus garras electrificadas. " +
-                "Aunque este esquive los golpes, acaba electrocutado por las descargas");
-        vista.getTextAreaInfoHabilidad().setLineWrap(true);
-        vista.getTextFieldInfoGeneracion().setText("7");
-
-        //Evitamos que sea editable
-        vista.getTextFieldInfoPokemon().setEditable(false);
-        vista.getTextFieldTipoPokemon().setEditable(false);
-        vista.getTextFieldInfoVida().setEditable(false);
-        vista.getTextFieldPokedex().setEditable(false);
-        vista.getTextAreaInfoHabilidad().setEditable(false);
-        vista.getTextFieldInfoGeneracion().setEditable(false);
-    }
-
-    private void mostrarInfoLucario() {
-        //Boton de Ocultar Info
-        vista.getButtonOcultarInfo().addActionListener(e->{
-            vista.getTextFieldInfoPokemon().setText("");
-            vista.getTextFieldTipoPokemon().setText("");
-            vista.getTextFieldPokedex().setText("");
-            vista.getTextAreaInfoHabilidad().setText("");
-            vista.getTextFieldInfoGeneracion().setText("");
-            vista.getInfoPanel().setVisible(false);
-        });
-
-        //Info Lucario
-        vista.getTextFieldInfoPokemon().setText("Lucario");
-        vista.getTextFieldTipoPokemon().setText("Lucha/Acero");
-        vista.getTextFieldInfoVida().setText("200");
-        vista.getTextFieldPokedex().setText("448");
-        vista.getTextAreaInfoHabilidad().setText("Caza a sus presas manipulando una energía, " +
-                "denominada  a cuya potencia es capaz incluso de hacer añicos rocas enormes.");
-        vista.getTextAreaInfoHabilidad().setLineWrap(true);
-        vista.getTextFieldInfoGeneracion().setText("4");
-
-        //Evitamos que sea editable
-        vista.getTextFieldInfoPokemon().setEditable(false);
-        vista.getTextFieldTipoPokemon().setEditable(false);
-        vista.getTextFieldInfoVida().setEditable(false);
-        vista.getTextFieldPokedex().setEditable(false);
-        vista.getTextAreaInfoHabilidad().setEditable(false);
-        vista.getTextFieldInfoGeneracion().setEditable(false);
-
-    }
-
     private void comprobarVidaPokemon () {
         //Si alguno de los 2 pokemon tienen una vida igual o inferior a 0, fin dle combate
         if (pokemonPropio.getVida() <= 0 || pokemonRival.getVida() <= 0) {
 
             System.out.println("Fin del combate");
 
-            //Seteamos el campo del narrador para indicar el fin del combate
+            //POKEMON PROPIO FUERA DE COMBATE
             if (pokemonPropio.getVida() <= 0) {
                 vista.getTextFieldNarrador().setText(pokemonPropio.getNombre().toString() + " esta fuera de combate!!!!    " + pokemonRival.getNombre()+" gana!!!");
                 vista.getTextFieldVidaPokemon().setText("0");
@@ -994,51 +981,18 @@ public class Controlador {
                 vista.getButtonAbandonar().setVisible(true);
                 vista.getButtonSeleccionarPokemonPropio().setVisible(true);
 
-                //Seteamos los listener de ambos botones (Abandonar y Seleccionar otro pokemon)
-                vista.getButtonSeleccionarPokemonPropio().addActionListener(e->{ //BOTON SELECCIONAR
-
-                    if (pokemonPropio.getNombre().toString().equalsIgnoreCase("Lucario")){
-                        vista.getFrame().remove(vista.getCombatPanel()); //Nos cargamos el panel de combate
-                        vista.getFrame().add(vista.getCentralPanel()); //Cambiamos al panel de Seleccion de pokemon
-                        vista.getFrame().revalidate();
-                        vista.getFrame().repaint();
-                        vista.getInfoPanel().setVisible(false); //Hacemos invisible el panel de informacion de los pokemon
-                        vista.getButtonSelectLucario().setText("Fuera de Combate");
-                        vista.getButtonSelectLucario().setEnabled(false); //Como el pokemon ha sido derrotado, no se puede volver a usar
-                        informacionPokemonPanelSeleccion(); //Preparamos la informacion de los pokemon en el panel de seleccion
-
-                    }
-
-                    if (pokemonPropio.getNombre().toString().equalsIgnoreCase("Zeraora")){
-                        vista.getFrame().remove(vista.getCombatPanel()); //Nos cargamos el panel de combate
-                        vista.getFrame().add(vista.getCentralPanel()); //Cambiamos al panel de Seleccion de pokemon
-                        vista.getFrame().revalidate();
-                        vista.getFrame().repaint();
-                        vista.getInfoPanel().setVisible(false); //Hacemos invisible el panel de informacion de los pokemon
-                        vista.getButtonSelectZeraora().setText("Fuera de Combate");
-                        vista.getButtonSelectZeraora().setEnabled(false); //Como el pokemon ha sido derrotado, no se puede volver a usar
-                        informacionPokemonPanelSeleccion(); //Preparamos la informacion de los pokemon en el panel de seleccion
-
-                    }
-
-                    if (pokemonPropio.getNombre().toString().equalsIgnoreCase("Zoroark")){
-                        vista.getFrame().remove(vista.getCombatPanel()); //Nos cargamos el panel de combate
-                        vista.getFrame().add(vista.getCentralPanel()); //Cambiamos al panel de Seleccion de pokemon
-                        vista.getFrame().revalidate();
-                        vista.getFrame().repaint();
-                        vista.getInfoPanel().setVisible(false); //Hacemos invisible el panel de informacion de los pokemon
-                        vista.getButtonSelectZoroark().setText("Fuera de Combate");
-                        vista.getButtonSelectZoroark().setEnabled(false); //Como el pokemon ha sido derrotado, no se puede volver a usar
-                        informacionPokemonPanelSeleccion(); //Preparamos la informacion de los pokemon en el panel de seleccion
-
-                    }
-                });
-
-                vista.getButtonAbandonar().addActionListener(e->{ //BOTON ABANDONAR
+                //BOTON ABANDONAR
+                vista.getButtonAbandonar().addActionListener(e->{
                     System.exit(1); //Cerramos el juego directamente
                 });
             }
             if (pokemonRival.getVida() <= 0) {
+                //Hacemos visibles los botones para seleccionar nuevo pokemon o abandonar combate
+                vista.getButtonAbandonar().setVisible(true);
+                vista.getButtonAbandonar().setText("Seguir Luchando");
+                vista.getButtonSeleccionarPokemonPropio().setVisible(true);
+
+
                 vista.getTextFieldNarrador().setText(pokemonRival.getNombre().toString() + " esta fuera de combate!!!!    " + pokemonPropio.getNombre()+" gana!!!");
                 vista.getTextFieldVidaPokemonRival().setText("0");
             }
@@ -1052,4 +1006,7 @@ public class Controlador {
 
         }
     }
+
+
+
 }

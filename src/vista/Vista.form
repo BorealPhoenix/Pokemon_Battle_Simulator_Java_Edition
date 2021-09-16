@@ -2,7 +2,7 @@
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="vista.Vista">
   <grid id="27dc6" binding="mainPanel" layout-manager="CardLayout" hgap="0" vgap="0" show="2abda">
     <constraints>
-      <xy x="20" y="20" width="2629" height="1276"/>
+      <xy x="20" y="20" width="2629" height="1585"/>
     </constraints>
     <properties/>
     <border type="none"/>
@@ -149,7 +149,10 @@
           <component id="6834d" class="javax.swing.JLabel" binding="backgroundImageLabel">
             <constraints border-constraint="Center"/>
             <properties>
+              <disabledIcon value="img/lucariovslycanroc.jpg"/>
               <enabled value="true"/>
+              <focusable value="true"/>
+              <horizontalAlignment value="10"/>
               <icon value="img/lucariovsraikou.jpg"/>
               <text value=""/>
               <verticalAlignment value="0"/>
